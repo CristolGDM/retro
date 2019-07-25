@@ -12,28 +12,36 @@ public class MovingMainCharacter : MonoBehaviour {
 	void Start () {
 		pos = transform.position;
 	}
-	
+
+	void MoveInDirection(Vector3 direction){
+		RaycastHit2D raycast = Physics2D.Raycast(transform.position, direction, 1);
+		if(raycast.collider && raycast.collider.name == "Collision"){
+			animator.SetBool("Moving", false);
+		}
+		else {
+			animator.SetBool("Moving", true);
+			pos += direction;
+		}
+	}
+
 	// Update is called once per frame
 	void Update () {
+
 		if ((Input.GetKey("up") || Input.GetKey("w")) && transform.position == pos) {				// UP
 			animator.SetInteger("Direction", 2);
-			animator.SetBool("Moving", true);
-			pos += Vector3.up;
+			MoveInDirection(Vector3.up);
 		}
 		else if ((Input.GetKey("down") || Input.GetKey("s")) && transform.position == pos) {		// DOWN
 			animator.SetInteger("Direction", 0);
-			animator.SetBool("Moving", true);
-			pos += Vector3.down;
+			MoveInDirection(Vector3.down);
 		}
 		else if ((Input.GetKey("left") || Input.GetKey("a")) && transform.position == pos) {		// LEFT
 			animator.SetInteger("Direction", 1);
-			animator.SetBool("Moving", true);
-			pos += Vector3.left;
+			MoveInDirection(Vector3.left);
 		}
 		else if ((Input.GetKey("right") || Input.GetKey("d")) && transform.position == pos) {		// RIGHT
 			animator.SetInteger("Direction", 3);
-			animator.SetBool("Moving", true);
-			pos += Vector3.right;
+			MoveInDirection(Vector3.right);
 		}
 
 		else if(transform.position == pos) {
