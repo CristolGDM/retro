@@ -15,7 +15,7 @@ public class MovingMainCharacter : MonoBehaviour {
 
 	void MoveInDirection(Vector3 direction){
 		RaycastHit2D raycast = Physics2D.Raycast(transform.position, direction, 1);
-		if(raycast.collider && raycast.collider.name == "Collision"){
+		if(raycast.collider){
 			animator.SetBool("Moving", false);
 		}
 		else {
@@ -49,5 +49,5 @@ public class MovingMainCharacter : MonoBehaviour {
 		}
 		transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);
 	}
-	
+
 }
