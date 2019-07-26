@@ -47,7 +47,7 @@ public class MovingMainCharacter : MonoBehaviour {
 		else if(transform.position == pos) {
 			animator.SetBool("Moving", false);
 		}
-
 		transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);
 	}
+	
 }
