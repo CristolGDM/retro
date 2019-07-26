@@ -13,17 +13,6 @@ public class MovingMainCharacter : MonoBehaviour {
 		pos = transform.position;
 	}
 
-	void MoveInDirection(Vector3 direction){
-		RaycastHit2D raycast = Physics2D.Raycast(transform.position + direction, direction, 0.1f);
-		if(raycast.collider && raycast.collider.tag != "Traversable"){
-			animator.SetBool("Moving", false);
-		}
-		else {
-			animator.SetBool("Moving", true);
-			pos += direction;
-		}
-	}
-
 	// Update is called once per frame
 	void Update () {
 
@@ -48,6 +37,19 @@ public class MovingMainCharacter : MonoBehaviour {
 			animator.SetBool("Moving", false);
 		}
 		transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);
+	}
+
+/////////////////////////////////
+
+	void MoveInDirection(Vector3 direction){
+		RaycastHit2D raycast = Physics2D.Raycast(transform.position + direction, direction, 0.1f);
+		if(raycast.collider && raycast.collider.tag != "Traversable"){
+			animator.SetBool("Moving", false);
+		}
+		else {
+			animator.SetBool("Moving", true);
+			pos += direction;
+		}
 	}
 
 }

@@ -420,7 +420,7 @@ GameObject:
   - component: {fileID: 229644721}
   m_Layer: 9
   m_Name: MainCharacter
-  m_TagString: Traversable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -431,13 +431,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 229644716}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.5, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1785229118}
-  m_Father: {fileID: 636003108}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &229644718
 SpriteRenderer:
@@ -524,7 +524,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.04870285, y: -0.05682826}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -535,7 +535,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.22065368, y: 0.39924288}
   m_EdgeRadius: 0
 --- !u!50 &229644722
 Rigidbody2D:
@@ -581,10 +581,9 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 229644717}
+  m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &659388882
 GameObject:
@@ -1080,7 +1079,7 @@ Transform:
   - {fileID: 84176636}
   - {fileID: 1885788184}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1073794786
 GameObject:
@@ -1139,7 +1138,7 @@ Transform:
   - {fileID: 1073794787}
   - {fileID: 659388883}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1288456564
 MonoBehaviour:
@@ -1319,6 +1318,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f92a03168e2fd40d48006d2fc06827a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TargetScene: SecondArea
+  TargetSpawn: FromStartingPoint
 --- !u!61 &1794403893
 BoxCollider2D:
   m_ObjectHideFlags: 0
