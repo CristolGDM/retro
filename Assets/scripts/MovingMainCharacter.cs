@@ -14,8 +14,8 @@ public class MovingMainCharacter : MonoBehaviour {
 	}
 
 	void MoveInDirection(Vector3 direction){
-		RaycastHit2D raycast = Physics2D.Raycast(transform.position, direction, 1);
-		if(raycast.collider){
+		RaycastHit2D raycast = Physics2D.Raycast(transform.position + direction, direction, 0.1f);
+		if(raycast.collider && raycast.collider.tag != "Traversable"){
 			animator.SetBool("Moving", false);
 		}
 		else {
