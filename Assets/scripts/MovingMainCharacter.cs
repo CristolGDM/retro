@@ -2,16 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+[RequireComponent(typeof(SpriteRenderer))]
 public class MovingMainCharacter : MonoBehaviour {
-	public Animator animator;
-	Vector3 pos;
-	float speed = 4.0f;
+    public Animator animator;
+    public Texture2D spriteSheet;
 
-	// Use this for initialization
-	void Start () {
-		pos = transform.position;
-	}
+    private Vector3 pos;
+    private float speed = 4.0f;
+    private Sprite[] sprites;
+    private SpriteRenderer spriteRenderer;
+    private string modelSpritesheetName = "test-Sheet";
+
+    // Use this for initialization
+    void Start () {
+        pos = transform.position;
+        sprites = Resources.LoadAll<Sprite>("sprites/" + spriteSheet.name);
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
 
 	// Update is called once per frame
 	void Update () {
@@ -39,9 +46,21 @@ public class MovingMainCharacter : MonoBehaviour {
 		transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);
 	}
 
-/////////////////////////////////
+    private void LateUpdate() {
+        string currentSpriteName = spriteRenderer.sprite.name;
+        string newSpritename = currentSpriteName.Replace(modelSpritesheetName, spriteSheet.name);
+        //Sprite newSprite;
+        foreach (var sprite in sprites) {
+            //Debug.Log(sprite.name + " / " + newSpritename);
+            if (sprite.name == newSpritename) {
+                spriteRenderer.sprite = sprite;
+                break;
+            }
+        }
+    }
+    /////////////////////////////////
 
-	void MoveInDirection(Vector3 direction){
+    void MoveInDirection(Vector3 direction){
 		RaycastHit2D raycast = Physics2D.Raycast(transform.position + direction, direction, 0.1f);
 		if(raycast.collider && raycast.collider.tag != "Traversable"){
 			animator.SetBool("Moving", false);
