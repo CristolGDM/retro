@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 95178733940254252}
   - component: {fileID: 114134417050198718}
   - component: {fileID: 61634953533314928}
+  - component: {fileID: 114408138990820710}
   m_Layer: 9
   m_Name: NPC
   m_TagString: Untagged
@@ -98,6 +99,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 95178733940254252}
   spriteSheet: {fileID: 2800000, guid: 02d3fb8a208f94dd2a22cf91ef3391c7, type: 3}
+--- !u!114 &114408138990820710
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1666946071868918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02c0b4ba7e4523a429cf9e563c481f3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212698682241447052
 SpriteRenderer:
   m_ObjectHideFlags: 1
