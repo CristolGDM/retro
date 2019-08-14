@@ -80,4 +80,14 @@ public class CharacterMover : MonoBehaviour {
         }
     }
 
+    public Vector3 GetCurrentDirection() {
+        switch (animator.GetInteger("Direction")){
+            case 1: return Vector3.left;
+            case 2: return Vector3.up;
+            case 3: return Vector3.right;
+
+            default: return Vector3.down;
+        };
+    }
+
 }
