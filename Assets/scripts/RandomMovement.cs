@@ -9,9 +9,9 @@ public class RandomMovement : MonoBehaviour {
     // Use this for initialization
     void Start() {
         mover = GetComponent<CharacterMover>();
-        //float startMoving = Random.Range(1.5f, 2.5f);
-        //float moveInterval = Random.Range()
-        InvokeRepeating("MoveRandomDirection", 1.0f, 2.0f);
+        float startMoving = Random.Range(0.5f, 3.5f);
+        float moveInterval = Random.Range(5.0f, 10.0f);
+        InvokeRepeating("MoveRandomDirection", startMoving, moveInterval);
     }
 
     // Update is called once per frame
