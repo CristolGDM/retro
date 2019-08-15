@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterMover))]
 public class PlayerMovement : MonoBehaviour {
     private CharacterMover mover;
-    private bool isInteracting = false;    private Animator animator;
+    private Animator animator;
 
 	// Use this for initialization
 	void Start () {
@@ -14,8 +14,8 @@ public class PlayerMovement : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (Input.GetKey("e") && !isInteracting) {
-            isInteracting = true;
+        if (Input.GetKeyDown("e") && GameData.PlayerCanMove) {
+            GameData.PlayerCanMove = false;
             Vector3 currentDirection = mover.GetCurrentDirection();
             RaycastHit2D raycast = Physics2D.Raycast(transform.position + currentDirection, currentDirection, 0.1f);
             if (raycast.collider) {
@@ -23,14 +23,14 @@ public class PlayerMovement : MonoBehaviour {
                     raycast.collider.GetComponent<OnInteract>().StartInteraction();
                 }
                 else {
-                    isInteracting = false;
+                    GameData.PlayerCanMove = true;
                 }
             }
             else {
-                isInteracting = false;
+                GameData.PlayerCanMove = true;
             }
         }
-        if (!isInteracting) {
+        if (GameData.PlayerCanMove) {
             if (Input.GetKey("up") || Input.GetKey("w")) {               // UP
                 mover.MoveUp();
             } else if (Input.GetKey("down") || Input.GetKey("s")) {      // DOWN

@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class OnInteract : MonoBehaviour {
-    public string name = "noname";
+    public string myName = "noname";
 
 	public void StartInteraction() {
-        Debug.Log("Hey there I'm " + name);
+        Debug.Log("Hey there I'm " + myName);
+        GameData.PlayerCanMove = true;
     }
 }
