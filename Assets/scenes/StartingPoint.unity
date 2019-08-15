@@ -1231,6 +1231,14 @@ Prefab:
       propertyPath: spriteSheet
       value: 
       objectReference: {fileID: 2800000, guid: c45784a6659febd4b8b49bf78acb8d2e, type: 3}
+    - target: {fileID: 0}
+      propertyPath: name
+      value: Josephine
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: myName
+      value: Sarabelle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a4c2ad8e4d6b747fb8afa6dc00daede3, type: 2}
   m_IsPrefabParent: 0
@@ -1262,6 +1270,23 @@ Transform:
   m_Father: {fileID: 1288456563}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1259035881 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1666946071868918, guid: a4c2ad8e4d6b747fb8afa6dc00daede3,
+    type: 2}
+  m_PrefabInternal: {fileID: 941987206}
+--- !u!114 &1259035882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1259035881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3023f7e097a900d409136548fc9261a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialog: Hey there!
 --- !u!1 &1288456562
 GameObject:
   m_ObjectHideFlags: 0
@@ -1358,6 +1383,14 @@ Prefab:
       propertyPath: spriteSheet
       value: 
       objectReference: {fileID: 2800000, guid: 7616e81767ebb49f49aec578c1dc7a01, type: 3}
+    - target: {fileID: 0}
+      propertyPath: name
+      value: Yurgurine
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: myName
+      value: Yurgurine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a4c2ad8e4d6b747fb8afa6dc00daede3, type: 2}
   m_IsPrefabParent: 0
@@ -1623,6 +1656,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &1831285069 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1666946071868918, guid: a4c2ad8e4d6b747fb8afa6dc00daede3,
+    type: 2}
+  m_PrefabInternal: {fileID: 1289006250}
+--- !u!114 &1831285070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1831285069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3023f7e097a900d409136548fc9261a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialog: I'm old, leave me alone
 --- !u!1 &1860863514
 GameObject:
   m_ObjectHideFlags: 0

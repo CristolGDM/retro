@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnInteract : MonoBehaviour {
-    public string myName = "noname";
+public abstract class OnInteract : MonoBehaviour {
 
-	public void StartInteraction() {
-        Debug.Log("Hey there I'm " + myName);
+	public virtual void StartInteraction() {
         GameData.PlayerCanMove = true;
     }
 }
