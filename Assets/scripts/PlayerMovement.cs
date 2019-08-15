@@ -19,7 +19,15 @@ public class PlayerMovement : MonoBehaviour {
             Vector3 currentDirection = mover.GetCurrentDirection();
             RaycastHit2D raycast = Physics2D.Raycast(transform.position + currentDirection, currentDirection, 0.1f);
             if (raycast.collider) {
-                Debug.Log(raycast.collider.name);
+                if(raycast.collider.GetComponent<OnInteract>()) {
+                    raycast.collider.GetComponent<OnInteract>().StartInteraction();
+                }
+                else {
+                    isInteracting = false;
+                }
+            }
+            else {
+                isInteracting = false;
             }
         }
         if (!isInteracting) {
