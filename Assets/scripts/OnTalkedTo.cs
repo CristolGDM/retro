@@ -8,7 +8,8 @@ public class OnTalkedTo : OnInteract {
     public string dialog = "...";
 
     public override void StartInteraction() {
-        dialogBoxText.text = dialog;
+        dialogBoxText.GetComponent<Text>().text = dialog;
+        Debug.Log(dialogBoxBackground.GetComponent<RectTransform>().rect.height);
         GameData.PlayerCanMove = true;
     }
 }

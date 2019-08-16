@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public abstract class OnInteract : MonoBehaviour {
 
-    public Text dialogBoxText;
-    public Image dialogBoxBackground;
+    public GameObject dialogBoxText;
+    public GameObject dialogBoxBackground;
 
     private void Start() {
-        dialogBoxText = GameObject.Find(ComponentNames.DialogBoxName).GetComponentInChildren<Text>();
-        dialogBoxBackground = GameObject.Find(ComponentNames.DialogBoxName).GetComponentInChildren<Image>();
+        dialogBoxText = GameObject.Find(ComponentNames.DialogBoxText);
+        dialogBoxBackground = GameObject.Find(ComponentNames.DialogBoxBackground);
     }
     public virtual void StartInteraction() {
         GameData.PlayerCanMove = true;
