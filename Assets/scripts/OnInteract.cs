@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public abstract class OnInteract : MonoBehaviour {
 
-    public GameObject dialogBoxText;
-    public GameObject dialogBoxBackground;
+    protected GameObject dialogBoxText;
+    protected GameObject dialogBoxBackground;
 
     private void Start() {
         dialogBoxText = GameObject.Find(ComponentNames.DialogBoxText);

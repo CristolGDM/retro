@@ -6,10 +6,24 @@ using UnityEngine.UI;
 public class OnTalkedTo : OnInteract {
 
     public string dialog = "...";
+    private RectTransform dialogBgRect;
+    private RectTransform dialogTextRect;
+    private Text textOnScreen;
+    private Vector2 newBgPos;
+    private Vector2 newTxtPos;
+
+    ///////////////////////////////////////
 
     public override void StartInteraction() {
-        dialogBoxText.GetComponent<Text>().text = dialog;
-        Debug.Log(dialogBoxBackground.GetComponent<RectTransform>().rect.height);
-        GameData.PlayerCanMove = true;
+        StartDialog();
+    }
+
+    private void StartDialog() {
+        dialogBgRect = dialogBoxBackground.GetComponent<RectTransform>();
+        newBgPos = new Vector2(dialogBgRect.position.x, (dialogBgRect.rect.height / 2));
+
+        dialogBoxBackground.GetComponent<UIMover>().MoveToNewPosition(newBgPos);
+
+        //textOnScreen.text = dialog;
     }
 }
