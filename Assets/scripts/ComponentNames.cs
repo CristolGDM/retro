@@ -5,17 +5,17 @@
  */
 
 public class ComponentNames {
-    private static string dialogBoxText = "DialogBoxText";
-    private static string dialogBoxBackground = "DialogBoxBackground";
+    private static string dialogText = "DialogText";
+    private static string dialogBox = "DialogBox";
 
-    public static string DialogBoxText {
+    public static string DialogText {
         get {
-            return dialogBoxText;
+            return dialogText;
         }
     }
-    public static string DialogBoxBackground {
+    public static string DialogBox {
         get {
-            return dialogBoxBackground;
+            return dialogBox;
         }
     }
 }

@@ -8,13 +8,13 @@ public class UIMover : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        pos = transform.position;
+        pos = transform.localPosition;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (transform.position != pos) {
-            transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * 888);
+        if (transform.localPosition != pos) {
+            transform.localPosition = Vector3.MoveTowards(transform.localPosition, pos, Time.deltaTime * 48);
         }
     }
 
