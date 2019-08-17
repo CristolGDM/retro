@@ -6,11 +6,16 @@ using UnityEngine.UI;
 public class OnTalkedTo : OnInteract {
 
     public string dialog = "...";
-    private RectTransform dialogBgRect;
-    private RectTransform dialogTextRect;
     private Text textOnScreen;
-    private Vector2 newBgPos;
-    private Vector2 newTxtPos;
+    private RectTransform dialogBgRect;
+    private Vector2 originalBgPos;
+    private bool dialogIsOpen = false;
+
+    private void Update() {
+        if (Input.GetKeyDown("e") && dialogIsOpen) {
+            CloseDialog();
+        }
+    }
 
     ///////////////////////////////////////
 
@@ -19,11 +24,26 @@ public class OnTalkedTo : OnInteract {
     }
 
     private void StartDialog() {
+        textOnScreen = dialogBoxText.GetComponent<Text>();
+        textOnScreen.text = "";
         dialogBgRect = dialogBoxBackground.GetComponent<RectTransform>();
-        newBgPos = new Vector2(dialogBgRect.position.x, (dialogBgRect.rect.height / 2));
 
+        originalBgPos = dialogBgRect.position;
+        Vector2 newBgPos = new Vector2(dialogBgRect.position.x, (dialogBgRect.rect.height / 2));
         dialogBoxBackground.GetComponent<UIMover>().MoveToNewPosition(newBgPos);
 
-        //textOnScreen.text = dialog;
+        Invoke("DisplayNextSentence", 0.3f);
+    }
+
+    private void DisplayNextSentence() {
+        dialogIsOpen = true;
+        textOnScreen.text = dialog;
+    }
+
+    private void CloseDialog() {
+        textOnScreen.text = "";
+        dialogBoxBackground.GetComponent<UIMover>().MoveToNewPosition(originalBgPos);
+        dialogIsOpen = false;
+        GameData.PlayerCanMove = true;
     }
 }

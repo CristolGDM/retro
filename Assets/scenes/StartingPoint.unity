@@ -642,7 +642,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: You forgot to put text, moron
 --- !u!222 &380339565
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1284,8 +1284,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3023f7e097a900d409136548fc9261a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogBoxText: {fileID: 0}
-  dialogBoxBackground: {fileID: 0}
   dialog: Hey there!
 --- !u!1 &1288456562
 GameObject:
@@ -1672,8 +1670,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3023f7e097a900d409136548fc9261a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogBoxText: {fileID: 0}
-  dialogBoxBackground: {fileID: 0}
   dialog: I'm old, leave me alone
 --- !u!1 &1860863514
 GameObject:
