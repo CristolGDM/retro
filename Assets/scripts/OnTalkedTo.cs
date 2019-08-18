@@ -7,8 +7,16 @@ public class OnTalkedTo : OnInteract {
 
     public string dialog = "...";
     private Text textOnScreen;
-    private Vector2 originalBgPos;
+    private Vector2 originalMaskPos;
     private bool dialogIsOpen = false;
+    private GameObject dialogText;
+    private GameObject dialogMask;
+    private int dialogTransitionSpeed = 10;
+
+    private void Start() {
+        dialogText = GameObject.Find(ComponentNames.DialogText);
+        dialogMask = GameObject.Find(ComponentNames.DialogMask);
+    }
 
     private void Update() {
         if (Input.GetKeyDown("e") && dialogIsOpen) {
@@ -26,11 +34,11 @@ public class OnTalkedTo : OnInteract {
         textOnScreen = dialogText.GetComponent<Text>();
         textOnScreen.text = "";
 
-        //originalBgPos = dialogBox.GetComponent<Transform>().localPosition;
-        //Vector2 newBgPos = new Vector2(-0.5f, -1.0f);
-        //dialogBox.GetComponent<UIMover>().MoveToNewPosition(newBgPos);
+        originalMaskPos = dialogMask.GetComponent<Transform>().localPosition;
+        Vector2 newMaskPos = new Vector2(0, -0.5f);
+        dialogMask.GetComponent<UIMover>().MoveToNewPosition(newMaskPos, dialogTransitionSpeed);
 
-        Invoke("DisplayNextSentence", 0.2f);
+        Invoke("DisplayNextSentence", 0.1f);
     }
 
     private void DisplayNextSentence() {
@@ -40,7 +48,7 @@ public class OnTalkedTo : OnInteract {
 
     private void CloseDialog() {
         textOnScreen.text = "";
-        //dialogBox.GetComponent<UIMover>().MoveToNewPosition(originalBgPos);
+        dialogMask.GetComponent<UIMover>().MoveToNewPosition(originalMaskPos, dialogTransitionSpeed);
         dialogIsOpen = false;
         GameData.PlayerCanMove = true;
     }
