@@ -26,9 +26,9 @@ public class OnTalkedTo : OnInteract {
         textOnScreen = dialogText.GetComponent<Text>();
         textOnScreen.text = "";
 
-        originalBgPos = dialogBox.GetComponent<Transform>().localPosition;
-        Vector2 newBgPos = new Vector2(-0.5f, -1.0f);
-        dialogBox.GetComponent<UIMover>().MoveToNewPosition(newBgPos);
+        //originalBgPos = dialogBox.GetComponent<Transform>().localPosition;
+        //Vector2 newBgPos = new Vector2(-0.5f, -1.0f);
+        //dialogBox.GetComponent<UIMover>().MoveToNewPosition(newBgPos);
 
         Invoke("DisplayNextSentence", 0.2f);
     }
@@ -40,7 +40,7 @@ public class OnTalkedTo : OnInteract {
 
     private void CloseDialog() {
         textOnScreen.text = "";
-        dialogBox.GetComponent<UIMover>().MoveToNewPosition(originalBgPos);
+        //dialogBox.GetComponent<UIMover>().MoveToNewPosition(originalBgPos);
         dialogIsOpen = false;
         GameData.PlayerCanMove = true;
     }

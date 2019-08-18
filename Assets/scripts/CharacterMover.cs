@@ -16,7 +16,7 @@ public class CharacterMover : MonoBehaviour {
     // Use this for initialization
     void Start () {
         pos = transform.position;
-        sprites = Resources.LoadAll<Sprite>("sprites/" + spriteSheet.name);
+        sprites = Resources.LoadAll<Sprite>("sprites/spritesheets/" + spriteSheet.name);
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
