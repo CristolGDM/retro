@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: 4b41302df0f0f33408e3dd422be762c0
+timeCreated: 1566111743
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 8
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Diary of an 8-bit mage
+  fontNames:
+  - Diary of an 8-bit mage
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: f97295f6283fcca4b8aeddb877c83edd, type: 3}
+  customCharacters: 
+  fontRenderingMode: 3
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
