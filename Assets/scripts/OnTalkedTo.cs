@@ -11,6 +11,7 @@ public class OnTalkedTo : OnInteract {
     private bool dialogIsOpen = false;
     private GameObject dialogText;
     private GameObject dialogMask;
+    private CharacterMover mover;
     private int dialogTransitionSpeed = 10;
 
     private void Start() {
@@ -33,6 +34,10 @@ public class OnTalkedTo : OnInteract {
     private void StartDialog() {
         textOnScreen = dialogText.GetComponent<Text>();
         textOnScreen.text = "";
+        mover = gameObject.GetComponent<CharacterMover>();
+        if(mover != null) {
+            mover.CanMove = false;
+        }
 
         originalMaskPos = dialogMask.GetComponent<Transform>().localPosition;
         Vector2 newMaskPos = new Vector2(0, -0.5f);
@@ -50,6 +55,7 @@ public class OnTalkedTo : OnInteract {
         textOnScreen.text = "";
         dialogMask.GetComponent<UIMover>().MoveToNewPosition(originalMaskPos, dialogTransitionSpeed);
         dialogIsOpen = false;
+        mover.CanMove = true;
         GameData.PlayerCanMove = true;
     }
 }

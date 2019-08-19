@@ -12,6 +12,7 @@ public class CharacterMover : MonoBehaviour {
     private Sprite[] sprites;
     private SpriteRenderer spriteRenderer;
     private string modelSpritesheetName = "test-Sheet";
+    private bool canMove = true;
 
     // Use this for initialization
     void Start () {
@@ -40,7 +41,7 @@ public class CharacterMover : MonoBehaviour {
 
     private void MoveInDirection(Vector3 direction){
 		RaycastHit2D raycast = Physics2D.Raycast(transform.position + direction, direction, 0.1f);
-		if(raycast.collider && raycast.collider.tag != "Traversable"){
+		if((raycast.collider && raycast.collider.tag != "Traversable") || !canMove) {
 			animator.SetBool("Moving", false);
 		}
 		else {
@@ -50,32 +51,32 @@ public class CharacterMover : MonoBehaviour {
     }
 
     public void MoveUp() {
-        if (transform.position == pos) {
+        if (transform.position == pos && CanMove) {
             animator.SetInteger("Direction", 2);
             MoveInDirection(Vector3.up);
         }
     }
     public void MoveDown() {
-        if (transform.position == pos) {
+        if (transform.position == pos && CanMove) {
             animator.SetInteger("Direction", 0);
             MoveInDirection(Vector3.down);
         }
     }
     public void MoveLeft() {
-        if (transform.position == pos) {
+        if (transform.position == pos && CanMove) {
             animator.SetInteger("Direction", 1);
             MoveInDirection(Vector3.left);
         }
     }
     public void MoveRight() {
-        if (transform.position == pos) {
+        if (transform.position == pos && CanMove) {
             animator.SetInteger("Direction", 3);
             MoveInDirection(Vector3.right);
         }
     }
 
     public void StopMoving() {
-         if (transform.position == pos) {
+         if (transform.position == pos && CanMove) {
             animator.SetBool("Moving", false);
         }
     }
@@ -90,4 +91,12 @@ public class CharacterMover : MonoBehaviour {
         };
     }
 
+    public bool CanMove {
+        get {
+            return canMove;
+        }
+        set {
+            canMove = value;
+        }
+    }
 }
