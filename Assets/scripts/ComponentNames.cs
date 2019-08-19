@@ -8,6 +8,7 @@ public class ComponentNames {
     private static string dialogText = "DialogText";
     private static string dialogBox = "DialogBox";
     private static string dialogMask = "DialogMask";
+    private static string playerCharacter = "MainCharacter";
 
     public static string DialogText {
         get {
@@ -22,6 +23,12 @@ public class ComponentNames {
     public static string DialogMask {
         get {
             return dialogMask;
+        }
+    }
+
+    public static string PlayerCharacter {
+        get {
+            return playerCharacter;
         }
     }
 }

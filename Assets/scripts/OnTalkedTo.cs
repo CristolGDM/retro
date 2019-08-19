@@ -35,6 +35,8 @@ public class OnTalkedTo : OnInteract {
         textOnScreen = dialogText.GetComponent<Text>();
         textOnScreen.text = "";
         mover = gameObject.GetComponent<CharacterMover>();
+        int playerDirection = GameObject.Find(ComponentNames.PlayerCharacter).GetComponent<Animator>().GetInteger("Direction");
+        mover.animator.SetInteger("Direction", (playerDirection +2)%4 );
         if(mover != null) {
             mover.CanMove = false;
         }
