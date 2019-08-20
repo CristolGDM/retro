@@ -47,8 +47,6 @@ public class InputHandler : MonoBehaviour {
                 playerMover.MoveLeft();
             } else if (Input.GetKey("right") || Input.GetKey("d")) {     // RIGHT
                 playerMover.MoveRight();
-            } else {
-                playerMover.StopMoving();
             }
         }
     }

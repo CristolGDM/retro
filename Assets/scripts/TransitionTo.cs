@@ -39,6 +39,7 @@ public class TransitionTo : MonoBehaviour {
 		SceneManager.MoveGameObjectToScene(player, SceneManager.GetSceneByName(TargetScene));
 		GameObject spawn = GameObject.Find(TargetSpawn);
 		player.transform.position = spawn.transform.position;
+        player.GetComponent<CharacterMover>().StopMoving();
 		SceneManager.UnloadSceneAsync(currentScene);
 	}
 }

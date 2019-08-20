@@ -82,9 +82,8 @@ public class CharacterMover : MonoBehaviour {
     }
 
     public void StopMoving() {
-         if (transform.position == pos && CanMove) {
             animator.SetBool("Moving", false);
-        }
+            pos = transform.position;
     }
 
     public Vector3 GetCurrentDirection() {
