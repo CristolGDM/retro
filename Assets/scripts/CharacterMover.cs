@@ -13,6 +13,7 @@ public class CharacterMover : MonoBehaviour {
     private SpriteRenderer spriteRenderer;
     private string modelSpritesheetName = "test-Sheet";
     private bool canMove = true;
+    private Vector3 originalPosition;
 
     // Use this for initialization
     void Start () {
@@ -24,6 +25,10 @@ public class CharacterMover : MonoBehaviour {
     private void Update() {
         transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);
         if (transform.position == pos) animator.SetBool("Moving", false);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        pos = originalPosition;
     }
 
 
@@ -45,6 +50,7 @@ public class CharacterMover : MonoBehaviour {
 			animator.SetBool("Moving", false);
 		}
 		else {
+            originalPosition = pos;
 			animator.SetBool("Moving", true);
 			pos += direction;
 		}
