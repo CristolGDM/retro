@@ -121,8 +121,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 29349853}
+  - component: {fileID: 29349854}
+  - component: {fileID: 29349855}
   m_Layer: 0
-  m_Name: Scripts
+  m_Name: SceneScripts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -141,6 +143,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &29349854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 29349852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 670eef4077585ab428cd1d0bc26b06a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCharacter: {fileID: 229644716}
+  dialogHandler: {fileID: 29349855}
+--- !u!114 &29349855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 29349852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd74fdd61ad0c5145b68c609c410ed8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogTextField: {fileID: 803718555}
+  dialogMask: {fileID: 466630991}
 --- !u!1 &84176635
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,7 +448,6 @@ GameObject:
   - component: {fileID: 229644717}
   - component: {fileID: 229644718}
   - component: {fileID: 229644720}
-  - component: {fileID: 229644723}
   - component: {fileID: 229644719}
   - component: {fileID: 229644722}
   - component: {fileID: 229644721}
@@ -565,17 +592,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &229644723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 229644716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2cb052c23f88d346b4a7a364316f25d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &334875271
 GameObject:
   m_ObjectHideFlags: 0
@@ -1482,7 +1498,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3023f7e097a900d409136548fc9261a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialog: Hey there!
+  dialog:
+  - '"Hey there!"'
 --- !u!1 &1288456562
 GameObject:
   m_ObjectHideFlags: 0
@@ -2361,7 +2378,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3023f7e097a900d409136548fc9261a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialog: I'm old, leave me alone
+  dialog:
+  - '"I''m old leave me alone"'
+  - '"I said leave me alone!"'
+  - '"I''m calling the police"'
 --- !u!1 &1860863514
 GameObject:
   m_ObjectHideFlags: 0

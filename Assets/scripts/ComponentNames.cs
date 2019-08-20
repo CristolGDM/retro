@@ -9,6 +9,7 @@ public class ComponentNames {
     private static string dialogBox = "DialogBox";
     private static string dialogMask = "DialogMask";
     private static string playerCharacter = "MainCharacter";
+    private static string sceneScripts = "SceneScripts";
 
     public static string DialogText {
         get {
@@ -29,6 +30,13 @@ public class ComponentNames {
     public static string PlayerCharacter {
         get {
             return playerCharacter;
+        }
+    }
+
+
+    public static string SceneScripts {
+        get {
+            return sceneScripts;
         }
     }
 }

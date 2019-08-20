@@ -5,23 +5,17 @@ using UnityEngine.UI;
 
 public class OnTalkedTo : OnInteract {
 
-    public string dialog = "...";
-    private Text textOnScreen;
-    private Vector2 originalMaskPos;
-    private bool dialogIsOpen = false;
-    private GameObject dialogText;
-    private GameObject dialogMask;
+    [SerializeField]
+    private List<string> dialog = new List<string> { "..." };
     private CharacterMover mover;
-    private int dialogTransitionSpeed = 10;
 
     private void Start() {
-        dialogText = GameObject.Find(ComponentNames.DialogText);
-        dialogMask = GameObject.Find(ComponentNames.DialogMask);
+        mover = gameObject.GetComponent<CharacterMover>();
     }
 
     private void Update() {
-        if (Input.GetKeyDown("e") && dialogIsOpen) {
-            CloseDialog();
+        if (!GameData.DialogIsOpen && !mover.CanMove) {
+            mover.CanMove = true;
         }
     }
 
@@ -32,32 +26,12 @@ public class OnTalkedTo : OnInteract {
     }
 
     private void StartDialog() {
-        textOnScreen = dialogText.GetComponent<Text>();
-        textOnScreen.text = "";
         mover = gameObject.GetComponent<CharacterMover>();
         int playerDirection = GameObject.Find(ComponentNames.PlayerCharacter).GetComponent<Animator>().GetInteger("Direction");
         mover.animator.SetInteger("Direction", (playerDirection +2)%4 );
         if(mover != null) {
             mover.CanMove = false;
         }
-
-        originalMaskPos = dialogMask.GetComponent<Transform>().localPosition;
-        Vector2 newMaskPos = new Vector2(0, -0.5f);
-        dialogMask.GetComponent<UIMover>().MoveToNewPosition(newMaskPos, dialogTransitionSpeed);
-
-        Invoke("DisplayNextSentence", 0.1f);
-    }
-
-    private void DisplayNextSentence() {
-        dialogIsOpen = true;
-        textOnScreen.text = dialog;
-    }
-
-    private void CloseDialog() {
-        textOnScreen.text = "";
-        dialogMask.GetComponent<UIMover>().MoveToNewPosition(originalMaskPos, dialogTransitionSpeed);
-        dialogIsOpen = false;
-        mover.CanMove = true;
-        GameData.PlayerCanMove = true;
+        GameObject.Find(ComponentNames.SceneScripts).GetComponent<DialogHandler>().StartNewDialog(dialog);
     }
 }
