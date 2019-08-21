@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: f97295f6283fcca4b8aeddb877c83edd
-timeCreated: 1566111730
+guid: b2aeb2b7b09b8ee41a7a1737822d5d83
+timeCreated: 1566357117
 licenseType: Free
 TrueTypeFontImporter:
   externalObjects: {}
@@ -10,9 +10,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Diary of an 8-bit mage
+  fontName: Eight-Bit Madness
   fontNames:
-  - Diary of an 8-bit mage
+  - Eight-Bit Madness
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
