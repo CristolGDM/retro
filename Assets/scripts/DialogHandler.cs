@@ -15,29 +15,36 @@ public class DialogHandler : MonoBehaviour {
     private int dialogTransitionSpeed = 10;
     private int maxDialogLength = 95;
 
+    private void Start() {
+        originalMaskPos = dialogMask.GetComponent<Transform>().localPosition;
+    }
+
     public void StartNewDialog(List<string> newDialog) {
         dialogTextField.text = "";
         GameData.DialogIsOpen = true;
         GameData.PlayerCanMove = false;
 
-        originalMaskPos = dialogMask.GetComponent<Transform>().localPosition;
         Vector2 newMaskPos = new Vector2(0, -0.5f);
         dialogMask.GetComponent<UIMover>().MoveToNewPosition(newMaskPos, dialogTransitionSpeed);
 
         dialog = new List<string>(newDialog);
-        Invoke("DisplayNextSentence", 0.2f);
+        DisplayNextSentence();
     }
 
     public void DisplayNextSentence() {
+        dialogTextField.text = "";
+        Invoke("ReplaceSentence", 0.2f);
+    }
+
+    private void ReplaceSentence() {
         if (dialog.Count == 0) {
             CloseDialog();
         } else {
-            if(dialog[0].Length > maxDialogLength) {
+            if (dialog[0].Length > maxDialogLength) {
                 int lastSpace = dialog[0].Substring(0, maxDialogLength).LastIndexOf(" ");
                 dialogTextField.text = dialog[0].Substring(0, lastSpace);
                 dialog[0] = dialog[0].Substring(lastSpace + 1, dialog[0].Length - lastSpace - 1);
-            }
-            else {
+            } else {
                 dialogTextField.text = dialog[0];
                 dialog.RemoveAt(0);
             }
