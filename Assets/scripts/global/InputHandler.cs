@@ -10,6 +10,9 @@ public class InputHandler : MonoBehaviour {
     [SerializeField]
     private DialogHandler dialogHandler;
 
+    [SerializeField]
+    private MenuManager menuManager;
+
     private CharacterMover playerMover;
 
 	// Use this for initialization
@@ -19,11 +22,11 @@ public class InputHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        /* INTERACT KEY */
         if (Input.GetKeyDown("e")) {
             if (GameData.DialogIsOpen) {
                 dialogHandler.DisplayNextSentence();
-            }
-            else if (GameData.PlayerCanMove) {
+            } else if (GameData.PlayerCanMove) {
                 GameData.PlayerCanMove = false;
                 Vector3 currentDirection = playerMover.GetCurrentDirection();
                 RaycastHit2D raycast = Physics2D.Raycast(playerCharacter.transform.position + currentDirection, currentDirection, 0.1f);
@@ -38,16 +41,31 @@ public class InputHandler : MonoBehaviour {
                 }
             }
         }
-        else if (GameData.PlayerCanMove) {
-            if (Input.GetKey("up") || Input.GetKey("w")) {               // UP
-                playerMover.MoveUp();
-            } else if (Input.GetKey("down") || Input.GetKey("s")) {      // DOWN
-                playerMover.MoveDown();
-            } else if (Input.GetKey("left") || Input.GetKey("a")) {      // LEFT
-                playerMover.MoveLeft();
-            } else if (Input.GetKey("right") || Input.GetKey("d")) {     // RIGHT
-                playerMover.MoveRight();
-            }
+        /* UP KEY */
+        else if (Input.GetKey("up") || Input.GetKey("w")) {
+            if (GameData.PlayerCanMove) playerMover.MoveUp();
         }
+
+        /* DOWN KEY */
+        else if (Input.GetKey("down") || Input.GetKey("s")) {
+            if (GameData.PlayerCanMove) playerMover.MoveDown();
+        }
+
+        /* LEFT KEY */
+        else if (Input.GetKey("left") || Input.GetKey("a")) {
+            if (GameData.PlayerCanMove) playerMover.MoveLeft();
+        }
+
+        /* RIGHT KEY */
+        else if (Input.GetKey("right") || Input.GetKey("d")) {
+            if (GameData.PlayerCanMove) playerMover.MoveRight();
+        }
+
+        /* MENU KEY */
+        else if (Input.GetKeyDown("enter") || Input.GetKeyDown("return")) {
+            if (!GameData.MenuIsOpen && GameData.PlayerCanMove) menuManager.openMenu();
+            else menuManager.closeMenu();
+        }
+
     }
 }
