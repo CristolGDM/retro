@@ -6,14 +6,23 @@ using UnityEngine.Tilemaps;
 public class MenuManager : MonoBehaviour {
 
     [SerializeField]
-    private GameObject MainMenu;
+    private GameObject mainMenu;
+
+    private GameObject leftPart;
+    private GameObject rightPart;
 
     public void openMenu() {
-        MainMenu.GetComponent<TilemapRenderer>().enabled = true;
+        leftPart = mainMenu.transform.Find("LeftPart").gameObject;
+        rightPart = mainMenu.transform.Find("RightPart1").gameObject;
+        leftPart.GetComponent<TilemapRenderer>().enabled = true;
+        rightPart.GetComponent<TilemapRenderer>().enabled = true;
         GameData.MenuIsOpen = true;
     }
     public void closeMenu() {
-        MainMenu.GetComponent<TilemapRenderer>().enabled = false;
+        Renderer[] allRenderers = mainMenu.GetComponentsInChildren<TilemapRenderer>();
+        foreach (TilemapRenderer childRenderer in allRenderers) {
+            childRenderer.enabled = false;
+        }
         GameData.MenuIsOpen = false;
     }
 }
