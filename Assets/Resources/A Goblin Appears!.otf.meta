@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: 62e8a9743d118e54ab9c8bc7950a233a
+timeCreated: 1566616960
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: A Goblin Appears!
+  fontNames:
+  - A Goblin Appears!
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 8c2d57572b170054cabb1cf36c86812b, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
