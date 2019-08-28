@@ -79,9 +79,27 @@ public class GameData {
         }
     }
 
-    public static PlayerCharacter getPc(int whichPc) {
-        if (whichPc < 4) {
-            return currentParty[whichPc - 1];
+    public static PlayerCharacter getFirstPc() {
+        return currentParty[0];
+    }
+
+    public static PlayerCharacter getSecondPc() {
+        if (currentParty.Count >= 2) {
+            return currentParty[1];
+        }
+        return null;
+    }
+
+    public static PlayerCharacter getThirdPc() {
+        if (currentParty.Count >= 3) {
+            return currentParty[2];
+        }
+        return null;
+    }
+
+    public static PlayerCharacter getFourthPc() {
+        if (currentParty.Count == 4) {
+            return currentParty[3];
         }
         return null;
     }

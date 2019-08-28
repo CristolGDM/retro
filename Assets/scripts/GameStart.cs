@@ -14,9 +14,10 @@ public class GameStart : MonoBehaviour {
     // Use this for initialization
     void Awake () {
         StartCoroutine(DoInitialTransition());
-        PlayerCharacter mainCharacter = PlayerCharacters.MainCharacter;
-        GameData.addNewCharacter(mainCharacter);
-        GameData.addCharacterToParty(mainCharacter);
+        GameData.addNewCharacter(PlayerCharacters.MainCharacter);
+        GameData.addCharacterToParty(PlayerCharacters.MainCharacter);
+        GameData.addNewCharacter(PlayerCharacters.Yurgurine);
+        GameData.addCharacterToParty(PlayerCharacters.Yurgurine);
     }
 
     IEnumerator DoInitialTransition() {
