@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerCharacters {
 
-    private static PlayerCharacter mainCharacter = new PlayerCharacter("Mikasuke", "test-Sheet", 98, 100, 1, "Samurai", "0001");
+    private static PlayerCharacter mainCharacter = new PlayerCharacter(aCharacterName: "Mikasuke", aSpriteSheetName: "test-Sheet", aCurrentPv: 98, aMaxPv: 100, aLevel: 1, aJob: "Samurai", aCharId: "0001");
     public static PlayerCharacter MainCharacter { get { return mainCharacter; } }
 
-    private static PlayerCharacter yurgurine = new PlayerCharacter("Yurgurine", "npc-Sheet", 80, 80, 3, "Wise man", "0002");
+    private static PlayerCharacter yurgurine = new PlayerCharacter(aCharacterName: "Yurgurine", aSpriteSheetName: "npc-Sheet", aCurrentPv: 80, aMaxPv: 80, aLevel: 2, aJob: "Wise man", aCharId: "0002");
     public static PlayerCharacter Yurgurine { get { return yurgurine; } }
 }
