@@ -2509,6 +2509,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114408237829856962, guid: 934069ab783c934498d1aaabf545324d,
+        type: 2}
+      propertyPath: TexturePixelsPerWorldUnit
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 20612677443789878, guid: 934069ab783c934498d1aaabf545324d,
+        type: 2}
+      propertyPath: orthographic size
+      value: 8.175
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 934069ab783c934498d1aaabf545324d, type: 2}
   m_IsPrefabParent: 0
