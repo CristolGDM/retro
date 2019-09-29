@@ -52,7 +52,6 @@ public class MenuManager : MonoBehaviour {
     }
 
     private void SelectOption(int x, int y) {
-        Debug.Log(x + "/" + y);
         if (SelectableOptions.Count <= y || SelectableOptions[y].Count <= x) {
             SelectedOptionX = 0;
             SelectedOptionY = 0;
@@ -63,5 +62,17 @@ public class MenuManager : MonoBehaviour {
             SelectedOptionY = y;
             Cursor.transform.position = new Vector3(CurrentOption().transform.position.x - 1.6f, CurrentOption().transform.position.y - 0.1f, CurrentOption().transform.position.z);
         }
+    }
+
+    public void MoveDown() {
+        int y = SelectedOptionY;
+
+        if(y == SelectableOptions.Count -1) {
+            y = 0;
+        } else {
+            y += 1;
+        }
+
+        SelectOption(SelectedOptionX, y);
     }
 }

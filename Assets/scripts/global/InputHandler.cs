@@ -11,7 +11,7 @@ public class InputHandler : MonoBehaviour {
     private DialogHandler dialogHandler;
 
     [SerializeField]
-    private MenuManager menuManager;
+    private MenuManager MenuManager;
 
     private CharacterMover playerMover;
 
@@ -49,6 +49,9 @@ public class InputHandler : MonoBehaviour {
         /* DOWN KEY */
         else if (Input.GetKey("down") || Input.GetKey("s")) {
             if (GameData.PlayerCanMove) playerMover.MoveDown();
+            else if (Input.GetKeyDown("down") || Input.GetKeyDown("s")) {
+                if (GameData.MenuIsOpen)MenuManager.MoveDown();
+            }
         }
 
         /* LEFT KEY */
@@ -63,8 +66,8 @@ public class InputHandler : MonoBehaviour {
 
         /* MENU KEY */
         else if (Input.GetKeyDown("enter") || Input.GetKeyDown("return")) {
-            if (!GameData.MenuIsOpen && GameData.PlayerCanMove) menuManager.openMenu();
-            else menuManager.closeMenu();
+            if (!GameData.MenuIsOpen && GameData.PlayerCanMove) MenuManager.OpenMenu();
+            else MenuManager.CloseMenu();
         }
 
     }
