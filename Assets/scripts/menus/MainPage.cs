@@ -28,6 +28,9 @@ public class MainPage : MonoBehaviour {
     [SerializeField]
     GameObject StatusOption;
 
+    [SerializeField]
+    GameObject Cursor;
+
     private List<List<GameObject>> SelectableOptions = new List<List<GameObject>>();
     private int[] SelectedOption = new int[2];
 
@@ -55,5 +58,9 @@ public class MainPage : MonoBehaviour {
 
         SelectedOption[0] = 0;
         SelectedOption[1] = 0;
+
+        Cursor.GetComponent<SpriteRenderer>().enabled = true;
+
+        Cursor.transform.position = new Vector3(ItemOption.transform.position.x - 1.5f, ItemOption.transform.position.y -0.1f, ItemOption.transform.position.z);
     }
 }
