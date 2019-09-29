@@ -28,11 +28,7 @@ public class MainPage : MonoBehaviour {
     [SerializeField]
     GameObject StatusOption;
 
-    [SerializeField]
-    GameObject Cursor;
-
     private List<List<GameObject>> SelectableOptions = new List<List<GameObject>>();
-    private int[] SelectedOption = new int[2];
 
     public void Open() {
         LeftPart.GetComponent<TilemapRenderer>().enabled = true;
@@ -55,12 +51,9 @@ public class MainPage : MonoBehaviour {
         SelectableOptions.Add(new List<GameObject> { ItemOption });
         SelectableOptions.Add(new List<GameObject> { MagicOption });
         SelectableOptions.Add(new List<GameObject> { StatusOption });
+    }
 
-        SelectedOption[0] = 0;
-        SelectedOption[1] = 0;
-
-        Cursor.GetComponent<SpriteRenderer>().enabled = true;
-
-        Cursor.transform.position = new Vector3(ItemOption.transform.position.x - 1.5f, ItemOption.transform.position.y -0.1f, ItemOption.transform.position.z);
+    public List<List<GameObject>> GetOptions() {
+        return SelectableOptions;
     }
 }

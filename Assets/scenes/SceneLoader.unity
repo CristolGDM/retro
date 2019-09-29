@@ -269,7 +269,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b01e1d4f493db084fa7f81a533a4a3b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainMenu: {fileID: 495430207}
+  MainMenu: {fileID: 495430207}
+  Cursor: {fileID: 717577146}
 --- !u!114 &66344264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,7 +297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCharacter: {fileID: 714952595}
   dialogHandler: {fileID: 66344264}
-  menuManager: {fileID: 66344263}
+  MenuManager: {fileID: 66344263}
 --- !u!1001 &122602987
 Prefab:
   m_ObjectHideFlags: 0
@@ -806,7 +807,6 @@ MonoBehaviour:
   ItemOption: {fileID: 1145212918}
   MagicOption: {fileID: 1672229823}
   StatusOption: {fileID: 1578369818}
-  Cursor: {fileID: 717577146}
 --- !u!1001 &556762233
 Prefab:
   m_ObjectHideFlags: 0
@@ -1111,7 +1111,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 717577146}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.1, y: 0.9, z: 0}
+  m_LocalPosition: {x: -5, y: 2.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 495430208}
