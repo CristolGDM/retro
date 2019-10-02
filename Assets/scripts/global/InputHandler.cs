@@ -44,6 +44,9 @@ public class InputHandler : MonoBehaviour {
         /* UP KEY */
         else if (Input.GetKey("up") || Input.GetKey("w")) {
             if (GameData.PlayerCanMove) playerMover.MoveUp();
+            else if (Input.GetKeyDown("up") || Input.GetKeyDown("w")) {
+                if (GameData.MenuIsOpen) MenuManager.MoveUp();
+            }
         }
 
         /* DOWN KEY */
@@ -57,11 +60,17 @@ public class InputHandler : MonoBehaviour {
         /* LEFT KEY */
         else if (Input.GetKey("left") || Input.GetKey("a")) {
             if (GameData.PlayerCanMove) playerMover.MoveLeft();
+            else if (Input.GetKeyDown("left") || Input.GetKeyDown("a")) {
+                if (GameData.MenuIsOpen) MenuManager.MoveLeft();
+            }
         }
 
         /* RIGHT KEY */
         else if (Input.GetKey("right") || Input.GetKey("d")) {
             if (GameData.PlayerCanMove) playerMover.MoveRight();
+            else if (Input.GetKeyDown("right") || Input.GetKeyDown("d")) {
+                if (GameData.MenuIsOpen) MenuManager.MoveRight();
+            }
         }
 
         /* MENU KEY */

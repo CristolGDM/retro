@@ -67,12 +67,48 @@ public class MenuManager : MonoBehaviour {
     public void MoveDown() {
         int y = SelectedOptionY;
 
-        if(y == SelectableOptions.Count -1) {
+        if (y == SelectableOptions.Count - 1) {
             y = 0;
         } else {
             y += 1;
         }
 
         SelectOption(SelectedOptionX, y);
+    }
+
+    public void MoveUp() {
+        int y = SelectedOptionY;
+
+        if (y == 0) {
+            y = SelectableOptions.Count - 1;
+        } else {
+            y -= 1;
+        }
+
+        SelectOption(SelectedOptionX, y);
+    }
+
+    public void MoveLeft() {
+        int x = SelectedOptionX;
+
+        if (x == SelectableOptions[SelectedOptionY].Count - 1) {
+            x = 0;
+        } else {
+            x += 1;
+        }
+
+        SelectOption(x, SelectedOptionY);
+    }
+
+    public void MoveRight() {
+        int x = SelectedOptionX;
+
+        if (x == 0) {
+            x = SelectableOptions[SelectedOptionY].Count - 1;
+        } else {
+            x -= 1;
+        }
+
+        SelectOption(x, SelectedOptionY);
     }
 }
