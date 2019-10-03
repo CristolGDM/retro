@@ -14,31 +14,42 @@ public class MenuManager : MonoBehaviour {
     private List<List<GameObject>> SelectableOptions = new List<List<GameObject>>();
     private int SelectedOptionX = 0;
     private int SelectedOptionY = 0;
+    private List<GameObject> AvailableMenus = new List<GameObject>();
 
     public void Start() {
+        AvailableMenus = new List<GameObject> {
+            MainMenu
+        };
         CloseMenu();
     }
 
     public void OpenMenu() {
         GameData.MenuIsOpen = true;
-        Cursor.GetComponent<SpriteRenderer>().enabled = true;
+        Cursor.SetActive(true);
 
-        MainMenu.GetComponent<MainPage>().Open();
-        LoadOptions(MainMenu.GetComponent<MainPage>().GetOptions());
+
+
+        OpenSpecificMenu(MainMenu);
     }
+
+    public void OpenSpecificMenu(GameObject menuObject) {
+        for (int i = 0; i < AvailableMenus.Count; i++) {
+            if(AvailableMenus[i] == menuObject) {
+                menuObject.SetActive(true);
+                LoadOptions(MainMenu.GetComponent<MainPage>().GetOptions());
+            }
+            else {
+                menuObject.SetActive(false);
+            }
+        }
+    }
+
     public void CloseMenu() {
-        TilemapRenderer[] allRenderers = MainMenu.GetComponentsInChildren<TilemapRenderer>();
-        Canvas[] allText = MainMenu.GetComponentsInChildren<Canvas>();
-        SpriteRenderer[] allSprites = MainMenu.GetComponentsInChildren<SpriteRenderer>();
-        foreach (TilemapRenderer childRenderer in allRenderers) {
-            childRenderer.enabled = false;
+        for (int i = 0; i < AvailableMenus.Count; i++) {
+            AvailableMenus[i].SetActive(false);
         }
-        foreach (Canvas text in allText) {
-            text.enabled = false;
-        }
-        foreach (SpriteRenderer sprite in allSprites) {
-            sprite.enabled = false;
-        }
+
+        Cursor.SetActive(false);
         GameData.MenuIsOpen = false;
     }
 
@@ -55,9 +66,9 @@ public class MenuManager : MonoBehaviour {
         if (SelectableOptions.Count <= y || SelectableOptions[y].Count <= x) {
             SelectedOptionX = 0;
             SelectedOptionY = 0;
-            Cursor.GetComponent<SpriteRenderer>().enabled = false;
+            Cursor.SetActive(false);
         } else {
-            Cursor.GetComponent<SpriteRenderer>().enabled = true;
+            Cursor.SetActive(true);
             SelectedOptionX = x;
             SelectedOptionY = y;
             Cursor.transform.position = new Vector3(CurrentOption().transform.position.x - 1.6f, CurrentOption().transform.position.y - 0.1f, CurrentOption().transform.position.z);
