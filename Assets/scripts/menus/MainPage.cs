@@ -5,9 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class MainPage : MonoBehaviour {
     [SerializeField]
-    GameObject LeftPart;
-    [SerializeField]
-    GameObject RightPart;
+    GameObject MenuBackground;
 
     [SerializeField]
     GameObject MainMenuText;
@@ -28,11 +26,9 @@ public class MainPage : MonoBehaviour {
     [SerializeField]
     GameObject StatusOption;
 
-    private List<List<GameObject>> SelectableOptions = new List<List<GameObject>>();
 
     public void Open() {
-        LeftPart.GetComponent<TilemapRenderer>().enabled = true;
-        RightPart.GetComponent<TilemapRenderer>().enabled = true;
+        MenuBackground.GetComponent<TilemapRenderer>().enabled = true;
         MainMenuText.GetComponent<Canvas>().enabled = true;
         PcSection1.GetComponentInChildren<Canvas>().enabled = true;
         PcSection1.GetComponentInChildren<SpriteRenderer>().enabled = true;
@@ -47,13 +43,27 @@ public class MainPage : MonoBehaviour {
         PcSection2.GetComponent<PcPreviewSection>().loadPc(GameData.getSecondPc());
         PcSection3.GetComponent<PcPreviewSection>().loadPc(GameData.getThirdPc());
         PcSection4.GetComponent<PcPreviewSection>().loadPc(GameData.getFourthPc());
+    }
 
-        SelectableOptions.Add(new List<GameObject> { ItemOption });
-        SelectableOptions.Add(new List<GameObject> { MagicOption });
-        SelectableOptions.Add(new List<GameObject> { StatusOption });
+    public void Close() {
+        MenuBackground.GetComponent<TilemapRenderer>().enabled = false;
+        MainMenuText.GetComponent<Canvas>().enabled = false;
+        PcSection1.GetComponentInChildren<Canvas>().enabled = false;
+        PcSection1.GetComponentInChildren<SpriteRenderer>().enabled = false;
+        PcSection2.GetComponentInChildren<Canvas>().enabled = false;
+        PcSection2.GetComponentInChildren<SpriteRenderer>().enabled = false;
+        PcSection3.GetComponentInChildren<Canvas>().enabled = false;
+        PcSection3.GetComponentInChildren<SpriteRenderer>().enabled = false;
+        PcSection4.GetComponentInChildren<Canvas>().enabled = false;
+        PcSection4.GetComponentInChildren<SpriteRenderer>().enabled = false;
     }
 
     public List<List<GameObject>> GetOptions() {
+        List<List<GameObject>> SelectableOptions = new List<List<GameObject>>();
+        SelectableOptions.Add(new List<GameObject> { ItemOption });
+        SelectableOptions.Add(new List<GameObject> { MagicOption });
+        SelectableOptions.Add(new List<GameObject> { StatusOption });
+
         return SelectableOptions;
     }
 }
