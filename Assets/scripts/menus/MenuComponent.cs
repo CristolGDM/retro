@@ -12,9 +12,12 @@ public abstract class MenuComponent : MonoBehaviour {
     private int SelectedOptionX = 0;
     private int SelectedOptionY = 0;
     private int[] CursorPosition = { -1, -1 };
+    protected MenuManager menuManager;
 
     // Use this for initialization
     public void Start () {
+
+        menuManager = GameObject.Find(ComponentNames.SceneScripts).GetComponent<MenuManager>();
         LoadOptions();
 	}
 	

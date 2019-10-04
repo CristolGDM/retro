@@ -42,7 +42,7 @@ public class MainMenu : MenuComponent {
 
     protected override void SelectOption(GameObject option) {
         if(option == ItemOption) {
-            Debug.Log("Trying to open item menu");
+            menuManager.OpenSpecificMenu(menuManager.ItemMenu);
             return;
         }
         else if(option == MagicOption) {

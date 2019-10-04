@@ -6,14 +6,19 @@ using UnityEngine.Tilemaps;
 public class MenuManager : MonoBehaviour {
 
     [SerializeField]
-    private GameObject MainMenu;
+    private GameObject mainMenu;
+    public GameObject MainMenu { get{ return mainMenu; } }
+    [SerializeField]
+    private GameObject itemMenu;
+    public GameObject ItemMenu { get { return itemMenu; } }
 
     private List<GameObject> AvailableMenus = new List<GameObject>();
     private MenuComponent currentMenu;
 
     public void Start() {
         AvailableMenus = new List<GameObject> {
-            MainMenu
+            MainMenu,
+            ItemMenu
         };
         CloseMenu();
     }
@@ -26,12 +31,12 @@ public class MenuManager : MonoBehaviour {
 
     public void OpenSpecificMenu(GameObject menuObject) {
         for (int i = 0; i < AvailableMenus.Count; i++) {
-            if(AvailableMenus[i] == menuObject) {
-                menuObject.SetActive(true);
+            if (AvailableMenus[i] == menuObject) {
+                AvailableMenus[i].SetActive(true);
                 currentMenu = menuObject.GetComponent<MenuComponent>();
             }
             else {
-                menuObject.SetActive(false);
+                AvailableMenus[i].SetActive(false);
             }
         }
     }

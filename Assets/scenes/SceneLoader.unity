@@ -1385,7 +1385,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b01e1d4f493db084fa7f81a533a4a3b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainMenu: {fileID: 495430207}
+  mainMenu: {fileID: 495430207}
+  itemMenu: {fileID: 1853449732}
 --- !u!114 &66344264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2272,6 +2273,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!1 &939430693 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1100161356705720, guid: 3c1dc31844063324c9039e6ad45adc64,
+    type: 2}
+  m_PrefabInternal: {fileID: 1580386780}
 --- !u!1 &991511994
 GameObject:
   m_ObjectHideFlags: 0
