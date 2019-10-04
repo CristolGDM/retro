@@ -14,7 +14,7 @@ public abstract class MenuComponent : MonoBehaviour {
     private int[] CursorPosition = { -1, -1 };
 
     // Use this for initialization
-    void Start () {
+    public void Start () {
         LoadOptions();
 	}
 	

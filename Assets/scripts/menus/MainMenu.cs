@@ -21,6 +21,15 @@ public class MainMenu : MenuComponent {
     [SerializeField]
     GameObject StatusOption;
 
+    public void Start() {
+        base.Start();
+
+        PcSection1.GetComponent<PcPreviewSection>().loadPc(GameData.getFirstPc());
+        PcSection2.GetComponent<PcPreviewSection>().loadPc(GameData.getSecondPc());
+        PcSection3.GetComponent<PcPreviewSection>().loadPc(GameData.getThirdPc());
+        PcSection4.GetComponent<PcPreviewSection>().loadPc(GameData.getFourthPc());
+    }
+
     protected override void LoadOptions() {
         List<List<GameObject>> Options = new List<List<GameObject>>();
         Options.Add(new List<GameObject> { ItemOption });
