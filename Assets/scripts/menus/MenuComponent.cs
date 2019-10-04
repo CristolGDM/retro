@@ -5,8 +5,13 @@ using UnityEngine;
 public abstract class MenuComponent : MonoBehaviour {
 
     protected List<List<GameObject>> SelectableOptions = new List<List<GameObject>>();
+
+    [SerializeField]
+    GameObject Cursor;
+
     private int SelectedOptionX = 0;
     private int SelectedOptionY = 0;
+    private int[] CursorPosition = { -1, -1 };
 
     // Use this for initialization
     void Start () {
@@ -15,8 +20,10 @@ public abstract class MenuComponent : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        if (CursorPosition[0] != SelectedOptionX || CursorPosition[1] != SelectedOptionY) {
+            Cursor.transform.position = new Vector3(CurrentOption().transform.position.x - 1.6f, CurrentOption().transform.position.y - 0.1f, CurrentOption().transform.position.z);
+        }
+    }
 
     protected abstract void LoadOptions();
 
@@ -24,17 +31,16 @@ public abstract class MenuComponent : MonoBehaviour {
         return SelectableOptions[SelectedOptionY][SelectedOptionX];
     }
 
-    private void SelectOption(int x, int y) {
+    protected void SelectOption(int x, int y) {
         if (SelectableOptions.Count <= y || SelectableOptions[y].Count <= x) {
             SelectedOptionX = 0;
             SelectedOptionY = 0;
-            //Cursor.SetActive(false);
+            Cursor.SetActive(false);
         }
         else {
-            //Cursor.SetActive(true);
             SelectedOptionX = x;
             SelectedOptionY = y;
-            //Cursor.transform.position = new Vector3(CurrentOption().transform.position.x - 1.6f, CurrentOption().transform.position.y - 0.1f, CurrentOption().transform.position.z);
+            Cursor.SetActive(true);
         }
     }
 

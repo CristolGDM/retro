@@ -28,5 +28,6 @@ public class MainMenu : MenuComponent {
         Options.Add(new List<GameObject> { StatusOption });
 
         SelectableOptions = Options;
+        SelectOption(0, 0);
     }
 }

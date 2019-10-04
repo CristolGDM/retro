@@ -5,11 +5,16 @@
  */
 
 public class ComponentNames {
+    private static string cursor = "Cursor";
     private static string dialogText = "DialogText";
     private static string dialogBox = "DialogBox";
     private static string dialogMask = "DialogMask";
     private static string playerCharacter = "MainCharacter";
     private static string sceneScripts = "SceneScripts";
+
+    public static string Cursor {
+        get { return cursor; }
+    }
 
     public static string DialogText {
         get {
