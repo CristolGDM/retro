@@ -26,6 +26,11 @@ public abstract class MenuComponent : MonoBehaviour {
     }
 
     protected abstract void LoadOptions();
+    protected abstract void SelectOption(GameObject option);
+
+    public void SelectCurrentOption() {
+        SelectOption(CurrentOption());
+    }
 
     private GameObject CurrentOption() {
         return SelectableOptions[SelectedOptionY][SelectedOptionX];

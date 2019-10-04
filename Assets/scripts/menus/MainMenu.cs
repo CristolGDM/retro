@@ -30,4 +30,19 @@ public class MainMenu : MenuComponent {
         SelectableOptions = Options;
         SelectOption(0, 0);
     }
+
+    protected override void SelectOption(GameObject option) {
+        if(option == ItemOption) {
+            Debug.Log("Trying to open item menu");
+            return;
+        }
+        else if(option == MagicOption) {
+            Debug.Log("Trying to open Magic menu");
+            return;
+        }
+        else if(option == StatusOption) {
+            Debug.Log("Trying to open stats menu");
+            return;
+        }
+    }
 }

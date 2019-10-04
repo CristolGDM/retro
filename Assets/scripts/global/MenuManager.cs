@@ -59,4 +59,8 @@ public class MenuManager : MonoBehaviour {
     public void MoveRight() {
         currentMenu.MoveRight();
     }
+
+    public void SelectCurrentOption() {
+        currentMenu.SelectCurrentOption();
+    }
 }

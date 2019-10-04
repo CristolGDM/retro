@@ -40,6 +40,9 @@ public class InputHandler : MonoBehaviour {
                     GameData.PlayerCanMove = true;
                 }
             }
+            else if (GameData.MenuIsOpen) {
+                MenuManager.SelectCurrentOption();
+            }
         }
         /* UP KEY */
         else if (Input.GetKey("up") || Input.GetKey("w")) {
