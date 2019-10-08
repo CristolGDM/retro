@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public abstract class MenuComponent : MonoBehaviour {
@@ -24,6 +25,8 @@ public abstract class MenuComponent : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (CursorPosition[0] != SelectedOptionX || CursorPosition[1] != SelectedOptionY) {
+            CursorPosition[0] = SelectedOptionX;
+            CursorPosition[1] = SelectedOptionY;
             Cursor.transform.position = new Vector3(CurrentOption().transform.position.x - 1.6f, CurrentOption().transform.position.y - 0.1f, CurrentOption().transform.position.z);
         }
     }
@@ -40,22 +43,28 @@ public abstract class MenuComponent : MonoBehaviour {
     }
 
     protected void SelectOption(int x, int y) {
-        if (SelectableOptions.Count <= y || SelectableOptions[y].Count <= x) {
-            SelectedOptionX = 0;
-            SelectedOptionY = 0;
-            Cursor.SetActive(false);
-        }
-        else {
+        if (SelectableOptions.Any()
+          && SelectableOptions[y].Any()
+          && SelectableOptions.Count > y
+          && SelectableOptions[y].Count > x) {
             SelectedOptionX = x;
             SelectedOptionY = y;
             Cursor.SetActive(true);
+        }
+        else {
+            SelectedOptionX = -1;
+            SelectedOptionY = -1;
+            Cursor.SetActive(false);
         }
     }
 
     public void MoveDown() {
         int y = SelectedOptionY;
 
-        if (y == SelectableOptions.Count - 1) {
+        if (!SelectableOptions.Any()) {
+            y = -1;
+        }
+        else if (y == SelectableOptions.Count - 1) {
             y = 0;
         }
         else {
@@ -68,7 +77,10 @@ public abstract class MenuComponent : MonoBehaviour {
     public void MoveUp() {
         int y = SelectedOptionY;
 
-        if (y == 0) {
+        if (!SelectableOptions.Any()) {
+            y = -1;
+        }
+        else if (y == 0) {
             y = SelectableOptions.Count - 1;
         }
         else {
@@ -81,7 +93,10 @@ public abstract class MenuComponent : MonoBehaviour {
     public void MoveLeft() {
         int x = SelectedOptionX;
 
-        if (x == SelectableOptions[SelectedOptionY].Count - 1) {
+        if (!SelectableOptions.Any() || !SelectableOptions[SelectedOptionY].Any()) {
+            x = -1;
+        }
+        else if (x == SelectableOptions[SelectedOptionY].Count - 1) {
             x = 0;
         }
         else {
@@ -94,7 +109,10 @@ public abstract class MenuComponent : MonoBehaviour {
     public void MoveRight() {
         int x = SelectedOptionX;
 
-        if (x == 0) {
+        if (!SelectableOptions.Any() || !SelectableOptions[SelectedOptionY].Any()) {
+            x = -1;
+        }
+        else if (x == 0) {
             x = SelectableOptions[SelectedOptionY].Count - 1;
         }
         else {
