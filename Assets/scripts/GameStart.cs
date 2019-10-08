@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -18,6 +17,10 @@ public class GameStart : MonoBehaviour {
         GameData.addCharacterToParty(PlayerCharacters.MainCharacter);
         GameData.addNewCharacter(PlayerCharacters.Yurgurine);
         GameData.addCharacterToParty(PlayerCharacters.Yurgurine);
+
+        Inventory.AddItemToInventory("00001", 1);
+        Inventory.AddItemToInventory("00002", 1);
+        Inventory.AddItemToInventory("00001", 1);
     }
 
     IEnumerator DoInitialTransition() {
