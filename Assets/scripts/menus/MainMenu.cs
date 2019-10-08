@@ -21,7 +21,7 @@ public class MainMenu : MenuComponent {
     [SerializeField]
     GameObject StatusOption;
 
-    public void Start() {
+    public new void Start() {
         base.Start();
 
         PcSection1.GetComponent<PcPreviewSection>().loadPc(GameData.getFirstPc());
