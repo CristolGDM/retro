@@ -23,7 +23,7 @@ public abstract class MenuComponent : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	protected void Update () {
         if (CursorPosition[0] != SelectedOptionX || CursorPosition[1] != SelectedOptionY) {
             CursorPosition[0] = SelectedOptionX;
             CursorPosition[1] = SelectedOptionY;
@@ -38,7 +38,7 @@ public abstract class MenuComponent : MonoBehaviour {
         SelectOption(CurrentOption());
     }
 
-    private GameObject CurrentOption() {
+    protected GameObject CurrentOption() {
         return SelectableOptions[SelectedOptionY][SelectedOptionX];
     }
 

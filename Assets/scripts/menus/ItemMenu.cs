@@ -7,6 +7,8 @@ public class ItemMenu : MenuComponent {
     private readonly int maxRows = 4;
     [SerializeField]
     private GameObject sampleItem;
+    [SerializeField]
+    private GameObject itemDescriptionField;
 
     private float xStart;
     private float yStart;
@@ -17,6 +19,13 @@ public class ItemMenu : MenuComponent {
         base.Start();
 
         sampleItem.GetComponent<Text>().text = "";
+        sampleItem.SetActive(false);
+        itemDescriptionField.GetComponent<Text>().text = "";
+    }
+
+    public new void Update() {
+        base.Update();
+        itemDescriptionField.GetComponent<Text>().text = Inventory.GetItem(CurrentOption().name).Description;
     }
 
     protected override void LoadOptions() {
@@ -34,7 +43,6 @@ public class ItemMenu : MenuComponent {
         List<GameObject> row = new List<GameObject>();
 
         sampleItem.SetActive(true);
-
         foreach(string key in Inventory.CarriedInventory.Keys) {
             dictCount += 1;
             if(Inventory.CarriedInventory[key] > 0) {
@@ -57,7 +65,6 @@ public class ItemMenu : MenuComponent {
                 }
             }
         }
-
         sampleItem.SetActive(false);
 
         SelectableOptions = Options;

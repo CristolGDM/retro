@@ -1,7 +1,8 @@
 ﻿using System;
 
 public abstract class Item {
-    public virtual string Name { get { return "you shouldn't be able to see this, I messed up bad. Sorry."; } }
+    public abstract string Name { get; }
+    public abstract string Description { get; }
     public virtual bool IsUsable { get { return false; } }
     public virtual bool IsEquippable { get { return false; } }
     public virtual bool NeedTarget { get { return false; } }
@@ -10,6 +11,7 @@ public abstract class Item {
 
 public class Potion : Item {
     public override string Name { get { return "Potion"; } }
+    public override string Description { get { return "Restores 100HP to one character"; } }
     public override bool IsUsable { get { return true; } }
     public override bool NeedTarget { get { return true; } }
 
@@ -24,6 +26,7 @@ public class Potion : Item {
 
 public class Poison : Item {
     public override string Name { get { return "Poison"; } }
+    public override string Description { get { return "Deals 100HP damage to one character"; } }
     public override bool IsUsable { get { return true; } }
     public override bool NeedTarget { get { return true; } }
 
@@ -38,6 +41,7 @@ public class Poison : Item {
 
 public class HiPotion : Item {
     public override string Name { get { return "Hi-potion"; } }
+    public override string Description { get { return "Restores 200HP to one character"; } }
     public override bool IsUsable { get { return true; } }
     public override bool NeedTarget { get { return true; } }
 
@@ -52,6 +56,7 @@ public class HiPotion : Item {
 
 public class Elixir : Item {
     public override string Name { get { return "Elixir"; } }
+    public override string Description { get { return "Restores 100HP to all characters"; } }
     public override bool IsUsable { get { return true; } }
 
     public void OnUse(PlayerCharacter target) {
@@ -64,5 +69,6 @@ public class Elixir : Item {
 }
 
 public class FangOfDestroyer : Item {
-    public override string Name { get { return "Fang of Grababos the Destroyer of Worlds"; } }
+    public override string Name { get { return "Fang of Grababos"; } }
+    public override string Description { get { return "Fang of the Destroyer of Worlds, it shines with a malevolent aura"; } }
 }
