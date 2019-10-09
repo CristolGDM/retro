@@ -72,5 +72,10 @@ public class ItemMenu : MenuComponent {
     }
 
     protected override void SelectOption(GameObject option) {
+        Item selectedItem = Inventory.GetItem(option.name);
+
+        if (selectedItem.IsUsable) {
+            selectedItem.OnUse();
+        }
     }
 }

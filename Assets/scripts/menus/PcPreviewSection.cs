@@ -20,9 +20,16 @@ public class PcPreviewSection : MonoBehaviour {
     [SerializeField]
     GameObject pcSprite;
 
-    Sprite[] sprites;
+    private Sprite[] sprites;
+    private PlayerCharacter thisCharacter;
 
-    public void loadPc(PlayerCharacter character) {
+    public void Update() {
+        if(thisCharacter != null) {
+            LoadPc(thisCharacter);
+        }
+    }
+
+    public void LoadPc(PlayerCharacter character) {
         CancelInvoke();
         if (character != null) {
             gameObject.GetComponentInChildren<Canvas>().enabled = true;
@@ -37,7 +44,8 @@ public class PcPreviewSection : MonoBehaviour {
 
             float startMoving = Random.Range(0f, 0.2f);
             float moveInterval = Random.Range(0.3f, 0.5f);
-            InvokeRepeating("animateSprite", startMoving, moveInterval);
+            InvokeRepeating("AnimateSprite", startMoving, moveInterval);
+            thisCharacter = character;
         }
         else {
             gameObject.GetComponentInChildren<Canvas>().enabled = false;
@@ -46,10 +54,11 @@ public class PcPreviewSection : MonoBehaviour {
             pcLv.text = "";
             pcJob.text = "";
             pcSprite.GetComponent<SpriteRenderer>().enabled = false;
+            thisCharacter = null;
         }
     }
 
-    private void animateSprite() {
+    private void AnimateSprite() {
         if(pcSprite.GetComponent<SpriteRenderer>().sprite == sprites[0]) {
             pcSprite.GetComponent<SpriteRenderer>().sprite = sprites[1];
         }
