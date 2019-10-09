@@ -21,6 +21,9 @@ public class GameStart : MonoBehaviour {
         Inventory.AddItemToInventory("00001", 1);
         Inventory.AddItemToInventory("00002", 1);
         Inventory.AddItemToInventory("00001", 1);
+        Inventory.AddItemToInventory("00003", 1);
+        Inventory.AddItemToInventory("00004", 1);
+        Inventory.AddItemToInventory("00005", 1);
     }
 
     IEnumerator DoInitialTransition() {

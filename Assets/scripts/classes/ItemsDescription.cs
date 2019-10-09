@@ -9,7 +9,7 @@ public abstract class Item {
 }
 
 public class Potion : Item {
-    public override string Name { get { return "potionn"; } }
+    public override string Name { get { return "Potion"; } }
     public override bool IsUsable { get { return true; } }
     public override bool NeedTarget { get { return true; } }
 
@@ -23,7 +23,7 @@ public class Potion : Item {
 }
 
 public class Poison : Item {
-    public override string Name { get { return "poison"; } }
+    public override string Name { get { return "Poison"; } }
     public override bool IsUsable { get { return true; } }
     public override bool NeedTarget { get { return true; } }
 
@@ -34,4 +34,35 @@ public class Poison : Item {
     public override void OnUse() {
         OnUse(GameData.getFirstPc());
     }
+}
+
+public class HiPotion : Item {
+    public override string Name { get { return "Hi-potion"; } }
+    public override bool IsUsable { get { return true; } }
+    public override bool NeedTarget { get { return true; } }
+
+    public void OnUse(PlayerCharacter target) {
+        Effects.HealTarget(target, 200);
+    }
+
+    public override void OnUse() {
+        OnUse(GameData.getFirstPc());
+    }
+}
+
+public class Elixir : Item {
+    public override string Name { get { return "Elixir"; } }
+    public override bool IsUsable { get { return true; } }
+
+    public void OnUse(PlayerCharacter target) {
+        Effects.HealTarget(target, 100);
+    }
+
+    public override void OnUse() {
+        OnUse(GameData.getFirstPc());
+    }
+}
+
+public class FangOfDestroyer : Item {
+    public override string Name { get { return "Fang of Grababos the Destroyer of Worlds"; } }
 }

@@ -96,11 +96,11 @@ public abstract class MenuComponent : MonoBehaviour {
         if (!SelectableOptions.Any() || !SelectableOptions[SelectedOptionY].Any()) {
             x = -1;
         }
-        else if (x == SelectableOptions[SelectedOptionY].Count - 1) {
-            x = 0;
+        else if (x == 0) {
+            x = SelectableOptions[SelectedOptionY].Count - 1;
         }
         else {
-            x += 1;
+            x -= 1;
         }
 
         SelectOption(x, SelectedOptionY);
@@ -112,11 +112,11 @@ public abstract class MenuComponent : MonoBehaviour {
         if (!SelectableOptions.Any() || !SelectableOptions[SelectedOptionY].Any()) {
             x = -1;
         }
-        else if (x == 0) {
-            x = SelectableOptions[SelectedOptionY].Count - 1;
+        else if (x == SelectableOptions[SelectedOptionY].Count - 1) {
+            x = 0;
         }
         else {
-            x -= 1;
+            x += 1;
         }
 
         SelectOption(x, SelectedOptionY);

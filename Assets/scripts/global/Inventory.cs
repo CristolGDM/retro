@@ -5,6 +5,9 @@ public class Inventory {
     private static Dictionary<string, Item> ItemDB = new Dictionary<string, Item>() {
         { "00001", new Potion()},
         { "00002", new Poison()},
+        { "00003", new HiPotion()},
+        { "00004", new FangOfDestroyer()},
+        { "00005", new Elixir()}
     };
 
     public static Dictionary<string, int> CarriedInventory = new Dictionary<string, int>();

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class ItemMenu : MenuComponent {
 
-    private readonly int maxRows = 3;
+    private readonly int maxRows = 4;
     [SerializeField]
     private GameObject sampleItem;
 
@@ -39,8 +39,8 @@ public class ItemMenu : MenuComponent {
             dictCount += 1;
             if(Inventory.CarriedInventory[key] > 0) {
                 GameObject newObject = Instantiate(sampleItem);
-                float newItemX = xStart + ((count % 3)*optionWidth);
-                float newItemY = yStart + (Options.Count * optionHeight);
+                float newItemX = xStart + ((count % maxRows)*optionWidth);
+                float newItemY = yStart - (Options.Count * (optionHeight + 5));
                 float newItemZ = sampleItem.transform.localPosition.z;
                 newObject.transform.localPosition = new Vector3(newItemX, newItemY, newItemZ);
                 newObject.transform.SetParent(sampleItem.transform.parent);
