@@ -4934,7 +4934,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1853449733
 Transform:
   m_ObjectHideFlags: 0
@@ -4964,6 +4964,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cursor: {fileID: 1112006003}
   sampleItem: {fileID: 2031114063}
+  itemDescriptionField: {fileID: 2137512404}
 --- !u!1 &2031114063 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1596436877832082, guid: ff73ee1b92bb24540a330f41947d2901,
@@ -5236,3 +5237,8 @@ Transform:
   m_PrefabParentObject: {fileID: 4503893257518414, guid: 3c1dc31844063324c9039e6ad45adc64,
     type: 2}
   m_PrefabInternal: {fileID: 2126286876}
+--- !u!1 &2137512404 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1596436877832082, guid: ff73ee1b92bb24540a330f41947d2901,
+    type: 2}
+  m_PrefabInternal: {fileID: 423771106}
