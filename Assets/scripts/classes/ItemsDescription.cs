@@ -6,65 +6,74 @@ public abstract class Item {
     public virtual bool IsUsable { get { return false; } }
     public virtual bool IsEquippable { get { return false; } }
     public virtual bool NeedTarget { get { return false; } }
-    public virtual void OnUse() { }
+    public virtual IEffect[] Effects { get { return null;}}
+    public virtual PlayerCharacter[] Targets { get { return null; } }
+
+    public virtual void OnUse() {
+        if(Effects != null) {
+            for(int i = 0; i < Effects.Length; i++) {
+                Effects[i].Apply(Targets);
+            }
+        }
+    }
 }
 
-public class Potion : Item {
+public abstract class Consumable : Item {
+    public override bool IsUsable { get { return true; } }
+}
+public abstract class SingleTargetConsumable : Consumable {
+    public override bool NeedTarget { get { return true; } }
+}
+
+public class Potion : SingleTargetConsumable {
     public override string Name { get { return "Potion"; } }
     public override string Description { get { return "Restores 100HP to one character"; } }
-    public override bool IsUsable { get { return true; } }
-    public override bool NeedTarget { get { return true; } }
 
-    public void OnUse(PlayerCharacter target) {
-        Effects.HealTarget(target, 100);
-    }
-
-    public override void OnUse() {
-        OnUse(GameData.getFirstPc());
+    public override IEffect[] Effects {
+        get {
+            return new IEffect[] {
+                new HealEffect(100)
+            };
+        }
     }
 }
 
-public class Poison : Item {
+public class Poison : SingleTargetConsumable {
     public override string Name { get { return "Poison"; } }
     public override string Description { get { return "Deals 100HP damage to one character"; } }
-    public override bool IsUsable { get { return true; } }
-    public override bool NeedTarget { get { return true; } }
 
-    public void OnUse(PlayerCharacter target) {
-        Effects.DamageTarget(target, 50);
-    }
-
-    public override void OnUse() {
-        OnUse(GameData.getFirstPc());
+    public override IEffect[] Effects {
+        get {
+            return new IEffect[] {
+                new DamageEffect(100)
+            };
+        }
     }
 }
 
-public class HiPotion : Item {
+public class HiPotion : SingleTargetConsumable {
     public override string Name { get { return "Hi-potion"; } }
     public override string Description { get { return "Restores 200HP to one character"; } }
-    public override bool IsUsable { get { return true; } }
-    public override bool NeedTarget { get { return true; } }
 
-    public void OnUse(PlayerCharacter target) {
-        Effects.HealTarget(target, 200);
-    }
-
-    public override void OnUse() {
-        OnUse(GameData.getFirstPc());
+    public override IEffect[] Effects {
+        get {
+            return new IEffect[] {
+                new HealEffect(200)
+            };
+        }
     }
 }
 
-public class Elixir : Item {
+public class Elixir : Consumable {
     public override string Name { get { return "Elixir"; } }
     public override string Description { get { return "Restores 100HP to all characters"; } }
-    public override bool IsUsable { get { return true; } }
 
-    public void OnUse(PlayerCharacter target) {
-        Effects.HealTarget(target, 100);
-    }
-
-    public override void OnUse() {
-        OnUse(GameData.getFirstPc());
+    public override IEffect[] Effects {
+        get {
+            return new IEffect[] {
+                new HealEffect(100)
+            };
+        }
     }
 }
 
