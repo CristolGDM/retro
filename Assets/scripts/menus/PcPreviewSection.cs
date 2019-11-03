@@ -25,45 +25,49 @@ public class PcPreviewSection : MonoBehaviour {
 
     public void Update() {
         if(thisCharacter != null) {
-            LoadPc(thisCharacter);
+            LoadPcData();
         }
     }
 
     public void LoadPc(PlayerCharacter character) {
         CancelInvoke();
-        if (character != null) {
-            gameObject.GetComponentInChildren<Canvas>().enabled = true;
-            pcName.text = character.characterName;
-            pcPv.text = character.currentPv + "/" + character.maxPv;
-            pcLv.text = "Lv." + character.level;
-            pcJob.text = character.job;
+        thisCharacter = character;
 
-            pcSprite.GetComponent<SpriteRenderer>().enabled = true;
-            sprites = Resources.LoadAll<Sprite>("sprites/spritesheets/" + character.spriteSheetName);
-            pcSprite.GetComponent<SpriteRenderer>().sprite = sprites[0];
-
-            float startMoving = Random.Range(0f, 0.2f);
-            float moveInterval = Random.Range(0.3f, 0.5f);
-            InvokeRepeating("AnimateSprite", startMoving, moveInterval);
-            thisCharacter = character;
-        }
-        else {
-            gameObject.GetComponentInChildren<Canvas>().enabled = false;
-            pcName.text = "";
-            pcPv.text = "";
-            pcLv.text = "";
-            pcJob.text = "";
-            pcSprite.GetComponent<SpriteRenderer>().enabled = false;
-            thisCharacter = null;
-        }
+        float startMoving = Random.Range(0f, 0.2f);
+        float moveInterval = Random.Range(0.3f, 0.5f);
+        InvokeRepeating("AnimateSprite", startMoving, moveInterval);
     }
 
     private void AnimateSprite() {
+        if (thisCharacter == null) return;
+
         if(pcSprite.GetComponent<SpriteRenderer>().sprite == sprites[0]) {
             pcSprite.GetComponent<SpriteRenderer>().sprite = sprites[1];
         }
         else {
             pcSprite.GetComponent<SpriteRenderer>().sprite = sprites[0];
         }
+    }
+
+    private void LoadPcData() {
+        if (thisCharacter != null) {
+            gameObject.GetComponentInChildren<Canvas>().enabled = true;
+            pcName.text = thisCharacter.characterName;
+            pcPv.text = thisCharacter.currentPv + "/" + thisCharacter.maxPv;
+            pcLv.text = "Lv." + thisCharacter.level;
+            pcJob.text = thisCharacter.job;
+
+            pcSprite.GetComponent<SpriteRenderer>().enabled = true;
+            sprites = Resources.LoadAll<Sprite>("sprites/spritesheets/" + thisCharacter.spriteSheetName);
+
+        } else {
+            gameObject.GetComponentInChildren<Canvas>().enabled = false;
+            pcName.text = "";
+            pcPv.text = "";
+            pcLv.text = "";
+            pcJob.text = "";
+            pcSprite.GetComponent<SpriteRenderer>().enabled = false;
+        }
+
     }
 }
