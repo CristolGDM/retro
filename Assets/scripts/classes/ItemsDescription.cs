@@ -7,14 +7,31 @@ public abstract class Item {
     public virtual bool IsEquippable { get { return false; } }
     public virtual bool NeedTarget { get { return false; } }
     public virtual IEffect[] Effects { get { return null;}}
-    public virtual PlayerCharacter[] Targets { get { return null; } }
+    public PlayerCharacter[] Targets;
 
     public virtual void OnUse() {
         if(Effects != null) {
+            PlayerCharacter[] currentTargets = null;
+            if(Targets == null) {
+                if (NeedTarget) {
+                    currentTargets = new PlayerCharacter[] { GameData.getFirstPc() };
+                }
+                else {
+                    currentTargets = GameData.getParty();
+                }
+            }
+            else {
+                currentTargets = Targets;
+            }
+
             for(int i = 0; i < Effects.Length; i++) {
-                Effects[i].Apply(Targets);
+                Effects[i].Apply(currentTargets);
             }
         }
+    }
+
+    public void SetTargets(PlayerCharacter[] itemTargets) {
+        Targets = itemTargets;
     }
 }
 

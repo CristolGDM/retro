@@ -74,7 +74,16 @@ public class ItemMenu : MenuComponent {
     protected override void SelectOption(GameObject option) {
         Item selectedItem = Inventory.GetItem(option.name);
 
+
         if (selectedItem.IsUsable) {
+            if (selectedItem.NeedTarget) {
+                List<PlayerCharacter> targets = new List<PlayerCharacter>();
+                targets.Add(GameData.getFirstPc());
+                selectedItem.SetTargets(targets.ToArray());
+            }
+            else {
+                selectedItem.SetTargets(GameData.getParty());
+            }
             selectedItem.OnUse();
         }
     }

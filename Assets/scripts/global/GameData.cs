@@ -104,6 +104,10 @@ public class GameData {
         return null;
     }
 
+    public static PlayerCharacter[] getParty() {
+        return currentParty.ToArray();
+    }
+
     public static void removeCharacterFromParty(string charId) {
         for (int i = 0; i < currentParty.Count; i++) {
             if(currentParty[i].CharId == charId) {
