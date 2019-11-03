@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -71,7 +72,9 @@ public abstract class MenuComponent : MonoBehaviour {
             y += 1;
         }
 
-        SelectOption(SelectedOptionX, y);
+        int x = Math.Min(SelectedOptionX, SelectableOptions[y].Count -1);
+
+        SelectOption(x, y);
     }
 
     public void MoveUp() {
