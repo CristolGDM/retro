@@ -6,6 +6,7 @@ public abstract class Item {
     public virtual bool IsUsable { get { return false; } }
     public virtual bool IsEquippable { get { return false; } }
     public virtual bool NeedTarget { get { return false; } }
+    public virtual bool IsConsumable { get { return false; } }
     public virtual IEffect[] Effects { get { return null;}}
     public PlayerCharacter[] Targets;
 
@@ -27,6 +28,10 @@ public abstract class Item {
             for(int i = 0; i < Effects.Length; i++) {
                 Effects[i].Apply(currentTargets);
             }
+
+            if (IsConsumable) {
+                Inventory.RemoveItemFromInventory(this, 1);
+            }
         }
     }
 
@@ -37,6 +42,7 @@ public abstract class Item {
 
 public abstract class Consumable : Item {
     public override bool IsUsable { get { return true; } }
+    public override bool IsConsumable { get { return true; } }
 }
 public abstract class SingleTargetConsumable : Consumable {
     public override bool NeedTarget { get { return true; } }
