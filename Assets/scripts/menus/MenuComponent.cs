@@ -28,7 +28,8 @@ public abstract class MenuComponent : MonoBehaviour {
         if (CursorPosition[0] != SelectedOptionX || CursorPosition[1] != SelectedOptionY) {
             CursorPosition[0] = SelectedOptionX;
             CursorPosition[1] = SelectedOptionY;
-            Cursor.transform.position = new Vector3(CurrentOption().transform.position.x - 1.6f, CurrentOption().transform.position.y - 0.1f, CurrentOption().transform.position.z);
+            float cursorLeftOffset = (1.4f * CurrentOption().GetComponent<RectTransform>().rect.width / 120) + 0.1f;
+            Cursor.transform.position = new Vector3(CurrentOption().transform.position.x - cursorLeftOffset, CurrentOption().transform.position.y - 0.1f, CurrentOption().transform.position.z);
         }
     }
 

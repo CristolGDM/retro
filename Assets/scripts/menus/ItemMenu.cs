@@ -6,7 +6,7 @@ public class ItemMenu : MenuComponent {
 
     private readonly int maxRows = 3;
     private readonly int verticalMargin = 5;
-    private readonly int horizMargin = 30;
+    private readonly int horizMargin = 0;
     [SerializeField]
     private GameObject sampleItem;
     [SerializeField]
