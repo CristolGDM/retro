@@ -20,14 +20,13 @@ public class ItemMenu : MenuComponent {
     public new void Start() {
         base.Start();
 
-        sampleItem.GetComponent<Text>().text = "";
         sampleItem.SetActive(false);
         itemDescriptionField.GetComponent<Text>().text = "";
     }
 
     public new void Update() {
         base.Update();
-        itemDescriptionField.GetComponent<Text>().text = Inventory.GetItem(CurrentOption().name).Description;
+        itemDescriptionField.GetComponent<Text>().text = CurrentOption().GetComponent<ItemComponent>().GetItem().Description;
     }
 
     protected override void LoadOptions() {
@@ -35,7 +34,7 @@ public class ItemMenu : MenuComponent {
         xStart = sampleItem.transform.localPosition.x;
         yStart = sampleItem.transform.localPosition.y;
         RectTransform rt = sampleItem.GetComponent<RectTransform>();
-        optionWidth = rt.rect.width + sampleItem.transform.Find("AMOUNT").GetComponent<RectTransform>().rect.width;
+        optionWidth = rt.rect.width;
         optionHeight = rt.rect.height;
 
         List<List<GameObject>> Options = new List<List<GameObject>>();
@@ -55,9 +54,9 @@ public class ItemMenu : MenuComponent {
                 newObject.transform.localPosition = new Vector3(newItemX, newItemY, newItemZ);
                 newObject.transform.SetParent(sampleItem.transform.parent);
                 newObject.transform.localScale = new Vector3(1, 1, 1);
-                newObject.GetComponent<Text>().text = Inventory.GetItem(key).Name;
-                newObject.transform.Find("AMOUNT").GetComponent<Text>().text = "" + Inventory.CarriedInventory[key];
-                newObject.name = key;
+
+                newObject.GetComponent<ItemComponent>().LoadItem(Inventory.GetItem(key));
+
                 row.Add(newObject);
                 count += 1;
 
@@ -75,7 +74,7 @@ public class ItemMenu : MenuComponent {
     }
 
     protected override void SelectOption(GameObject option) {
-        Item selectedItem = Inventory.GetItem(option.name);
+        Item selectedItem = option.GetComponent<ItemComponent>().GetItem();
 
 
         if (selectedItem.IsUsable) {
