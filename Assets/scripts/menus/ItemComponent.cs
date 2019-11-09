@@ -15,8 +15,13 @@ public class ItemComponent : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        itemName.text = thisItem.Name;
-        itemAmount.text = "" + Inventory.CarriedInventory[thisItem.Name];
+        if (!Inventory.CarriedInventory.ContainsKey(thisItem.Name) || Inventory.CarriedInventory[thisItem.Name] <= 0) {
+            gameObject.SetActive(false);
+            thisItem = null;
+        } else {
+            itemName.text = thisItem.Name;
+            itemAmount.text = "" + Inventory.CarriedInventory[thisItem.Name];
+        }
 	}
 
     public void LoadItem (Item newItem) {
@@ -25,5 +30,12 @@ public class ItemComponent : MonoBehaviour {
 
     public Item GetItem() {
         return thisItem;
+    }
+
+    public string GetDescription() {
+        if (thisItem == null) {
+            return "";
+        }
+        return thisItem.Description;
     }
 }

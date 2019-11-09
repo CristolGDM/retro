@@ -26,7 +26,9 @@ public class ItemMenu : MenuComponent {
 
     public new void Update() {
         base.Update();
-        itemDescriptionField.GetComponent<Text>().text = CurrentOption().GetComponent<ItemComponent>().GetItem().Description;
+        if (CurrentOption() != null) {
+            itemDescriptionField.GetComponent<Text>().text = CurrentOption().GetComponent<ItemComponent>().GetDescription();
+        }
     }
 
     protected override void LoadOptions() {
@@ -76,6 +78,7 @@ public class ItemMenu : MenuComponent {
     protected override void SelectOption(GameObject option) {
         Item selectedItem = option.GetComponent<ItemComponent>().GetItem();
 
+        if (Inventory.CarriedInventory[selectedItem.Name] <= 0) return;
 
         if (selectedItem.IsUsable) {
             if (selectedItem.NeedTarget) {
@@ -87,6 +90,8 @@ public class ItemMenu : MenuComponent {
                 selectedItem.SetTargets(GameData.getParty());
             }
             selectedItem.OnUse();
+
+            LoadOptions();
         }
     }
 }

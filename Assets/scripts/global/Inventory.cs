@@ -32,12 +32,14 @@ public class Inventory {
 
         if (CarriedInventory.ContainsKey(itemID)) {
             newAmount = CarriedInventory[itemID] - amount;
-        }
-        else {
-            newAmount = amount;
+
+            if (newAmount <= 0) {
+                CarriedInventory.Remove(itemID);
+            } else {
+                CarriedInventory[itemID] = Math.Max(newAmount, 0);
+            }
         }
 
-        CarriedInventory[itemID] = Math.Max(newAmount, 0);
     }
 
     public static Item GetItem(string itemId) {
