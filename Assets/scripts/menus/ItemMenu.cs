@@ -30,11 +30,15 @@ public class ItemMenu : MenuComponent {
     public new void Update() {
         base.Update();
 
-        int count = 0;
-        foreach (string key in Inventory.CarriedInventory.Keys) {
-            if (count > optionsAsLine.Count) break;
-            optionsAsLine[count].GetComponent<ItemComponent>().LoadItem(key);
-            count += 1;
+        List<string> currentItems = new List<string> ( Inventory.CarriedInventory.Keys );
+
+        for (int i = 0; i < optionsAsLine.Count; i++) {
+            if(i < currentItems.Count) {
+                optionsAsLine[i].GetComponent<ItemComponent>().LoadItem(currentItems[i]);
+            }
+            else {
+                optionsAsLine[i].GetComponent<ItemComponent>().LoadItem("");
+            }
         }
 
         if (CurrentOption() != null) {
@@ -77,6 +81,8 @@ public class ItemMenu : MenuComponent {
 
     protected override void SelectOption(GameObject option) {
         Item selectedItem = option.GetComponent<ItemComponent>().GetItem();
+
+        if (selectedItem == null) return;
 
         if (Inventory.CarriedInventory[selectedItem.Name] <= 0) return;
 

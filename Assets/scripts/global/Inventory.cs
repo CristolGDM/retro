@@ -43,6 +43,7 @@ public class Inventory {
     }
 
     public static Item GetItem(string itemId) {
+        if (!ItemDB.ContainsKey(itemId)) return null;
         return ItemDB[itemId];
     }
 }
