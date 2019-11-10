@@ -24,9 +24,7 @@ public class PcPreviewSection : MonoBehaviour {
     private PlayerCharacter thisCharacter;
 
     public void Update() {
-        if(thisCharacter != null) {
-            LoadPcData();
-        }
+        LoadPcData();
     }
 
     public void LoadPc(PlayerCharacter character) {
