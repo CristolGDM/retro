@@ -9,7 +9,6 @@ public class MenuManager : MonoBehaviour {
     public GameObject MainMenu { get{ return mainMenu; } }
 
     private List<GameObject> MenuStack = new List<GameObject>();
-    private MenuComponent currentMenu;
 
     public void Start() {
         CloseAllMenus();
@@ -26,7 +25,6 @@ public class MenuManager : MonoBehaviour {
             MenuStack[MenuStack.Count - 1].SetActive(false);
         }
         menuObject.SetActive(true);
-        currentMenu = menuObject.GetComponent<MenuComponent>();
         MenuStack.Add(menuObject);
     }
 
@@ -54,23 +52,29 @@ public class MenuManager : MonoBehaviour {
         }
     }
 
+    public MenuComponent CurrentMenu() {
+        if (!MenuStack.Any()) return null;
+
+        return MenuStack[MenuStack.Count - 1].GetComponent<MenuComponent>();
+    }
+
     public void MoveDown() {
-        currentMenu.MoveDown();
+        CurrentMenu().MoveDown();
     }
 
     public void MoveUp() {
-        currentMenu.MoveUp();
+        CurrentMenu().MoveUp();
     }
 
     public void MoveLeft() {
-        currentMenu.MoveLeft();
+        CurrentMenu().MoveLeft();
     }
 
     public void MoveRight() {
-        currentMenu.MoveRight();
+        CurrentMenu().MoveRight();
     }
 
     public void SelectCurrentOption() {
-        currentMenu.SelectCurrentOption();
+        CurrentMenu().SelectCurrentOption();
     }
 }
