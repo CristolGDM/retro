@@ -40,6 +40,7 @@ public class PcPreviewSection : MonoBehaviour {
 
     private void AnimateSprite() {
         if (thisCharacter == null) return;
+        if (sprites == null) return;
 
         if(pcSprite.GetComponent<SpriteRenderer>().sprite == sprites[0]) {
             pcSprite.GetComponent<SpriteRenderer>().sprite = sprites[1];

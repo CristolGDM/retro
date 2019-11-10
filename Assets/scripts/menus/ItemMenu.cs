@@ -4,7 +4,8 @@ using UnityEngine.UI;
 
 public class ItemMenu : MenuComponent {
 
-    private readonly int maxRows = 3;
+    private readonly int maxColumns = 3;
+    private readonly int maxRows = 7;
     private readonly int verticalMargin = 5;
     private readonly int horizMargin = 0;
     [SerializeField]
@@ -17,21 +18,32 @@ public class ItemMenu : MenuComponent {
     private float optionWidth;
     private float optionHeight;
 
+    private List<GameObject> optionsAsLine = new List<GameObject>();
+
     public new void Start() {
         base.Start();
 
-        sampleItem.SetActive(false);
         itemDescriptionField.GetComponent<Text>().text = "";
+
     }
 
     public new void Update() {
         base.Update();
+
+        int count = 0;
+        foreach (string key in Inventory.CarriedInventory.Keys) {
+            if (count > optionsAsLine.Count) break;
+            optionsAsLine[count].GetComponent<ItemComponent>().LoadItem(key);
+            count += 1;
+        }
+
         if (CurrentOption() != null) {
             itemDescriptionField.GetComponent<Text>().text = CurrentOption().GetComponent<ItemComponent>().GetDescription();
         }
     }
 
     protected override void LoadOptions() {
+        sampleItem.SetActive(true);
 
         xStart = sampleItem.transform.localPosition.x;
         yStart = sampleItem.transform.localPosition.y;
@@ -39,40 +51,28 @@ public class ItemMenu : MenuComponent {
         optionWidth = rt.rect.width;
         optionHeight = rt.rect.height;
 
-        List<List<GameObject>> Options = new List<List<GameObject>>();
+        for (int row = 0; row < maxRows; row++) {
 
-        int count = 0;
-        int dictCount = 0;
-        List<GameObject> row = new List<GameObject>();
+            List<GameObject> optionsRow = new List<GameObject>();
 
-        sampleItem.SetActive(true);
-        foreach(string key in Inventory.CarriedInventory.Keys) {
-            dictCount += 1;
-            if(Inventory.CarriedInventory[key] > 0) {
+            for (int col = 0; col < maxColumns; col++) {
                 GameObject newObject = Instantiate(sampleItem);
-                float newItemX = xStart + ((count % maxRows)*(optionWidth + horizMargin));
-                float newItemY = yStart - (Options.Count * (optionHeight + verticalMargin));
+                float newItemX = xStart + (col * (optionWidth + horizMargin));
+                float newItemY = yStart - (row * (optionHeight + verticalMargin));
                 float newItemZ = sampleItem.transform.localPosition.z;
                 newObject.transform.localPosition = new Vector3(newItemX, newItemY, newItemZ);
                 newObject.transform.SetParent(sampleItem.transform.parent);
                 newObject.transform.localScale = new Vector3(1, 1, 1);
 
-                newObject.GetComponent<ItemComponent>().LoadItem(Inventory.GetItem(key));
-
-                row.Add(newObject);
-                count += 1;
-
-                if (count == maxRows || dictCount == Inventory.CarriedInventory.Keys.Count) {
-                    Options.Add(row);
-                    row = new List<GameObject>();
-                    count = 0;
-                }
+                optionsAsLine.Add(newObject);
+                optionsRow.Add(newObject);
             }
-        }
-        sampleItem.SetActive(false);
 
-        SelectableOptions = Options;
-        SelectOption(0, 0);
+            SelectableOptions.Add(optionsRow);
+            SelectOption(0, 0);
+        }
+
+        sampleItem.SetActive(false);
     }
 
     protected override void SelectOption(GameObject option) {
@@ -85,13 +85,10 @@ public class ItemMenu : MenuComponent {
                 List<PlayerCharacter> targets = new List<PlayerCharacter>();
                 targets.Add(GameData.getFirstPc());
                 selectedItem.SetTargets(targets.ToArray());
-            }
-            else {
+            } else {
                 selectedItem.SetTargets(GameData.getParty());
             }
             selectedItem.OnUse();
-
-            LoadOptions();
         }
     }
 }

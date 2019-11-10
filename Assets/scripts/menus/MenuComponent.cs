@@ -41,6 +41,8 @@ public abstract class MenuComponent : MonoBehaviour {
     }
 
     protected GameObject CurrentOption() {
+        if (!SelectableOptions.Any() || !SelectableOptions[SelectedOptionY].Any()) return null;
+
         return SelectableOptions[SelectedOptionY][SelectedOptionX];
     }
 
