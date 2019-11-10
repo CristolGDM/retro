@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MenuManager : MonoBehaviour {
@@ -6,19 +7,12 @@ public class MenuManager : MonoBehaviour {
     [SerializeField]
     private GameObject mainMenu;
     public GameObject MainMenu { get{ return mainMenu; } }
-    [SerializeField]
-    private GameObject itemMenu;
-    public GameObject ItemMenu { get { return itemMenu; } }
 
-    private List<GameObject> AvailableMenus = new List<GameObject>();
+    private List<GameObject> MenuStack = new List<GameObject>();
     private MenuComponent currentMenu;
 
     public void Start() {
-        AvailableMenus = new List<GameObject> {
-            MainMenu,
-            ItemMenu
-        };
-        CloseMenu();
+        CloseAllMenus();
     }
 
     public void OpenMenu() {
@@ -28,23 +22,36 @@ public class MenuManager : MonoBehaviour {
     }
 
     public void OpenSpecificMenu(GameObject menuObject) {
-        for (int i = 0; i < AvailableMenus.Count; i++) {
-            if (AvailableMenus[i] == menuObject) {
-                AvailableMenus[i].SetActive(true);
-                currentMenu = menuObject.GetComponent<MenuComponent>();
-            }
-            else {
-                AvailableMenus[i].SetActive(false);
-            }
+        if (MenuStack.Any()) {
+            MenuStack[MenuStack.Count - 1].SetActive(false);
         }
+        menuObject.SetActive(true);
+        currentMenu = menuObject.GetComponent<MenuComponent>();
+        MenuStack.Add(menuObject);
     }
 
-    public void CloseMenu() {
-        for (int i = 0; i < AvailableMenus.Count; i++) {
-            AvailableMenus[i].SetActive(false);
+    public void CloseAllMenus() {
+        if (MenuStack.Any()) {
+            for (int i = MenuStack.Count - 1; i == 0; i--) {
+                MenuStack[i].SetActive(false);
+            }
         }
 
         GameData.MenuIsOpen = false;
+    }
+
+    public void GoBack() {
+        if (MenuStack.Any()) {
+            MenuStack[MenuStack.Count - 1].SetActive(false);
+            MenuStack.RemoveAt(MenuStack.Count - 1);
+
+            if(MenuStack.Count > 0) {
+                MenuStack[MenuStack.Count - 1].SetActive(true);
+            }
+            else {
+                GameData.MenuIsOpen = false;
+            }
+        }
     }
 
     public void MoveDown() {

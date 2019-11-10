@@ -19,6 +19,9 @@ public class MainMenu : MenuComponent {
     [SerializeField]
     GameObject StatusOption;
 
+    [SerializeField]
+    GameObject ItemMenu;
+
     public new void Start() {
         base.Start();
 
@@ -40,7 +43,7 @@ public class MainMenu : MenuComponent {
 
     protected override void SelectOption(GameObject option) {
         if(option == ItemOption) {
-            menuManager.OpenSpecificMenu(menuManager.ItemMenu);
+            menuManager.OpenSpecificMenu(ItemMenu);
             return;
         }
         else if(option == MagicOption) {

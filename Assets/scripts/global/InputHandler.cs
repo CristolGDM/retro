@@ -82,6 +82,12 @@ public class InputHandler : MonoBehaviour {
             else MenuManager.CloseAllMenus();
         }
 
+        /* MENU KEY */
+        else if (CancelKeySingle()) {
+            if(GameData.MenuIsOpen) {
+                MenuManager.GoBack();
+            }
+        }
     }
 
     private bool UpKey() {
@@ -127,9 +133,9 @@ public class InputHandler : MonoBehaviour {
     }
 
     private bool CancelKey() {
-        return Input.GetKey("esc") || Input.GetKey("q");
+        return Input.GetKey("escape") || Input.GetKey("q");
     }
     private bool CancelKeySingle() {
-        return Input.GetKeyDown("esc") || Input.GetKeyDown("q");
+        return Input.GetKeyDown("escape") || Input.GetKeyDown("q");
     }
 }

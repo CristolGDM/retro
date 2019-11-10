@@ -1386,7 +1386,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainMenu: {fileID: 495430207}
-  itemMenu: {fileID: 1853449732}
 --- !u!114 &66344264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2316,6 +2315,7 @@ MonoBehaviour:
   ItemOption: {fileID: 1145212918}
   MagicOption: {fileID: 1672229823}
   StatusOption: {fileID: 1578369818}
+  ItemMenu: {fileID: 1853449732}
 --- !u!1001 &556762233
 Prefab:
   m_ObjectHideFlags: 0
