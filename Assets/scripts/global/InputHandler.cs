@@ -23,7 +23,7 @@ public class InputHandler : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         /* INTERACT KEY */
-        if (Input.GetKeyDown("e")) {
+        if (InteractKeySingle()) {
             if (GameData.DialogIsOpen) {
                 dialogHandler.DisplayNextSentence();
             } else if (GameData.PlayerCanMove) {
@@ -45,42 +45,91 @@ public class InputHandler : MonoBehaviour {
             }
         }
         /* UP KEY */
-        else if (Input.GetKey("up") || Input.GetKey("w")) {
+        else if (UpKey()) {
             if (GameData.PlayerCanMove) playerMover.MoveUp();
-            else if (Input.GetKeyDown("up") || Input.GetKeyDown("w")) {
+            else if (UpKeySingle()) {
                 if (GameData.MenuIsOpen) MenuManager.MoveUp();
             }
         }
 
         /* DOWN KEY */
-        else if (Input.GetKey("down") || Input.GetKey("s")) {
+        else if (DownKey()) {
             if (GameData.PlayerCanMove) playerMover.MoveDown();
-            else if (Input.GetKeyDown("down") || Input.GetKeyDown("s")) {
+            else if (DownKeySingle()) {
                 if (GameData.MenuIsOpen)MenuManager.MoveDown();
             }
         }
 
         /* LEFT KEY */
-        else if (Input.GetKey("left") || Input.GetKey("a")) {
+        else if (LeftKey()) {
             if (GameData.PlayerCanMove) playerMover.MoveLeft();
-            else if (Input.GetKeyDown("left") || Input.GetKeyDown("a")) {
+            else if (LeftKeySingle()) {
                 if (GameData.MenuIsOpen) MenuManager.MoveLeft();
             }
         }
 
         /* RIGHT KEY */
-        else if (Input.GetKey("right") || Input.GetKey("d")) {
+        else if (RightKey()) {
             if (GameData.PlayerCanMove) playerMover.MoveRight();
-            else if (Input.GetKeyDown("right") || Input.GetKeyDown("d")) {
+            else if (RightKeySingle()) {
                 if (GameData.MenuIsOpen) MenuManager.MoveRight();
             }
         }
 
         /* MENU KEY */
-        else if (Input.GetKeyDown("enter") || Input.GetKeyDown("return")) {
+        else if (MenuKeySingle()) {
             if (!GameData.MenuIsOpen && GameData.PlayerCanMove) MenuManager.OpenMenu();
-            else MenuManager.CloseMenu();
+            else MenuManager.CloseAllMenus();
         }
 
+    }
+
+    private bool UpKey() {
+        return Input.GetKey("up") || Input.GetKey("w");
+    }
+    private bool UpKeySingle() {
+        return Input.GetKeyDown("up") || Input.GetKeyDown("w");
+    }
+
+    private bool DownKey() {
+        return Input.GetKey("down") || Input.GetKey("s");
+    }
+    private bool DownKeySingle() {
+        return Input.GetKeyDown("down") || Input.GetKeyDown("s");
+    }
+
+    private bool LeftKey() {
+        return Input.GetKey("left") || Input.GetKey("a");
+    }
+    private bool LeftKeySingle() {
+        return Input.GetKeyDown("left") || Input.GetKeyDown("a");
+    }
+
+    private bool RightKey() {
+        return Input.GetKey("right") || Input.GetKey("d");
+    }
+    private bool RightKeySingle() {
+        return Input.GetKeyDown("right") || Input.GetKeyDown("d");
+    }
+
+    private bool InteractKey() {
+        return Input.GetKey("e");
+    }
+    private bool InteractKeySingle() {
+        return Input.GetKeyDown("e");
+    }
+
+    private bool MenuKey() {
+        return Input.GetKey("enter") || Input.GetKey("return");
+    }
+    private bool MenuKeySingle() {
+        return Input.GetKeyDown("enter") || Input.GetKeyDown("return");
+    }
+
+    private bool CancelKey() {
+        return Input.GetKey("esc") || Input.GetKey("q");
+    }
+    private bool CancelKeySingle() {
+        return Input.GetKeyDown("esc") || Input.GetKeyDown("q");
     }
 }
