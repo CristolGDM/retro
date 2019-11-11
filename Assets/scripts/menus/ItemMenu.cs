@@ -24,7 +24,10 @@ public class ItemMenu : MenuComponent {
         base.Start();
 
         itemDescriptionField.GetComponent<Text>().text = "";
-
+        List<Text> sampleItemTexts = new List<Text>(sampleItem.GetComponentsInChildren<Text>());
+        foreach (Text txt in sampleItemTexts) {
+            txt.text = "";
+        }
     }
 
     public new void Update() {
