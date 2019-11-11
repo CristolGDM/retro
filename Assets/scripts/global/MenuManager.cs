@@ -10,6 +10,8 @@ public class MenuManager : MonoBehaviour {
     private GameObject mainMenu;
     public GameObject MainMenu { get{ return mainMenu; } }
 
+    public GameObject Cursor;
+
     private List<GameObject> MenuStack = new List<GameObject>();
 
     public void Start() {
@@ -23,9 +25,7 @@ public class MenuManager : MonoBehaviour {
     }
 
     public void OpenSpecificMenu(GameObject menuObject) {
-        //if (MenuStack.Any()) {
-        //    MenuStack[MenuStack.Count - 1].SetActive(false);
-        //}L
+        Cursor.SetActive(true);
         menuObject.SetActive(true);
         MenuStack.Add(menuObject);
         List<TilemapRenderer> allBackgrounds = new List<TilemapRenderer>(menuObject.GetComponentsInChildren<TilemapRenderer>());
@@ -41,6 +41,7 @@ public class MenuManager : MonoBehaviour {
         foreach (SpriteRenderer sprite in allSprites) {
             sprite.sortingOrder = baseOrder + 1;
         }
+        Cursor.GetComponent<SpriteRenderer>().sortingOrder = baseOrder + 1;
     }
 
     public void CloseAllMenus() {
@@ -50,6 +51,7 @@ public class MenuManager : MonoBehaviour {
             }
         }
 
+        Cursor.SetActive(false);
         GameData.MenuIsOpen = false;
     }
 
@@ -62,6 +64,7 @@ public class MenuManager : MonoBehaviour {
                 MenuStack[MenuStack.Count - 1].SetActive(true);
             }
             else {
+                Cursor.SetActive(false);
                 GameData.MenuIsOpen = false;
             }
         }

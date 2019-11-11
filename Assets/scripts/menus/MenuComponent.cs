@@ -8,12 +8,10 @@ public abstract class MenuComponent : MonoBehaviour {
 
     protected List<List<GameObject>> SelectableOptions = new List<List<GameObject>>();
 
-    [SerializeField]
-    GameObject Cursor;
+    private GameObject Cursor;
 
     private int SelectedOptionX = 0;
     private int SelectedOptionY = 0;
-    private int[] CursorPosition = { -1, -1 };
     protected MenuManager menuManager;
 
     // Use this for initialization
@@ -21,16 +19,16 @@ public abstract class MenuComponent : MonoBehaviour {
 
         menuManager = GameObject.Find(ComponentNames.SceneScripts).GetComponent<MenuManager>();
         LoadOptions();
+
+        Cursor = menuManager.Cursor;
 	}
 	
 	// Update is called once per frame
 	protected void Update () {
-        if (CursorPosition[0] != SelectedOptionX || CursorPosition[1] != SelectedOptionY) {
-            CursorPosition[0] = SelectedOptionX;
-            CursorPosition[1] = SelectedOptionY;
-            float cursorLeftOffset = (1.4f * CurrentOption().GetComponent<RectTransform>().rect.width / 120) + 0.1f;
-            Cursor.transform.position = new Vector3(CurrentOption().transform.position.x - cursorLeftOffset, CurrentOption().transform.position.y - 0.1f, CurrentOption().transform.position.z);
-        }
+        if (Cursor == null) Cursor = menuManager.Cursor;
+
+        float cursorLeftOffset = (1.4f * CurrentOption().GetComponent<RectTransform>().rect.width / 120) + 0.1f;
+        Cursor.transform.position = new Vector3(CurrentOption().transform.position.x - cursorLeftOffset, CurrentOption().transform.position.y - 0.1f, CurrentOption().transform.position.z);
     }
 
     protected abstract void LoadOptions();
@@ -47,6 +45,7 @@ public abstract class MenuComponent : MonoBehaviour {
     }
 
     protected void SelectOption(int x, int y) {
+        if (Cursor == null) Cursor = menuManager.Cursor;
         if (SelectableOptions.Any()
           && SelectableOptions[y].Any()
           && SelectableOptions.Count > y
