@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour {
 
@@ -21,11 +23,24 @@ public class MenuManager : MonoBehaviour {
     }
 
     public void OpenSpecificMenu(GameObject menuObject) {
-        if (MenuStack.Any()) {
-            MenuStack[MenuStack.Count - 1].SetActive(false);
-        }
+        //if (MenuStack.Any()) {
+        //    MenuStack[MenuStack.Count - 1].SetActive(false);
+        //}L
         menuObject.SetActive(true);
         MenuStack.Add(menuObject);
+        List<TilemapRenderer> allBackgrounds = new List<TilemapRenderer>(menuObject.GetComponentsInChildren<TilemapRenderer>());
+        List<Canvas> allTexts = new List<Canvas>(menuObject.GetComponentsInChildren<Canvas>());
+        List<SpriteRenderer> allSprites = new List<SpriteRenderer>(menuObject.GetComponentsInChildren<SpriteRenderer>());
+        int baseOrder = MenuStack.Count*2 -1;
+        foreach(TilemapRenderer bg in allBackgrounds) {
+            bg.sortingOrder = baseOrder;
+        }
+        foreach (Canvas text in allTexts) {
+            text.sortingOrder = baseOrder + 1;
+        }
+        foreach (SpriteRenderer sprite in allSprites) {
+            sprite.sortingOrder = baseOrder + 1;
+        }
     }
 
     public void CloseAllMenus() {
