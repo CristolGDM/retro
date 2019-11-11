@@ -46,9 +46,10 @@ public class MenuManager : MonoBehaviour {
 
     public void CloseAllMenus() {
         if (MenuStack.Any()) {
-            for (int i = MenuStack.Count - 1; i == 0; i--) {
+            for (int i = MenuStack.Count - 1; i >= 0; i--) {
                 MenuStack[i].SetActive(false);
             }
+            MenuStack = new List<GameObject>();
         }
 
         Cursor.SetActive(false);
