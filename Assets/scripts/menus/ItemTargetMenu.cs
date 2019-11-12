@@ -13,6 +13,8 @@ public class ItemTargetMenu : MenuComponent {
     [SerializeField]
     GameObject PcPreviewSection4;
 
+    private Item itemToApply;
+
     public new void Start() {
         base.Start();
 
@@ -31,7 +33,20 @@ public class ItemTargetMenu : MenuComponent {
         MoveToFirstOption();
     }
 
+    public void ReadyItem(Item item) {
+        itemToApply = item;
+    }
+
     protected override void SelectOption(GameObject option) {
+        PlayerCharacter target = option.GetComponent<PcPreviewSection>().GetPc();
+
+        if (target == null) return;
+        if (!Inventory.CarriedInventory.ContainsKey(itemToApply.Name)) return;
+        if (Inventory.CarriedInventory[itemToApply.Name] <= 0) return;
+
+        PlayerCharacter[] targets = { target };
+        itemToApply.SetTargets(targets);
+        itemToApply.OnUse();
     }
 
     public override void PlaceCursorOnOption(GameObject option) {

@@ -12,6 +12,8 @@ public class ItemMenu : MenuComponent {
     private GameObject sampleItem;
     [SerializeField]
     private GameObject itemDescriptionField;
+    [SerializeField]
+    private GameObject itemTargetMenu;
 
     private float xStart;
     private float yStart;
@@ -90,14 +92,16 @@ public class ItemMenu : MenuComponent {
         if (Inventory.CarriedInventory[selectedItem.Name] <= 0) return;
 
         if (selectedItem.IsUsable) {
-            if (selectedItem.NeedTarget) {
-                List<PlayerCharacter> targets = new List<PlayerCharacter>();
-                targets.Add(GameData.getFirstPc());
-                selectedItem.SetTargets(targets.ToArray());
-            } else {
-                selectedItem.SetTargets(GameData.getParty());
-            }
-            selectedItem.OnUse();
+            menuManager.OpenSpecificMenu(itemTargetMenu);
+            itemTargetMenu.GetComponent<ItemTargetMenu>().ReadyItem(selectedItem);
+            //if (selectedItem.NeedTarget) {
+            //    List<PlayerCharacter> targets = new List<PlayerCharacter>();
+            //    targets.Add(GameData.getFirstPc());
+            //    selectedItem.SetTargets(targets.ToArray());
+            //} else {
+            //    selectedItem.SetTargets(GameData.getParty());
+            //}
+            //selectedItem.OnUse();
         }
     }
 }

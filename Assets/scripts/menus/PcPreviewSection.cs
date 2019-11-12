@@ -36,6 +36,10 @@ public class PcPreviewSection : MonoBehaviour {
         InvokeRepeating("AnimateSprite", startMoving, moveInterval);
     }
 
+    public PlayerCharacter GetPc() {
+        return thisCharacter;
+    }
+
     private void AnimateSprite() {
         if (thisCharacter == null) return;
         if (sprites == null) return;
