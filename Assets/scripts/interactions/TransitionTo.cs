@@ -17,9 +17,9 @@ public class TransitionTo : MonoBehaviour {
 
 	}
 
-	void OnTriggerEnter2D(Collider2D collider) {
-		if(collider.name == "MainCharacter" && GameData.PlayerCanTransition) {
-			StartCoroutine(DoSceneTransition(collider.gameObject));
+	void OnTriggerEnter2D(Collider2D enteringCollider) {
+		if(enteringCollider.name == "MainCharacter" && GameData.PlayerCanTransition) {
+			StartCoroutine(DoSceneTransition(enteringCollider.gameObject));
 		}
 	}
 
