@@ -27,8 +27,10 @@ public abstract class MenuComponent : MonoBehaviour {
 	protected void Update () {
         if (Cursor == null) Cursor = menuManager.Cursor;
 
-        float cursorLeftOffset = (1.4f * CurrentOption().GetComponent<RectTransform>().rect.width / 120) + 0.1f;
-        Cursor.transform.position = new Vector3(CurrentOption().transform.position.x - cursorLeftOffset, CurrentOption().transform.position.y - 0.1f, CurrentOption().transform.position.z);
+        if (CurrentOption() != null) {
+            float cursorLeftOffset = (1.4f * CurrentOption().GetComponent<RectTransform>().rect.width / 120) + 0.1f;
+            Cursor.transform.position = new Vector3(CurrentOption().transform.position.x - cursorLeftOffset, CurrentOption().transform.position.y - 0.1f, CurrentOption().transform.position.z);
+        }
     }
 
     protected abstract void LoadOptions();
@@ -37,7 +39,7 @@ public abstract class MenuComponent : MonoBehaviour {
     public void SelectCurrentOption() {
         SelectOption(CurrentOption());
     }
-    public void SelectFirstOption() {
+    public void MoveToFirstOption() {
         MoveToOption(0, 0);
     }
 

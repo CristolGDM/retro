@@ -39,6 +39,7 @@ public class PcPreviewSection : MonoBehaviour {
     private void AnimateSprite() {
         if (thisCharacter == null) return;
         if (sprites == null) return;
+        if (pcSprite == null) return;
 
         if(pcSprite.GetComponent<SpriteRenderer>().sprite == sprites[0]) {
             pcSprite.GetComponent<SpriteRenderer>().sprite = sprites[1];
@@ -51,21 +52,21 @@ public class PcPreviewSection : MonoBehaviour {
     private void LoadPcData() {
         if (thisCharacter != null) {
             gameObject.GetComponentInChildren<Canvas>().enabled = true;
-            pcName.text = thisCharacter.characterName;
-            pcPv.text = thisCharacter.currentPv + "/" + thisCharacter.maxPv;
-            pcLv.text = "Lv." + thisCharacter.level;
-            pcJob.text = thisCharacter.job;
+            if (pcName != null) pcName.text = thisCharacter.characterName;
+            if (pcPv != null) pcPv.text = thisCharacter.currentPv + "/" + thisCharacter.maxPv;
+            if (pcLv != null) pcLv.text = "Lv." + thisCharacter.level;
+            if (pcJob != null) pcJob.text = thisCharacter.job;
 
-            pcSprite.GetComponent<SpriteRenderer>().enabled = true;
+            if (pcSprite != null) pcSprite.GetComponent<SpriteRenderer>().enabled = true;
             sprites = Resources.LoadAll<Sprite>("sprites/spritesheets/" + thisCharacter.spriteSheetName);
 
         } else {
             gameObject.GetComponentInChildren<Canvas>().enabled = false;
-            pcName.text = "";
-            pcPv.text = "";
-            pcLv.text = "";
-            pcJob.text = "";
-            pcSprite.GetComponent<SpriteRenderer>().enabled = false;
+            if (pcName != null) pcName.text = "";
+            if (pcPv != null) pcPv.text = "";
+            if (pcLv != null) pcLv.text = "";
+            if (pcJob != null) pcJob.text = "";
+            if (pcSprite != null) pcSprite.GetComponent<SpriteRenderer>().enabled = false;
         }
 
     }
