@@ -28,7 +28,6 @@ public class GameStart : MonoBehaviour {
 
     IEnumerator DoInitialTransition() {
         GameData.PlayerCanTransition = false;
-        player.transform.position = new Vector3(99999, 99999, 99999);
         Scene currentScene = SceneManager.GetActiveScene();
 
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(StartingSceneName, LoadSceneMode.Additive);
