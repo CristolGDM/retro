@@ -37,6 +37,9 @@ public abstract class MenuComponent : MonoBehaviour {
     public void SelectCurrentOption() {
         SelectOption(CurrentOption());
     }
+    public void SelectFirstOption() {
+        MoveToOption(0, 0);
+    }
 
     protected GameObject CurrentOption() {
         if (!SelectableOptions.Any() || !SelectableOptions[SelectedOptionY].Any()) return null;
@@ -44,8 +47,8 @@ public abstract class MenuComponent : MonoBehaviour {
         return SelectableOptions[SelectedOptionY][SelectedOptionX];
     }
 
-    protected void SelectOption(int x, int y) {
-        if (Cursor == null) Cursor = menuManager.Cursor;
+    protected void MoveToOption(int x, int y) {
+        if (Cursor == null) return;
         if (SelectableOptions.Any()
           && SelectableOptions[y].Any()
           && SelectableOptions.Count > y
@@ -76,7 +79,7 @@ public abstract class MenuComponent : MonoBehaviour {
 
         int x = Math.Min(SelectedOptionX, SelectableOptions[y].Count -1);
 
-        SelectOption(x, y);
+        MoveToOption(x, y);
     }
 
     public void MoveUp() {
@@ -92,7 +95,7 @@ public abstract class MenuComponent : MonoBehaviour {
             y -= 1;
         }
 
-        SelectOption(SelectedOptionX, y);
+        MoveToOption(SelectedOptionX, y);
     }
 
     public void MoveLeft() {
@@ -108,7 +111,7 @@ public abstract class MenuComponent : MonoBehaviour {
             x -= 1;
         }
 
-        SelectOption(x, SelectedOptionY);
+        MoveToOption(x, SelectedOptionY);
     }
 
     public void MoveRight() {
@@ -124,6 +127,6 @@ public abstract class MenuComponent : MonoBehaviour {
             x += 1;
         }
 
-        SelectOption(x, SelectedOptionY);
+        MoveToOption(x, SelectedOptionY);
     }
 }

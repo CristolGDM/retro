@@ -76,7 +76,7 @@ public class ItemMenu : MenuComponent {
             }
 
             SelectableOptions.Add(optionsRow);
-            SelectOption(0, 0);
+            MoveToOption(0, 0);
         }
 
         sampleItem.SetActive(false);

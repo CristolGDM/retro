@@ -38,7 +38,7 @@ public class MainMenu : MenuComponent {
         Options.Add(new List<GameObject> { StatusOption });
 
         SelectableOptions = Options;
-        SelectOption(0, 0);
+        MoveToOption(0, 0);
     }
 
     protected override void SelectOption(GameObject option) {
