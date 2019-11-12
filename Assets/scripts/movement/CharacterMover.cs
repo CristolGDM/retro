@@ -18,12 +18,14 @@ public class CharacterMover : MonoBehaviour {
     // Use this for initialization
     void Start () {
         pos = transform.position;
+        originalPosition = transform.position;
         sprites = Resources.LoadAll<Sprite>("sprites/spritesheets/" + spriteSheet.name);
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Update() {
         transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);
+        if (!animator.GetBool("Moving")) transform.position = pos;
         if (transform.position == pos) animator.SetBool("Moving", false);
     }
 
