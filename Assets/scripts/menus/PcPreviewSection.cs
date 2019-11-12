@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PcPreviewSection : MonoBehaviour {
 
     [SerializeField]
-    Text pcName;
+    public Text pcName;
 
     [SerializeField]
     Text pcPv;

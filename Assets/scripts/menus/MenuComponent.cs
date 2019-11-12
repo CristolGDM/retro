@@ -28,8 +28,7 @@ public abstract class MenuComponent : MonoBehaviour {
         if (Cursor == null) Cursor = menuManager.Cursor;
 
         if (CurrentOption() != null) {
-            float cursorLeftOffset = (1.4f * CurrentOption().GetComponent<RectTransform>().rect.width / 120) + 0.1f;
-            Cursor.transform.position = new Vector3(CurrentOption().transform.position.x - cursorLeftOffset, CurrentOption().transform.position.y - 0.1f, CurrentOption().transform.position.z);
+            PlaceCursorOnOption(CurrentOption());
         }
     }
 
@@ -41,6 +40,12 @@ public abstract class MenuComponent : MonoBehaviour {
     }
     public void MoveToFirstOption() {
         MoveToOption(0, 0);
+    }
+
+    public virtual void PlaceCursorOnOption(GameObject option) {
+        RectTransform rectTrans = option.GetComponent<RectTransform>();
+        float cursorLeftOffset = ((1.4f * rectTrans.rect.width) / 120) + 0.1f;
+        Cursor.transform.position = new Vector3(CurrentOption().transform.position.x - cursorLeftOffset, CurrentOption().transform.position.y - 0.1f, CurrentOption().transform.position.z);
     }
 
     protected GameObject CurrentOption() {

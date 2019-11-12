@@ -22,17 +22,25 @@ public class ItemTargetMenu : MenuComponent {
         PcPreviewSection4.GetComponent<PcPreviewSection>().LoadPc(GameData.getFourthPc());
     }
 
-    public new void Update() {
-        base.Update();
-    }
-
     protected override void LoadOptions() {
-        SelectableOptions.Add(new List<GameObject> { PcPreviewSection1 });
-        SelectableOptions.Add(new List<GameObject> { PcPreviewSection2 });
-        SelectableOptions.Add(new List<GameObject> { PcPreviewSection3 });
-        SelectableOptions.Add(new List<GameObject> { PcPreviewSection4 });
+        if (GameData.getFirstPc() != null) SelectableOptions.Add(new List<GameObject> { PcPreviewSection1 });
+        if (GameData.getSecondPc() != null) SelectableOptions.Add(new List<GameObject> { PcPreviewSection2 });
+        if (GameData.getThirdPc() != null) SelectableOptions.Add(new List<GameObject> { PcPreviewSection3 });
+        if (GameData.getFourthPc() != null) SelectableOptions.Add(new List<GameObject> { PcPreviewSection4 });
+
+        MoveToFirstOption();
     }
 
     protected override void SelectOption(GameObject option) {
+    }
+
+    public override void PlaceCursorOnOption(GameObject option) {
+        PcPreviewSection pcprev = option.GetComponent<PcPreviewSection>();
+        if (pcprev == null) { base.PlaceCursorOnOption(option); }
+        else {
+            RectTransform rectTrans = pcprev.pcName.GetComponent<RectTransform>();
+            float cursorLeftOffset = ((1.4f * rectTrans.rect.width) / 120) - 0.1f;
+            menuManager.Cursor.transform.position = new Vector3(CurrentOption().transform.position.x - cursorLeftOffset, CurrentOption().transform.position.y - 0.1f, CurrentOption().transform.position.z);
+        }
     }
 }
