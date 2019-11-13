@@ -17,7 +17,7 @@ public class ItemTargetMenu : MenuComponent {
     GameObject ConfirmationMenu;
 
     private Item itemToApply;
-    private PlayerCharacter pcToTarget;
+    private PlayerCharacter[] charactersToTarget;
 
     public new void Start() {
         base.Start();
@@ -29,15 +29,19 @@ public class ItemTargetMenu : MenuComponent {
     }
 
     protected override void LoadOptions() {
-        List<List<GameObject>> tempList = new List<List<GameObject>>();
-        if (GameData.getFirstPc() != null) tempList.Add(new List<GameObject> { PcPreviewSection1 });
-        if (GameData.getSecondPc() != null) tempList.Add(new List<GameObject> { PcPreviewSection2 });
-        if (GameData.getThirdPc() != null) tempList.Add(new List<GameObject> { PcPreviewSection3 });
-        if (GameData.getFourthPc() != null) tempList.Add(new List<GameObject> { PcPreviewSection4 });
+        SelectableOptions = new List<List<GameObject>>();
+        charactersToTarget = null;
+        if (itemToApply.NeedTarget) {
+            List<List<GameObject>> tempList = new List<List<GameObject>>();
+            if (GameData.getFirstPc() != null) tempList.Add(new List<GameObject> { PcPreviewSection1 });
+            if (GameData.getSecondPc() != null) tempList.Add(new List<GameObject> { PcPreviewSection2 });
+            if (GameData.getThirdPc() != null) tempList.Add(new List<GameObject> { PcPreviewSection3 });
+            if (GameData.getFourthPc() != null) tempList.Add(new List<GameObject> { PcPreviewSection4 });
 
-        SelectableOptions = tempList;
+            SelectableOptions = tempList;
 
-        MoveToFirstOption();
+            MoveToFirstOption();
+        }
     }
 
     public void ReadyItem(Item item) {
@@ -45,14 +49,21 @@ public class ItemTargetMenu : MenuComponent {
     }
 
     protected override void SelectOption(GameObject option) {
-        PlayerCharacter target = option.GetComponent<PcPreviewSection>().GetPc();
-
-        if (target == null) return;
         if (!Inventory.CarriedInventory.ContainsKey(itemToApply.Name)) return;
         if (Inventory.CarriedInventory[itemToApply.Name] <= 0) return;
 
-        pcToTarget = target;
-        ConfirmationMenu.GetComponent<ItemConfirmationMenu>().Init(itemToApply,pcToTarget);
+        if (option != null) {
+            PlayerCharacter target = option.GetComponent<PcPreviewSection>().GetPc();
+
+            if (target == null) return;
+
+            charactersToTarget = new PlayerCharacter[] { target };
+        }
+        else {
+            charactersToTarget = GameData.getParty();
+        }
+
+        ConfirmationMenu.GetComponent<ItemConfirmationMenu>().Init(itemToApply, charactersToTarget);
         ConfirmationMenu.GetComponent<ItemConfirmationMenu>().LoadYesNoActions(OnYesFromConfirm, OnNoFromConfirm);
         menuManager.OpenSpecificMenu(ConfirmationMenu);
     }
@@ -68,8 +79,7 @@ public class ItemTargetMenu : MenuComponent {
     }
 
    private void OnYesFromConfirm() {
-        PlayerCharacter[] targets = { pcToTarget };
-        itemToApply.SetTargets(targets);
+        itemToApply.SetTargets(charactersToTarget);
         itemToApply.OnUse();
 
         menuManager.GoBack();

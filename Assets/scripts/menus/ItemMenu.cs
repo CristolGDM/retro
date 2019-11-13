@@ -60,6 +60,9 @@ public class ItemMenu : MenuComponent {
         optionWidth = rt.rect.width;
         optionHeight = rt.rect.height;
 
+        List<List<GameObject>> tempSelectableOptions = new List<List<GameObject>>();
+        List<GameObject> tempOptionsAsLine = new List<GameObject>();
+
         for (int row = 0; row < maxRows; row++) {
 
             List<GameObject> optionsRow = new List<GameObject>();
@@ -73,13 +76,16 @@ public class ItemMenu : MenuComponent {
                 newObject.transform.SetParent(sampleItem.transform.parent);
                 newObject.transform.localScale = new Vector3(1, 1, 1);
 
-                optionsAsLine.Add(newObject);
+                tempOptionsAsLine.Add(newObject);
                 optionsRow.Add(newObject);
             }
 
-            SelectableOptions.Add(optionsRow);
+            tempSelectableOptions.Add(optionsRow);
             MoveToOption(0, 0);
         }
+
+        SelectableOptions = tempSelectableOptions;
+        optionsAsLine = tempOptionsAsLine;
 
         sampleItem.SetActive(false);
     }
@@ -94,14 +100,6 @@ public class ItemMenu : MenuComponent {
         if (selectedItem.IsUsable) {
             itemTargetMenu.GetComponent<ItemTargetMenu>().ReadyItem(selectedItem);
             menuManager.OpenSpecificMenu(itemTargetMenu);
-            //if (selectedItem.NeedTarget) {
-            //    List<PlayerCharacter> targets = new List<PlayerCharacter>();
-            //    targets.Add(GameData.getFirstPc());
-            //    selectedItem.SetTargets(targets.ToArray());
-            //} else {
-            //    selectedItem.SetTargets(GameData.getParty());
-            //}
-            //selectedItem.OnUse();
         }
     }
 }

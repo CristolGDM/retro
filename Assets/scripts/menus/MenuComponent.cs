@@ -18,7 +18,6 @@ public abstract class MenuComponent : MonoBehaviour {
     public void Start () {
 
         menuManager = GameObject.Find(ComponentNames.SceneScripts).GetComponent<MenuManager>();
-        LoadOptions();
 
         Cursor = menuManager.Cursor;
 	}
@@ -39,6 +38,9 @@ public abstract class MenuComponent : MonoBehaviour {
     protected abstract void LoadOptions();
     protected abstract void SelectOption(GameObject option);
 
+    public void InitMenu() {
+        LoadOptions();
+    }
     public void SelectCurrentOption() {
         SelectOption(CurrentOption());
     }
@@ -53,7 +55,7 @@ public abstract class MenuComponent : MonoBehaviour {
     }
 
     protected GameObject CurrentOption() {
-        if (!SelectableOptions.Any() || !SelectableOptions[SelectedOptionY].Any()) return null;
+        if (SelectableOptions == null || !SelectableOptions.Any() || !SelectableOptions[SelectedOptionY].Any()) return null;
 
         return SelectableOptions[SelectedOptionY][SelectedOptionX];
     }

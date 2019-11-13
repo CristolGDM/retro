@@ -15,18 +15,16 @@ public class ItemConfirmationMenu : MenuComponent {
     private MenuComponent CallingMenu;
     private Action YesAction;
     private Action NoAction;
-    private Item selectedItem;
-    private PlayerCharacter selectedCharacter;
 
     public new void Start() {
         base.Start();
     }
 
     protected override void LoadOptions() {
-        List<List<GameObject>> tempList = new List<List<GameObject>>();
-
-        tempList.Add(new List<GameObject> { YesOption });
-        tempList.Add(new List<GameObject> { NoOption });
+        List<List<GameObject>> tempList = new List<List<GameObject>> {
+            new List<GameObject> { YesOption },
+            new List<GameObject> { NoOption }
+        };
 
         SelectableOptions = tempList;
     }
@@ -40,11 +38,18 @@ public class ItemConfirmationMenu : MenuComponent {
         }
     }
 
-    public void Init(Item item, PlayerCharacter pc) {
-        selectedItem = item;
-        selectedCharacter = pc;
+    public void Init(Item item, PlayerCharacter[] targets) {
 
-        ConfirmationText.GetComponent<Text>().text = "Do you want to use " + selectedItem.Name + " on " + selectedCharacter.characterName + "?";
+        string confirmText;
+
+        if(targets.Length == 1) {
+           confirmText  = "Do you want to use " + item.Name + " on " + targets[0].characterName + "?";
+        }
+        else {
+            confirmText = "Do you want to use " + item.Name + " on everybody?";
+        }
+
+        ConfirmationText.GetComponent<Text>().text = confirmText;
     }
 
     public void LoadYesNoActions(Action yesAction, Action noAction) {

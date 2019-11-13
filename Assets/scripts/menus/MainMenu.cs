@@ -32,10 +32,11 @@ public class MainMenu : MenuComponent {
     }
 
     protected override void LoadOptions() {
-        List<List<GameObject>> Options = new List<List<GameObject>>();
-        Options.Add(new List<GameObject> { ItemOption });
-        Options.Add(new List<GameObject> { MagicOption });
-        Options.Add(new List<GameObject> { StatusOption });
+        List<List<GameObject>> Options = new List<List<GameObject>> {
+            new List<GameObject> { ItemOption },
+            new List<GameObject> { MagicOption },
+            new List<GameObject> { StatusOption }
+        };
 
         SelectableOptions = Options;
         MoveToOption(0, 0);

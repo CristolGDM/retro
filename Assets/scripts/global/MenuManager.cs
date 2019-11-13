@@ -41,6 +41,7 @@ public class MenuManager : MonoBehaviour {
         foreach (SpriteRenderer sprite in allSprites) {
             sprite.sortingOrder = baseOrder + 1;
         }
+        menuObject.GetComponent<MenuComponent>().InitMenu();
         Cursor.GetComponent<SpriteRenderer>().sortingOrder = baseOrder + 1;
         menuObject.GetComponent<MenuComponent>().MoveToFirstOption();
     }

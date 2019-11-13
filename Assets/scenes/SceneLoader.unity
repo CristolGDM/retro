@@ -7314,6 +7314,11 @@ Prefab:
       propertyPath: m_Text
       value: Do you want to use X on Y?
       objectReference: {fileID: 0}
+    - target: {fileID: 114997085717120378, guid: ff73ee1b92bb24540a330f41947d2901,
+        type: 2}
+      propertyPath: m_FontData.m_LineSpacing
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff73ee1b92bb24540a330f41947d2901, type: 2}
   m_IsPrefabParent: 0
