@@ -18,6 +18,7 @@ public class ItemTargetMenu : MenuComponent {
 
     private Item itemToApply;
     private PlayerCharacter[] charactersToTarget;
+    private List<GameObject> cursors;
 
     public new void Start() {
         base.Start();
@@ -28,9 +29,23 @@ public class ItemTargetMenu : MenuComponent {
         PcPreviewSection4.GetComponent<PcPreviewSection>().LoadPc(GameData.getFourthPc());
     }
 
+    public new void Update() {
+        base.Update();
+
+        if (!itemToApply.NeedTarget) {
+            GameObject[] cursorPositions = { PcPreviewSection1, PcPreviewSection2, PcPreviewSection3, PcPreviewSection4 };
+
+            for (int i = 0; i < cursors.Count; i++) {
+                cursors[i].transform.position = cursorPositions[i].transform.position;
+                cursors[i].SetActive(true);
+            }
+        }
+    }
+
     protected override void LoadOptions() {
         SelectableOptions = new List<List<GameObject>>();
         charactersToTarget = null;
+        cursors = null;
         if (itemToApply.NeedTarget) {
             List<List<GameObject>> tempList = new List<List<GameObject>>();
             if (GameData.getFirstPc() != null) tempList.Add(new List<GameObject> { PcPreviewSection1 });
@@ -41,6 +56,18 @@ public class ItemTargetMenu : MenuComponent {
             SelectableOptions = tempList;
 
             MoveToFirstOption();
+        }
+        else {
+            cursors = new List<GameObject>();
+            menuManager.Cursor.SetActive(true);
+            for (int i = 0; i < GameData.getParty().Length; i++) {
+                GameObject tempCursor = Instantiate(menuManager.Cursor);
+                tempCursor.transform.SetParent(gameObject.transform);
+                tempCursor.GetComponent<SpriteRenderer>().sortingOrder = GetComponentInChildren<Canvas>().sortingOrder;
+                tempCursor.SetActive(false);
+                cursors.Add(Instantiate(menuManager.Cursor));
+            }
+            menuManager.Cursor.SetActive(false);
         }
     }
 

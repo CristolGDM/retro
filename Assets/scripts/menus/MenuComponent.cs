@@ -16,11 +16,7 @@ public abstract class MenuComponent : MonoBehaviour {
 
     // Use this for initialization
     public void Start () {
-
-        menuManager = GameObject.Find(ComponentNames.SceneScripts).GetComponent<MenuManager>();
-
-        Cursor = menuManager.Cursor;
-	}
+    }
 	
 	// Update is called once per frame
 	protected void Update () {
@@ -39,6 +35,8 @@ public abstract class MenuComponent : MonoBehaviour {
     protected abstract void SelectOption(GameObject option);
 
     public void InitMenu() {
+        menuManager = GameObject.Find(ComponentNames.SceneScripts).GetComponent<MenuManager>();
+        Cursor = menuManager.Cursor;
         LoadOptions();
     }
     public void SelectCurrentOption() {
