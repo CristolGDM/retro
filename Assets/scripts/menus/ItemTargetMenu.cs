@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +17,7 @@ public class ItemTargetMenu : MenuComponent {
     GameObject ConfirmationMenu;
 
     private Item itemToApply;
+    private PlayerCharacter pcToTarget;
 
     public new void Start() {
         base.Start();
@@ -49,9 +51,9 @@ public class ItemTargetMenu : MenuComponent {
         if (!Inventory.CarriedInventory.ContainsKey(itemToApply.Name)) return;
         if (Inventory.CarriedInventory[itemToApply.Name] <= 0) return;
 
-        //PlayerCharacter[] targets = { target };
-        //itemToApply.SetTargets(targets);
-        //itemToApply.OnUse();
+        pcToTarget = target;
+        ConfirmationMenu.GetComponent<ItemConfirmationMenu>().Init(itemToApply,pcToTarget);
+        ConfirmationMenu.GetComponent<ItemConfirmationMenu>().LoadYesNoActions(OnYesFromConfirm, OnNoFromConfirm);
         menuManager.OpenSpecificMenu(ConfirmationMenu);
     }
 
@@ -63,5 +65,17 @@ public class ItemTargetMenu : MenuComponent {
             float cursorLeftOffset = ((1.4f * rectTrans.rect.width) / 120) - 0.1f;
             menuManager.Cursor.transform.position = new Vector3(CurrentOption().transform.position.x - cursorLeftOffset, CurrentOption().transform.position.y - 0.1f, CurrentOption().transform.position.z);
         }
+    }
+
+   private void OnYesFromConfirm() {
+        PlayerCharacter[] targets = { pcToTarget };
+        itemToApply.SetTargets(targets);
+        itemToApply.OnUse();
+
+        menuManager.GoBack();
+    }
+
+    private void OnNoFromConfirm() {
+        menuManager.GoBack();
     }
 }

@@ -1343,6 +1343,11 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224724900577531526, guid: ff73ee1b92bb24540a330f41947d2901,
     type: 2}
   m_PrefabInternal: {fileID: 17910911}
+--- !u!1 &17910913 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1596436877832082, guid: ff73ee1b92bb24540a330f41947d2901,
+    type: 2}
+  m_PrefabInternal: {fileID: 17910911}
 --- !u!1001 &21413782
 Prefab:
   m_ObjectHideFlags: 0
@@ -4202,6 +4207,11 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224724900577531526, guid: ff73ee1b92bb24540a330f41947d2901,
     type: 2}
   m_PrefabInternal: {fileID: 730452276}
+--- !u!1 &730452278 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1596436877832082, guid: ff73ee1b92bb24540a330f41947d2901,
+    type: 2}
+  m_PrefabInternal: {fileID: 730452276}
 --- !u!1 &939430693 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1100161356705720, guid: 3c1dc31844063324c9039e6ad45adc64,
@@ -5797,6 +5807,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0713ecba4ea9e4bf2a7b1df4c3f6581c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  YesOption: {fileID: 730452278}
+  NoOption: {fileID: 17910913}
+  ConfirmationText: {fileID: 1779852678}
 --- !u!1001 &1185408670
 Prefab:
   m_ObjectHideFlags: 0
@@ -7307,6 +7320,11 @@ Prefab:
 --- !u!224 &1779852677 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224724900577531526, guid: ff73ee1b92bb24540a330f41947d2901,
+    type: 2}
+  m_PrefabInternal: {fileID: 1779852676}
+--- !u!1 &1779852678 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1596436877832082, guid: ff73ee1b92bb24540a330f41947d2901,
     type: 2}
   m_PrefabInternal: {fileID: 1779852676}
 --- !u!1 &1853449732

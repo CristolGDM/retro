@@ -92,8 +92,8 @@ public class ItemMenu : MenuComponent {
         if (Inventory.CarriedInventory[selectedItem.Name] <= 0) return;
 
         if (selectedItem.IsUsable) {
-            menuManager.OpenSpecificMenu(itemTargetMenu);
             itemTargetMenu.GetComponent<ItemTargetMenu>().ReadyItem(selectedItem);
+            menuManager.OpenSpecificMenu(itemTargetMenu);
             //if (selectedItem.NeedTarget) {
             //    List<PlayerCharacter> targets = new List<PlayerCharacter>();
             //    targets.Add(GameData.getFirstPc());
