@@ -28,7 +28,11 @@ public abstract class MenuComponent : MonoBehaviour {
         if (Cursor == null) Cursor = menuManager.Cursor;
 
         if (CurrentOption() != null) {
+            Cursor.SetActive(true);
             PlaceCursorOnOption(CurrentOption());
+        }
+        else {
+            Cursor.SetActive(false);
         }
     }
 
@@ -73,18 +77,19 @@ public abstract class MenuComponent : MonoBehaviour {
 
     public void MoveDown() {
         int y = SelectedOptionY;
+        int x = SelectedOptionX;
 
         if (!SelectableOptions.Any()) {
             y = -1;
         }
         else if (y == SelectableOptions.Count - 1) {
             y = 0;
+            x = Math.Min(SelectedOptionX, SelectableOptions[y].Count - 1);
         }
         else {
             y += 1;
+            x = Math.Min(SelectedOptionX, SelectableOptions[y].Count - 1);
         }
-
-        int x = Math.Min(SelectedOptionX, SelectableOptions[y].Count -1);
 
         MoveToOption(x, y);
     }
