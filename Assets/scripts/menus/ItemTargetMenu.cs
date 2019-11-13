@@ -12,6 +12,8 @@ public class ItemTargetMenu : MenuComponent {
     GameObject PcPreviewSection3;
     [SerializeField]
     GameObject PcPreviewSection4;
+    [SerializeField]
+    GameObject ConfirmationMenu;
 
     private Item itemToApply;
 
@@ -25,10 +27,13 @@ public class ItemTargetMenu : MenuComponent {
     }
 
     protected override void LoadOptions() {
-        if (GameData.getFirstPc() != null) SelectableOptions.Add(new List<GameObject> { PcPreviewSection1 });
-        if (GameData.getSecondPc() != null) SelectableOptions.Add(new List<GameObject> { PcPreviewSection2 });
-        if (GameData.getThirdPc() != null) SelectableOptions.Add(new List<GameObject> { PcPreviewSection3 });
-        if (GameData.getFourthPc() != null) SelectableOptions.Add(new List<GameObject> { PcPreviewSection4 });
+        List<List<GameObject>> tempList = new List<List<GameObject>>();
+        if (GameData.getFirstPc() != null) tempList.Add(new List<GameObject> { PcPreviewSection1 });
+        if (GameData.getSecondPc() != null) tempList.Add(new List<GameObject> { PcPreviewSection2 });
+        if (GameData.getThirdPc() != null) tempList.Add(new List<GameObject> { PcPreviewSection3 });
+        if (GameData.getFourthPc() != null) tempList.Add(new List<GameObject> { PcPreviewSection4 });
+
+        SelectableOptions = tempList;
 
         MoveToFirstOption();
     }
@@ -44,9 +49,10 @@ public class ItemTargetMenu : MenuComponent {
         if (!Inventory.CarriedInventory.ContainsKey(itemToApply.Name)) return;
         if (Inventory.CarriedInventory[itemToApply.Name] <= 0) return;
 
-        PlayerCharacter[] targets = { target };
-        itemToApply.SetTargets(targets);
-        itemToApply.OnUse();
+        //PlayerCharacter[] targets = { target };
+        //itemToApply.SetTargets(targets);
+        //itemToApply.OnUse();
+        menuManager.OpenSpecificMenu(ConfirmationMenu);
     }
 
     public override void PlaceCursorOnOption(GameObject option) {
