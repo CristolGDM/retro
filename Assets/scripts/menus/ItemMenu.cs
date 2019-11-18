@@ -54,14 +54,18 @@ public class ItemMenu : MenuComponent {
     protected override void LoadOptions() {
         sampleItem.SetActive(true);
 
-        xStart = sampleItem.transform.localPosition.x;
-        yStart = sampleItem.transform.localPosition.y;
         RectTransform rt = sampleItem.GetComponent<RectTransform>();
         optionWidth = rt.rect.width;
         optionHeight = rt.rect.height;
+        xStart = rt.anchoredPosition.x;
+        yStart = rt.anchoredPosition.y;
 
         List<List<GameObject>> tempSelectableOptions = new List<List<GameObject>>();
         List<GameObject> tempOptionsAsLine = new List<GameObject>();
+
+        Debug.Log(sampleItem.transform.position);
+        Debug.Log(sampleItem.transform.localPosition);
+        Debug.Log(sampleItem.transform.localScale);
 
         for (int row = 0; row < maxRows; row++) {
 
@@ -69,12 +73,13 @@ public class ItemMenu : MenuComponent {
 
             for (int col = 0; col < maxColumns; col++) {
                 GameObject newObject = Instantiate(sampleItem);
+                newObject.transform.position = new Vector3(sampleItem.transform.position.x, sampleItem.transform.position.y, sampleItem.transform.position.z);
                 float newItemX = xStart + (col * (optionWidth + horizMargin));
                 float newItemY = yStart - (row * (optionHeight + verticalMargin));
                 float newItemZ = sampleItem.transform.localPosition.z;
-                newObject.transform.localPosition = new Vector3(newItemX, newItemY, newItemZ);
                 newObject.transform.SetParent(sampleItem.transform.parent);
                 newObject.transform.localScale = new Vector3(1, 1, 1);
+                newObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(newItemX, newItemY);
 
                 tempOptionsAsLine.Add(newObject);
                 optionsRow.Add(newObject);
