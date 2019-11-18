@@ -45,7 +45,9 @@ public class ItemTargetMenu : MenuComponent {
             GameObject[] cursorPositions = { PcPreviewSection1, PcPreviewSection2, PcPreviewSection3, PcPreviewSection4 };
 
             for (int i = 0; i < cursors.Count; i++) {
-                cursors[i].transform.position = cursorPositions[i].transform.position;
+                float leftOffset = GetCursorPositionForOption(cursorPositions[i].GetComponent<PcPreviewSection>().pcName.GetComponent<RectTransform>());
+                Transform trans = cursorPositions[i].GetComponent<Transform>();
+                cursors[i].transform.position = menuManager.Cursor.transform.position = new Vector3(trans.position.x - leftOffset, trans.position.y - 0.1f, trans.position.z);
                 cursors[i].SetActive(true);
             }
         }
@@ -110,9 +112,14 @@ public class ItemTargetMenu : MenuComponent {
         if (pcprev == null) { base.PlaceCursorOnOption(option); }
         else {
             RectTransform rectTrans = pcprev.pcName.GetComponent<RectTransform>();
-            float cursorLeftOffset = ((1.4f * rectTrans.rect.width) / 120) - 0.1f;
-            menuManager.Cursor.transform.position = new Vector3(CurrentOption().transform.position.x - cursorLeftOffset, CurrentOption().transform.position.y - 0.1f, CurrentOption().transform.position.z);
+            float leftOffset = GetCursorPositionForOption(rectTrans);
+            menuManager.Cursor.transform.position = new Vector3(CurrentOption().transform.position.x - leftOffset, CurrentOption().transform.position.y - 0.1f, CurrentOption().transform.position.z);
         }
+    }
+
+    private float GetCursorPositionForOption(RectTransform optionRect) {
+        float cursorLeftOffset = ((1.4f * optionRect.rect.width) / 120) - 0.1f;
+        return cursorLeftOffset;
     }
 
    private void OnYesFromConfirm() {
