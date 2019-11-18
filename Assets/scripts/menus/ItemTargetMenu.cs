@@ -30,6 +30,7 @@ public class ItemTargetMenu : MenuComponent {
     }
 
     public override void CloseMenu() {
+        CancelInvoke();
         if (cursors != null) {
             Transform tempParent = new GameObject().transform;
             foreach (GameObject cursor in cursors) {
@@ -48,7 +49,6 @@ public class ItemTargetMenu : MenuComponent {
                 float leftOffset = GetCursorPositionForOption(cursorPositions[i].GetComponent<PcPreviewSection>().pcName.GetComponent<RectTransform>());
                 Transform trans = cursorPositions[i].GetComponent<Transform>();
                 cursors[i].transform.position = menuManager.Cursor.transform.position = new Vector3(trans.position.x - leftOffset, trans.position.y - 0.1f, trans.position.z);
-                cursors[i].SetActive(true);
             }
         }
     }
@@ -75,16 +75,23 @@ public class ItemTargetMenu : MenuComponent {
                 GameObject tempCursor = Instantiate(menuManager.Cursor);
                 tempCursor.transform.SetParent(gameObject.transform);
                 tempCursor.GetComponent<SpriteRenderer>().sortingOrder = GetComponentInChildren<Canvas>().sortingOrder;
-                tempCursor.SetActive(false);
+                tempCursor.SetActive(true);
                 tempCursors.Add(tempCursor);
             }
             cursors = tempCursors;
             menuManager.Cursor.SetActive(false);
+            InvokeRepeating("SwitchCursorsVisibility", 0f, 0.05f);
         }
     }
 
     public void ReadyItem(Item item) {
         itemToApply = item;
+    }
+
+    public void SwitchCursorsVisibility() {
+        foreach(GameObject cursor in cursors) {
+            cursor.SetActive(!cursor.activeSelf);
+        }
     }
 
     protected override void SelectOption(GameObject option) {
