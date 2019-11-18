@@ -34,6 +34,10 @@ public abstract class MenuComponent : MonoBehaviour {
     protected abstract void LoadOptions();
     protected abstract void SelectOption(GameObject option);
 
+    public virtual void CloseMenu() {
+
+    }
+
     public void InitMenu() {
         menuManager = GameObject.Find(ComponentNames.SceneScripts).GetComponent<MenuManager>();
         Cursor = menuManager.Cursor;

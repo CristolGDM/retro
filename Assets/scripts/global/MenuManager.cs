@@ -49,6 +49,7 @@ public class MenuManager : MonoBehaviour {
     public void CloseAllMenus() {
         if (MenuStack.Any()) {
             for (int i = MenuStack.Count - 1; i >= 0; i--) {
+                MenuStack[i].GetComponent<MenuComponent>().CloseMenu();
                 MenuStack[i].SetActive(false);
             }
             MenuStack = new List<GameObject>();
@@ -60,6 +61,7 @@ public class MenuManager : MonoBehaviour {
 
     public void GoBack() {
         if (MenuStack.Any()) {
+            MenuStack[MenuStack.Count - 1].GetComponent<MenuComponent>().CloseMenu();
             MenuStack[MenuStack.Count - 1].SetActive(false);
             MenuStack.RemoveAt(MenuStack.Count - 1);
 

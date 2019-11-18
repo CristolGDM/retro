@@ -51,6 +51,12 @@ public class ItemMenu : MenuComponent {
         }
     }
 
+    public override void CloseMenu() {
+        foreach (GameObject option in optionsAsLine) {
+            Destroy(option);
+        }
+    }
+
     protected override void LoadOptions() {
         sampleItem.SetActive(true);
 
@@ -73,7 +79,6 @@ public class ItemMenu : MenuComponent {
                 newObject.transform.position = new Vector3(sampleItem.transform.position.x, sampleItem.transform.position.y, sampleItem.transform.position.z);
                 float newItemX = xStart + (col * (optionWidth + horizMargin));
                 float newItemY = yStart - (row * (optionHeight + verticalMargin));
-                float newItemZ = sampleItem.transform.localPosition.z;
                 newObject.transform.SetParent(sampleItem.transform.parent);
                 newObject.transform.localScale = new Vector3(1, 1, 1);
                 newObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(newItemX, newItemY);

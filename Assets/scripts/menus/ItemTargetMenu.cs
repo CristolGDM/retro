@@ -29,6 +29,15 @@ public class ItemTargetMenu : MenuComponent {
         PcPreviewSection4.GetComponent<PcPreviewSection>().LoadPc(GameData.getFourthPc());
     }
 
+    public override void CloseMenu() {
+        if (cursors != null) {
+            Transform tempParent = new GameObject().transform;
+            foreach (GameObject cursor in cursors) {
+                Destroy(cursor);
+            }
+        }
+    }
+
     public new void Update() {
         base.Update();
 
@@ -45,7 +54,7 @@ public class ItemTargetMenu : MenuComponent {
     protected override void LoadOptions() {
         SelectableOptions = new List<List<GameObject>>();
         charactersToTarget = null;
-        cursors = null;
+        cursors = new List<GameObject>();
         if (itemToApply.NeedTarget) {
             List<List<GameObject>> tempList = new List<List<GameObject>>();
             if (GameData.getFirstPc() != null) tempList.Add(new List<GameObject> { PcPreviewSection1 });
@@ -58,15 +67,16 @@ public class ItemTargetMenu : MenuComponent {
             MoveToFirstOption();
         }
         else {
-            cursors = new List<GameObject>();
+            List<GameObject> tempCursors = new List<GameObject>();
             menuManager.Cursor.SetActive(true);
             for (int i = 0; i < GameData.getParty().Length; i++) {
                 GameObject tempCursor = Instantiate(menuManager.Cursor);
                 tempCursor.transform.SetParent(gameObject.transform);
                 tempCursor.GetComponent<SpriteRenderer>().sortingOrder = GetComponentInChildren<Canvas>().sortingOrder;
                 tempCursor.SetActive(false);
-                cursors.Add(Instantiate(menuManager.Cursor));
+                tempCursors.Add(tempCursor);
             }
+            cursors = tempCursors;
             menuManager.Cursor.SetActive(false);
         }
     }
