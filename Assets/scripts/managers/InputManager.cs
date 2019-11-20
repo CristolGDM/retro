@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputHandler : MonoBehaviour {
+public class InputManager : MonoBehaviour {
     
     [SerializeField]
     private GameObject playerCharacter;
