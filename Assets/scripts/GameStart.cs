@@ -28,6 +28,7 @@ public class GameStart : MonoBehaviour {
 
     IEnumerator DoInitialTransition() {
         GameData.PlayerCanTransition = false;
+        player.GetComponent<SpriteRenderer>().enabled = true;
         Scene currentScene = SceneManager.GetActiveScene();
 
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(StartingSceneName, LoadSceneMode.Additive);
