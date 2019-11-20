@@ -433,6 +433,94 @@ Transform:
   m_PrefabParentObject: {fileID: 4403951480423930, guid: a4c2ad8e4d6b747fb8afa6dc00daede3,
     type: 2}
   m_PrefabInternal: {fileID: 941987206}
+--- !u!1001 &434511052
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 636003108}
+    m_Modifications:
+    - target: {fileID: 4403951480423930, guid: a4c2ad8e4d6b747fb8afa6dc00daede3, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4403951480423930, guid: a4c2ad8e4d6b747fb8afa6dc00daede3, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4403951480423930, guid: a4c2ad8e4d6b747fb8afa6dc00daede3, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4403951480423930, guid: a4c2ad8e4d6b747fb8afa6dc00daede3, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4403951480423930, guid: a4c2ad8e4d6b747fb8afa6dc00daede3, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4403951480423930, guid: a4c2ad8e4d6b747fb8afa6dc00daede3, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4403951480423930, guid: a4c2ad8e4d6b747fb8afa6dc00daede3, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4403951480423930, guid: a4c2ad8e4d6b747fb8afa6dc00daede3, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1666946071868918, guid: a4c2ad8e4d6b747fb8afa6dc00daede3, type: 2}
+      propertyPath: m_Name
+      value: Merchant
+      objectReference: {fileID: 0}
+    - target: {fileID: 212698682241447052, guid: a4c2ad8e4d6b747fb8afa6dc00daede3,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2585990476f914561beb41e5eab8ceba,
+        type: 3}
+    - target: {fileID: 114134417050198718, guid: a4c2ad8e4d6b747fb8afa6dc00daede3,
+        type: 2}
+      propertyPath: spriteSheet
+      value: 
+      objectReference: {fileID: 2800000, guid: 2585990476f914561beb41e5eab8ceba, type: 3}
+    - target: {fileID: 0}
+      propertyPath: name
+      value: Josephine
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: myName
+      value: Sarabelle
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: a4c2ad8e4d6b747fb8afa6dc00daede3, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &434511053 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4403951480423930, guid: a4c2ad8e4d6b747fb8afa6dc00daede3,
+    type: 2}
+  m_PrefabInternal: {fileID: 434511052}
+--- !u!1 &434511054 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1666946071868918, guid: a4c2ad8e4d6b747fb8afa6dc00daede3,
+    type: 2}
+  m_PrefabInternal: {fileID: 434511052}
+--- !u!114 &434511055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 434511054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3023f7e097a900d409136548fc9261a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialog:
+  - '"You want a potion from me, pretty boy?"'
 --- !u!1 &636003107
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,6 +548,7 @@ Transform:
   m_Children:
   - {fileID: 176450908}
   - {fileID: 1951549884}
+  - {fileID: 434511053}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
