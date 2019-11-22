@@ -1,23 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class EventTrigger : OnInteract {
+public class EventTrigger : OnInteract {
 
-    protected List<EventAction> actions;
+    public void Start() {
+    }
 
-    protected abstract List<EventAction> LoadActions();
+    public void Update() {
+    }
+
+    ///////////////////////////////////////
 
     public override void StartInteraction() {
-        actions = LoadActions();
+    }
 
-        if (actions.Any()) {
-            Event newEvent = new Event(actions);
-            newEvent.BeginEvent();
-        }
+    protected void DisableMoving() {
+        CharacterMover mover = gameObject.GetComponent<CharacterMover>();
+        mover.CanMove = false;
+    }
 
-        GameData.PlayerCanMove = true;
+    protected void EnableMoving() {
+        CharacterMover mover = gameObject.GetComponent<CharacterMover>();
+        mover.CanMove = true;
+    }
+
+    protected void StartDialog(List<string> dialog) {
+        GameObject.Find(ComponentNames.SceneScripts).GetComponent<DialogHandler>().StartNewDialog(dialog);
+    }
+
+    protected void TurnTowardPlayer() {
+        int playerDirection = GameObject.Find(ComponentNames.PlayerCharacter).GetComponent<Animator>().GetInteger("Direction");
+        CharacterMover mover = gameObject.GetComponent<CharacterMover>();
+        mover.animator.SetInteger("Direction", (playerDirection + 2) % 4);
     }
 }
