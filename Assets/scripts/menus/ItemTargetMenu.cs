@@ -23,10 +23,10 @@ public class ItemTargetMenu : MenuComponent {
     public new void Start() {
         base.Start();
 
-        PcPreviewSection1.GetComponent<PcPreviewSection>().LoadPc(GameData.getFirstPc());
-        PcPreviewSection2.GetComponent<PcPreviewSection>().LoadPc(GameData.getSecondPc());
-        PcPreviewSection3.GetComponent<PcPreviewSection>().LoadPc(GameData.getThirdPc());
-        PcPreviewSection4.GetComponent<PcPreviewSection>().LoadPc(GameData.getFourthPc());
+        PcPreviewSection1.GetComponent<PcPreviewSection>().LoadPc(GameData.GetFirstPc());
+        PcPreviewSection2.GetComponent<PcPreviewSection>().LoadPc(GameData.GetSecondPc());
+        PcPreviewSection3.GetComponent<PcPreviewSection>().LoadPc(GameData.GetThirdPc());
+        PcPreviewSection4.GetComponent<PcPreviewSection>().LoadPc(GameData.GetFourthPc());
     }
 
     public override void CloseMenu() {
@@ -59,10 +59,10 @@ public class ItemTargetMenu : MenuComponent {
         cursors = new List<GameObject>();
         if (itemToApply.NeedTarget) {
             List<List<GameObject>> tempList = new List<List<GameObject>>();
-            if (GameData.getFirstPc() != null) tempList.Add(new List<GameObject> { PcPreviewSection1 });
-            if (GameData.getSecondPc() != null) tempList.Add(new List<GameObject> { PcPreviewSection2 });
-            if (GameData.getThirdPc() != null) tempList.Add(new List<GameObject> { PcPreviewSection3 });
-            if (GameData.getFourthPc() != null) tempList.Add(new List<GameObject> { PcPreviewSection4 });
+            if (GameData.GetFirstPc() != null) tempList.Add(new List<GameObject> { PcPreviewSection1 });
+            if (GameData.GetSecondPc() != null) tempList.Add(new List<GameObject> { PcPreviewSection2 });
+            if (GameData.GetThirdPc() != null) tempList.Add(new List<GameObject> { PcPreviewSection3 });
+            if (GameData.GetFourthPc() != null) tempList.Add(new List<GameObject> { PcPreviewSection4 });
 
             SelectableOptions = tempList;
 
@@ -71,7 +71,7 @@ public class ItemTargetMenu : MenuComponent {
         else {
             List<GameObject> tempCursors = new List<GameObject>();
             menuManager.Cursor.SetActive(true);
-            for (int i = 0; i < GameData.getParty().Length; i++) {
+            for (int i = 0; i < GameData.GetParty().Length; i++) {
                 GameObject tempCursor = Instantiate(menuManager.Cursor);
                 tempCursor.transform.SetParent(gameObject.transform);
                 tempCursor.GetComponent<SpriteRenderer>().sortingOrder = GetComponentInChildren<Canvas>().sortingOrder;
@@ -89,7 +89,7 @@ public class ItemTargetMenu : MenuComponent {
     }
 
     public void SwitchCursorsVisibility() {
-        foreach(GameObject cursor in cursors) {
+        foreach (GameObject cursor in cursors) {
             cursor.SetActive(!cursor.activeSelf);
         }
     }
@@ -106,7 +106,7 @@ public class ItemTargetMenu : MenuComponent {
             charactersToTarget = new PlayerCharacter[] { target };
         }
         else {
-            charactersToTarget = GameData.getParty();
+            charactersToTarget = GameData.GetParty();
         }
 
         ConfirmationMenu.GetComponent<ItemConfirmationMenu>().Init(itemToApply, charactersToTarget);
@@ -129,7 +129,7 @@ public class ItemTargetMenu : MenuComponent {
         return cursorLeftOffset;
     }
 
-   private void OnYesFromConfirm() {
+    private void OnYesFromConfirm() {
         itemToApply.SetTargets(charactersToTarget);
         itemToApply.OnUse();
 

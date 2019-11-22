@@ -2,31 +2,24 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class GameData {
+public static class GameData {
     private static bool playerCanMove = true;
-    private static bool dialogIsOpen = false;
     private static bool playerCanTransition = true;
-    private static bool menuIsOpen = false;
+    public static bool inputBypassedByEventManager;
+    public static bool DialogIsOpen { get; set; }
+    public static bool MenuIsOpen { get; set; }
     private static List<PlayerCharacter> availableCharacters = new List<PlayerCharacter>();
     private static List<PlayerCharacter> currentParty = new List<PlayerCharacter>();
 
     public static bool PlayerCanMove {
         get {
-            return playerCanMove && !dialogIsOpen && !menuIsOpen;
+            return playerCanMove && !DialogIsOpen && !MenuIsOpen;
         }
         set {
             playerCanMove = value;
         }
     }
 
-    public static bool DialogIsOpen {
-        get {
-            return dialogIsOpen;
-        }
-        set {
-            dialogIsOpen = value;
-        }
-    }
 
     public static bool PlayerCanTransition {
         get {
@@ -34,15 +27,6 @@ public class GameData {
         }
         set {
             playerCanTransition = value;
-        }
-    }
-
-    public static bool MenuIsOpen {
-        get {
-            return menuIsOpen;
-        }
-        set {
-            menuIsOpen = value;
         }
     }
 
@@ -59,14 +43,14 @@ public class GameData {
         return returnChar;
     }
 
-    public static void addNewCharacter(PlayerCharacter newChar) {
+    public static void AddNewCharacter(PlayerCharacter newChar) {
         if (getCharacter(newChar.CharId) == null) {
             availableCharacters.Add(newChar);
         }
 
     }
 
-    public static void addCharacterToParty(PlayerCharacter newChar) {
+    public static void AddCharacterToParty(PlayerCharacter newChar) {
         if (newChar != null && currentParty.Count < 4) {
             bool isAlreadyInParty = false;
             for (int i = 0; i < currentParty.Count; i++) {
@@ -79,36 +63,36 @@ public class GameData {
         }
     }
 
-    public static PlayerCharacter getFirstPc() {
+    public static PlayerCharacter GetFirstPc() {
         return currentParty[0];
     }
 
-    public static PlayerCharacter getSecondPc() {
+    public static PlayerCharacter GetSecondPc() {
         if (currentParty.Count >= 2) {
             return currentParty[1];
         }
         return null;
     }
 
-    public static PlayerCharacter getThirdPc() {
+    public static PlayerCharacter GetThirdPc() {
         if (currentParty.Count >= 3) {
             return currentParty[2];
         }
         return null;
     }
 
-    public static PlayerCharacter getFourthPc() {
+    public static PlayerCharacter GetFourthPc() {
         if (currentParty.Count == 4) {
             return currentParty[3];
         }
         return null;
     }
 
-    public static PlayerCharacter[] getParty() {
+    public static PlayerCharacter[] GetParty() {
         return currentParty.ToArray();
     }
 
-    public static void removeCharacterFromParty(string charId) {
+    public static void RemoveCharacterFromParty(string charId) {
         for (int i = 0; i < currentParty.Count; i++) {
             if(currentParty[i].CharId == charId) {
                 currentParty.RemoveAt(i);

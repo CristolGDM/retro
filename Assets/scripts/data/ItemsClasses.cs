@@ -15,10 +15,10 @@ public abstract class Item {
             PlayerCharacter[] currentTargets = null;
             if(Targets == null) {
                 if (NeedTarget) {
-                    currentTargets = new PlayerCharacter[] { GameData.getFirstPc() };
+                    currentTargets = new PlayerCharacter[] { GameData.GetFirstPc() };
                 }
                 else {
-                    currentTargets = GameData.getParty();
+                    currentTargets = GameData.GetParty();
                 }
             }
             else {

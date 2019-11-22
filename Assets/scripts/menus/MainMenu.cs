@@ -25,10 +25,10 @@ public class MainMenu : MenuComponent {
     public new void Start() {
         base.Start();
 
-        PcSection1.GetComponent<PcPreviewSection>().LoadPc(GameData.getFirstPc());
-        PcSection2.GetComponent<PcPreviewSection>().LoadPc(GameData.getSecondPc());
-        PcSection3.GetComponent<PcPreviewSection>().LoadPc(GameData.getThirdPc());
-        PcSection4.GetComponent<PcPreviewSection>().LoadPc(GameData.getFourthPc());
+        PcSection1.GetComponent<PcPreviewSection>().LoadPc(GameData.GetFirstPc());
+        PcSection2.GetComponent<PcPreviewSection>().LoadPc(GameData.GetSecondPc());
+        PcSection3.GetComponent<PcPreviewSection>().LoadPc(GameData.GetThirdPc());
+        PcSection4.GetComponent<PcPreviewSection>().LoadPc(GameData.GetFourthPc());
     }
 
     protected override void LoadOptions() {

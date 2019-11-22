@@ -13,10 +13,10 @@ public class GameStart : MonoBehaviour {
     // Use this for initialization
     void Awake () {
         StartCoroutine(DoInitialTransition());
-        GameData.addNewCharacter(PlayerCharacters.MainCharacter);
-        GameData.addCharacterToParty(PlayerCharacters.MainCharacter);
-        GameData.addNewCharacter(PlayerCharacters.Yurgurine);
-        GameData.addCharacterToParty(PlayerCharacters.Yurgurine);
+        GameData.AddNewCharacter(PlayerCharacters.MainCharacter);
+        GameData.AddCharacterToParty(PlayerCharacters.MainCharacter);
+        GameData.AddNewCharacter(PlayerCharacters.Yurgurine);
+        GameData.AddCharacterToParty(PlayerCharacters.Yurgurine);
 
         Inventory.AddItemToInventory(new Potion(), 1);
         Inventory.AddItemToInventory(new HiPotion(), 1);

@@ -22,6 +22,7 @@ public class InputManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (GameData.inputBypassedByEventManager) return;
         /* INTERACT KEY */
         if (InteractKeySingle()) {
             if (GameData.DialogIsOpen) {

@@ -4,23 +4,19 @@ using UnityEngine;
 
 public abstract class EventAction {
 
-    private bool isRunning;
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public bool hasStarted;
+    public bool hasFinished;
 
     public void Invoke() {
-        isRunning = true;
+        hasStarted = true;
 
-        StartActions();
+        DoMyStuff();
     }
 
-    protected abstract void StartActions();
+    protected abstract void DoMyStuff();
+
+    public virtual void Finish() {
+        Debug.Log("finishing");
+        hasFinished = true;
+    }
 }
