@@ -22,16 +22,17 @@ public class OnTalkedTo : OnInteract {
     ///////////////////////////////////////
 
     public override void StartInteraction() {
-        StartDialog();
+        StartCoroutine(StartDialog());
     }
 
-    private void StartDialog() {
+    private IEnumerator StartDialog() {
         mover = gameObject.GetComponent<CharacterMover>();
         int playerDirection = GameObject.Find(ComponentNames.PlayerCharacter).GetComponent<Animator>().GetInteger("Direction");
         mover.animator.SetInteger("Direction", (playerDirection +2)%4 );
         if(mover != null) {
             mover.CanMove = false;
         }
-        GameObject.Find(ComponentNames.SceneScripts).GetComponent<DialogHandler>().StartNewDialog(dialog);
+        yield return GameObject.Find(ComponentNames.SceneScripts).GetComponent<DialogHandler>().StartNewDialog(dialog);
+        yield break;
     }
 }
