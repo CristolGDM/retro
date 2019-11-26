@@ -19,10 +19,7 @@ public class OnTalkedTo : EventTrigger {
         DisableMovingThis();
         DisablePlayerMovement();
         TurnTowardPlayer();
-        yield return StartCoroutine(StartDialog(new List<string>{
-            "Hello there boy",
-            "Wanna buy some stuff?"
-        }));
+        yield return StartCoroutine(StartDialog(dialog));
         EnableMovingThis();
         EnablePlayerMovement();
     }

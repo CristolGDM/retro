@@ -9,8 +9,8 @@ public class StartingSceneMerchantDialog : EventTrigger {
         DisablePlayerMovement();
         TurnTowardPlayer();
         yield return StartCoroutine(StartDialog(new List<string>{
-            "Hello there boy",
-            "Wanna buy some stuff?"
+            "\"Hello there boy\"",
+            "\"Wanna buy some stuff?\""
         }));
         EnableMovingThis();
         EnablePlayerMovement();
