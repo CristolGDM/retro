@@ -13,21 +13,31 @@ public class EventTrigger : OnInteract {
 
     ///////////////////////////////////////
 
-    public override void StartInteraction() {
-    }
-
-    protected void DisableMoving() {
+    protected void DisableMovingThis() {
         CharacterMover mover = gameObject.GetComponent<CharacterMover>();
         mover.CanMove = false;
     }
 
-    protected void EnableMoving() {
+    protected void DisablePlayerMovement() {
+        GameData.PlayerCanMove = false;
+    }
+
+    protected void EnableMovingThis() {
         CharacterMover mover = gameObject.GetComponent<CharacterMover>();
         mover.CanMove = true;
     }
 
-    protected void StartDialog(List<string> dialog) {
-        GameObject.Find(ComponentNames.SceneScripts).GetComponent<DialogHandler>().StartNewDialog(dialog);
+    protected void EnablePlayerMovement() {
+        GameData.PlayerCanMove = true;
+    }
+
+    protected IEnumerator StartDialog(string dialogString) {
+        yield return StartDialog(new List<string> { dialogString });
+    }
+
+    protected IEnumerator StartDialog(List<string> dialog) {
+        DialogHandler dialogHandler = GameObject.Find(ComponentNames.SceneScripts).GetComponent<DialogHandler>();
+        yield return StartCoroutine(dialogHandler.StartNewDialog(dialog));
     }
 
     protected void TurnTowardPlayer() {

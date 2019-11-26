@@ -46,13 +46,10 @@ public class DialogHandler : MonoBehaviour {
     }
 
     private void ReplaceSentence() {
-        Debug.Log("ReplaceSentence");
         if (dialog.Count == 0) {
-            Debug.Log("dialog 0");
             dialogIsOver = true;
         }
         else {
-            Debug.Log("Dialog not zero");
             if (dialog[0].Length > maxDialogLength) {
                 int lastSpace = dialog[0].Substring(0, maxDialogLength).LastIndexOf(" ", System.StringComparison.Ordinal);
                 dialogTextField.text = dialog[0].Substring(0, lastSpace);

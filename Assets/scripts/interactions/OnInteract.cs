@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public abstract class OnInteract : MonoBehaviour {
 
-    public virtual void StartInteraction() {
+    public virtual IEnumerator StartInteraction() {
         GameData.PlayerCanMove = true;
+        yield break;
     }
 }

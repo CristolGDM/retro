@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class StartingSceneMerchantDialog : EventTrigger {
 
-    public override void StartInteraction() {
-        DisableMoving();
+    public override IEnumerator StartInteraction() {
+        DisableMovingThis();
+        DisablePlayerMovement();
         TurnTowardPlayer();
-        StartDialog(new List<string>{
+        yield return StartCoroutine(StartDialog(new List<string>{
             "Hello there boy",
             "Wanna buy some stuff?"
-        });
-        EnableMoving();
+        }));
+        EnableMovingThis();
+        EnablePlayerMovement();
     }
 }
