@@ -5,11 +5,9 @@ using UnityEngine.UI;
 
 public class EventTrigger : OnInteract {
 
-    public void Start() {
-    }
-
-    public void Update() {
-    }
+    private int dialogTransitionSpeed = 10;
+    private Vector2 hideDialogMaskPosition = new Vector2(0, 3f);
+    private Vector2 showDialogMaskPosition = new Vector2(0, -0.5f);
 
     ///////////////////////////////////////
 
@@ -29,6 +27,16 @@ public class EventTrigger : OnInteract {
 
     protected void EnablePlayerMovement() {
         GameData.PlayerCanMove = true;
+    }
+
+    protected void HideDialogBackground() {
+        GameObject dialogMask = GameObject.Find(ComponentNames.SceneScripts).GetComponent<DialogHandler>().dialogMask;
+        dialogMask.GetComponent<UIMover>().MoveToNewPosition(hideDialogMaskPosition, dialogTransitionSpeed);
+    }
+
+    protected void ShowDialogBackground() {
+        GameObject dialogMask = GameObject.Find(ComponentNames.SceneScripts).GetComponent<DialogHandler>().dialogMask;
+        dialogMask.GetComponent<UIMover>().MoveToNewPosition(showDialogMaskPosition, dialogTransitionSpeed);
     }
 
     protected IEnumerator StartDialog(string dialogString) {

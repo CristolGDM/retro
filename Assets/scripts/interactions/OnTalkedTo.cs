@@ -19,7 +19,9 @@ public class OnTalkedTo : EventTrigger {
         DisableMovingThis();
         DisablePlayerMovement();
         TurnTowardPlayer();
+        ShowDialogBackground();
         yield return StartCoroutine(StartDialog(dialog));
+        HideDialogBackground();
         EnableMovingThis();
         EnablePlayerMovement();
     }
