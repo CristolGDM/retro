@@ -122,7 +122,7 @@ public class EventTrigger : OnInteract {
     protected IEnumerator MoveCharacterLeft(GameObject movingObject) {
         CharacterMover mover = movingObject.GetComponent<CharacterMover>();
         if (mover != null) {
-            yield return StartCoroutine(MoveCharacterRight(mover));
+            yield return StartCoroutine(MoveCharacterLeft(mover));
         }
         else {
             yield break;
