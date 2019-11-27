@@ -14,6 +14,14 @@ public class StartingSceneMerchantDialog : EventTrigger {
             "\"Wanna see me dance?\""
         }));
         yield return StartCoroutine(MoveMeUp());
+        yield return StartCoroutine(MoveMeDown());
+        yield return StartCoroutine(MoveMeDown());
+        yield return StartCoroutine(MoveMeUp());
+        yield return StartCoroutine(MoveMeRight());
+        yield return StartCoroutine(MoveMeLeft());
+        yield return StartCoroutine(StartDialog(new List<string>{
+            "\"You liked it?\""
+        }));
         HideDialogBackground();
         EnableMovingThis();
         EnablePlayerMovement();
