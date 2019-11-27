@@ -87,6 +87,9 @@ public class EventTrigger : OnInteract {
     protected IEnumerator MoveCharacterRight() {
         yield return StartCoroutine(MoveCharacterRight(gameObject));
     }
+    protected IEnumerator MoveMeRight() {
+        yield return StartCoroutine(MoveCharacterRight(gameObject));
+    }
 
     ///
 
@@ -106,6 +109,9 @@ public class EventTrigger : OnInteract {
     protected IEnumerator MoveCharacterDown() {
         yield return StartCoroutine(MoveCharacterDown(gameObject));
     }
+    protected IEnumerator MoveMeDown() {
+        yield return StartCoroutine(MoveCharacterDown(gameObject));
+    }
 
     ///
 
@@ -123,6 +129,9 @@ public class EventTrigger : OnInteract {
         }
     }
     protected IEnumerator MoveCharacterLeft() {
+        yield return StartCoroutine(MoveCharacterLeft(gameObject));
+    }
+    protected IEnumerator MoveMeLeft() {
         yield return StartCoroutine(MoveCharacterLeft(gameObject));
     }
 
