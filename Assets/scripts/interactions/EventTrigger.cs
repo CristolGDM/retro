@@ -48,12 +48,6 @@ public class EventTrigger : OnInteract {
         yield return StartCoroutine(dialogHandler.StartNewDialog(dialog));
     }
 
-    protected void TurnTowardPlayer() {
-        int playerDirection = GameObject.Find(ComponentNames.PlayerCharacter).GetComponent<Animator>().GetInteger("Direction");
-        CharacterMover mover = gameObject.GetComponent<CharacterMover>();
-        mover.animator.SetInteger("Direction", (playerDirection + 2) % 4);
-    }
-
     /*
      * MOVING TRIGGERS
      */
@@ -130,5 +124,67 @@ public class EventTrigger : OnInteract {
     }
     protected IEnumerator MoveCharacterLeft() {
         yield return StartCoroutine(MoveCharacterLeft(gameObject));
+    }
+
+    /*
+     * FACING TRIGGERS
+     */
+
+    protected void TurnTowardPlayer() {
+        int playerDirection = GameObject.Find(ComponentNames.PlayerCharacter).GetComponent<Animator>().GetInteger("Direction");
+        CharacterMover mover = gameObject.GetComponent<CharacterMover>();
+        mover.animator.SetInteger("Direction", (playerDirection + 2) % 4);
+    }
+
+    ///
+
+    protected void FaceUp(CharacterMover mover) {
+        mover.animator.SetInteger("Direction", 2);
+    }
+    protected void FaceUp(GameObject facingObject) {
+        CharacterMover mover = facingObject.GetComponent<CharacterMover>();
+        if (mover != null) FaceUp(mover);
+    }
+    protected void FaceUp() {
+        FaceUp(gameObject);
+    }
+
+    ///
+
+    protected void FaceRight(CharacterMover mover) {
+        mover.animator.SetInteger("Direction", 3);
+    }
+    protected void FaceRight(GameObject facingObject) {
+        CharacterMover mover = facingObject.GetComponent<CharacterMover>();
+        if (mover != null) FaceRight(mover);
+    }
+    protected void FaceRight() {
+        FaceRight(gameObject);
+    }
+
+    ///
+
+    protected void FaceDown(CharacterMover mover) {
+        mover.animator.SetInteger("Direction", 0);
+    }
+    protected void FaceDown(GameObject facingObject) {
+        CharacterMover mover = facingObject.GetComponent<CharacterMover>();
+        if (mover != null) FaceDown(mover);
+    }
+    protected void FaceDown() {
+        FaceDown(gameObject);
+    }
+
+    ///
+
+    protected void FaceLeft(CharacterMover mover) {
+        mover.animator.SetInteger("Direction", 1);
+    }
+    protected void FaceLeft(GameObject facingObject) {
+        CharacterMover mover = facingObject.GetComponent<CharacterMover>();
+        if (mover != null) FaceLeft(mover);
+    }
+    protected void FaceLeft() {
+        FaceLeft(gameObject);
     }
 }
