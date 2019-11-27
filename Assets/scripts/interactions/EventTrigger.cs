@@ -34,24 +34,6 @@ public class EventTrigger : OnInteract {
         dialogMask.GetComponent<UIMover>().MoveToNewPosition(hideDialogMaskPosition, dialogTransitionSpeed);
     }
 
-    protected IEnumerator MoveCharacterUp(CharacterMover mover) {
-        yield return mover.MoveUp();
-        yield break;
-    }
-    protected IEnumerator MoveCharacterUp(GameObject movingObject) {
-        CharacterMover mover = movingObject.GetComponent<CharacterMover>();
-        if(mover != null) {
-            yield return StartCoroutine(MoveCharacterUp(mover));
-        }
-        else {
-            yield break;
-        }
-    }
-
-    protected IEnumerator MoveMeUp() {
-        yield return StartCoroutine(MoveCharacterUp(gameObject));
-    }
-
     protected void ShowDialogBackground() {
         GameObject dialogMask = GameObject.Find(ComponentNames.SceneScripts).GetComponent<DialogHandler>().dialogMask;
         dialogMask.GetComponent<UIMover>().MoveToNewPosition(showDialogMaskPosition, dialogTransitionSpeed);
@@ -70,5 +52,83 @@ public class EventTrigger : OnInteract {
         int playerDirection = GameObject.Find(ComponentNames.PlayerCharacter).GetComponent<Animator>().GetInteger("Direction");
         CharacterMover mover = gameObject.GetComponent<CharacterMover>();
         mover.animator.SetInteger("Direction", (playerDirection + 2) % 4);
+    }
+
+    /*
+     * MOVING TRIGGERS
+     */
+
+    protected IEnumerator MoveCharacterUp(CharacterMover mover) {
+        yield return mover.MoveUp();
+        yield break;
+    }
+    protected IEnumerator MoveCharacterUp(GameObject movingObject) {
+        CharacterMover mover = movingObject.GetComponent<CharacterMover>();
+        if (mover != null) {
+            yield return StartCoroutine(MoveCharacterUp(mover));
+        }
+        else {
+            yield break;
+        }
+    }
+    protected IEnumerator MoveMeUp() {
+        yield return StartCoroutine(MoveCharacterUp(gameObject));
+    }
+
+    ///
+
+    protected IEnumerator MoveCharacterRight(CharacterMover mover) {
+        yield return mover.MoveRight();
+        yield break;
+    }
+    protected IEnumerator MoveCharacterRight(GameObject movingObject) {
+        CharacterMover mover = movingObject.GetComponent<CharacterMover>();
+        if (mover != null) {
+            yield return StartCoroutine(MoveCharacterRight(mover));
+        }
+        else {
+            yield break;
+        }
+    }
+    protected IEnumerator MoveCharacterRight() {
+        yield return StartCoroutine(MoveCharacterRight(gameObject));
+    }
+
+    ///
+
+    protected IEnumerator MoveCharacterDown(CharacterMover mover) {
+        yield return mover.MoveDown();
+        yield break;
+    }
+    protected IEnumerator MoveCharacterDown(GameObject movingObject) {
+        CharacterMover mover = movingObject.GetComponent<CharacterMover>();
+        if (mover != null) {
+            yield return StartCoroutine(MoveCharacterDown(mover));
+        }
+        else {
+            yield break;
+        }
+    }
+    protected IEnumerator MoveCharacterDown() {
+        yield return StartCoroutine(MoveCharacterDown(gameObject));
+    }
+
+    ///
+
+    protected IEnumerator MoveCharacterLeft(CharacterMover mover) {
+        yield return mover.MoveLeft();
+        yield break;
+    }
+    protected IEnumerator MoveCharacterLeft(GameObject movingObject) {
+        CharacterMover mover = movingObject.GetComponent<CharacterMover>();
+        if (mover != null) {
+            yield return StartCoroutine(MoveCharacterRight(mover));
+        }
+        else {
+            yield break;
+        }
+    }
+    protected IEnumerator MoveCharacterLeft() {
+        yield return StartCoroutine(MoveCharacterLeft(gameObject));
     }
 }

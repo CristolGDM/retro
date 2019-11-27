@@ -16,25 +16,25 @@ public class CharacterMover : MonoBehaviour {
     private Vector3 originalPosition;
 
     // Use this for initialization
-    void Start () {
+    public void Start () {
         pos = transform.position;
         originalPosition = transform.position;
         sprites = Resources.LoadAll<Sprite>("sprites/spritesheets/" + spriteSheet.name);
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    private void Update() {
+    public void Update() {
         transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);
         if (!animator.GetBool("Moving")) transform.position = pos;
         if (transform.position == pos) animator.SetBool("Moving", false);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) {
+    public void OnCollisionEnter2D(Collision2D collision) {
         pos = originalPosition;
     }
 
 
-    private void LateUpdate() {
+    public void LateUpdate() {
         string currentSpriteName = spriteRenderer.sprite.name;
         string newSpritename = currentSpriteName.Replace(modelSpritesheetName, spriteSheet.name);
         foreach (var sprite in sprites) {
@@ -70,23 +70,29 @@ public class CharacterMover : MonoBehaviour {
         }
         yield break;
     }
-    public void MoveDown() {
+    public IEnumerator MoveDown() {
         if (transform.position == pos) {
             animator.SetInteger("Direction", 0);
             MoveInDirection(Vector3.down);
+            yield return new WaitWhile(IsMoving);
         }
+        yield break;
     }
-    public void MoveLeft() {
+    public IEnumerator MoveLeft() {
         if (transform.position == pos) {
             animator.SetInteger("Direction", 1);
             MoveInDirection(Vector3.left);
+            yield return new WaitWhile(IsMoving);
         }
+        yield break;
     }
-    public void MoveRight() {
+    public IEnumerator MoveRight() {
         if (transform.position == pos) {
             animator.SetInteger("Direction", 3);
             MoveInDirection(Vector3.right);
+            yield return new WaitWhile(IsMoving);
         }
+        yield break;
     }
 
     public void StopMoving() {
