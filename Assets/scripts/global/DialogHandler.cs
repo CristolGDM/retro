@@ -11,13 +11,8 @@ public class DialogHandler : MonoBehaviour {
     public GameObject dialogMask;
 
     private List<string> dialog = new List<string> { "..." };
-    private Vector2 originalMaskPos = new Vector2(0, 3f);
     private int maxDialogLength = 95;
     private bool dialogIsOver;
-
-    public void Start() {
-        originalMaskPos = dialogMask.GetComponent<Transform>().localPosition;
-    }
 
     public IEnumerator StartNewDialog(List<string> newDialog) {
         dialogTextField.text = "";

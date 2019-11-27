@@ -18,8 +18,10 @@ public class RandomMovement : MonoBehaviour {
     void MoveRandomDirection() {
         int whichDirection = Random.Range(0, 5);
 
-        if(whichDirection < 1) {
-            mover.MoveUp();
+        if (!mover.CanMove) {
+            mover.StopMoving();
+        } else if(whichDirection < 1) {
+            StartCoroutine(mover.MoveUp());
         } else if(whichDirection < 2) {
             mover.MoveDown();
         } else if (whichDirection < 3) {

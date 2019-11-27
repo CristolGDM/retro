@@ -11,8 +11,9 @@ public class StartingSceneMerchantDialog : EventTrigger {
         ShowDialogBackground();
         yield return StartCoroutine(StartDialog(new List<string>{
             "\"Hello there boy\"",
-            "\"Wanna buy some stuff?\""
+            "\"Wanna see me dance?\""
         }));
+        yield return StartCoroutine(MoveMeUp());
         HideDialogBackground();
         EnableMovingThis();
         EnablePlayerMovement();

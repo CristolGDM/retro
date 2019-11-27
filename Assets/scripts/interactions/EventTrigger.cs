@@ -34,6 +34,24 @@ public class EventTrigger : OnInteract {
         dialogMask.GetComponent<UIMover>().MoveToNewPosition(hideDialogMaskPosition, dialogTransitionSpeed);
     }
 
+    protected IEnumerator MoveCharacterUp(CharacterMover mover) {
+        yield return mover.MoveUp();
+        yield break;
+    }
+    protected IEnumerator MoveCharacterUp(GameObject movingObject) {
+        CharacterMover mover = movingObject.GetComponent<CharacterMover>();
+        if(mover != null) {
+            yield return StartCoroutine(MoveCharacterUp(mover));
+        }
+        else {
+            yield break;
+        }
+    }
+
+    protected IEnumerator MoveMeUp() {
+        yield return StartCoroutine(MoveCharacterUp(gameObject));
+    }
+
     protected void ShowDialogBackground() {
         GameObject dialogMask = GameObject.Find(ComponentNames.SceneScripts).GetComponent<DialogHandler>().dialogMask;
         dialogMask.GetComponent<UIMover>().MoveToNewPosition(showDialogMaskPosition, dialogTransitionSpeed);

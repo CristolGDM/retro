@@ -47,7 +47,7 @@ public class InputManager : MonoBehaviour {
         }
         /* UP KEY */
         else if (UpKey()) {
-            if (GameData.PlayerCanMove) playerMover.MoveUp();
+            if (GameData.PlayerCanMove) StartCoroutine(playerMover.MoveUp());
             else if (UpKeySingle()) {
                 if (GameData.MenuIsOpen) MenuManager.MoveUp();
             }
