@@ -55,7 +55,7 @@ public class InputManager : MonoBehaviour {
 
         /* DOWN KEY */
         else if (DownKey()) {
-            if (GameData.PlayerCanMove) playerMover.MoveDown();
+            if (GameData.PlayerCanMove) StartCoroutine(playerMover.MoveDown());
             else if (DownKeySingle()) {
                 if (GameData.MenuIsOpen)MenuManager.MoveDown();
             }
@@ -63,7 +63,7 @@ public class InputManager : MonoBehaviour {
 
         /* LEFT KEY */
         else if (LeftKey()) {
-            if (GameData.PlayerCanMove) playerMover.MoveLeft();
+            if (GameData.PlayerCanMove) StartCoroutine(playerMover.MoveLeft());
             else if (LeftKeySingle()) {
                 if (GameData.MenuIsOpen) MenuManager.MoveLeft();
             }
@@ -71,7 +71,7 @@ public class InputManager : MonoBehaviour {
 
         /* RIGHT KEY */
         else if (RightKey()) {
-            if (GameData.PlayerCanMove) playerMover.MoveRight();
+            if (GameData.PlayerCanMove) StartCoroutine(playerMover.MoveRight());
             else if (RightKeySingle()) {
                 if (GameData.MenuIsOpen) MenuManager.MoveRight();
             }

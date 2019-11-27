@@ -23,11 +23,11 @@ public class RandomMovement : MonoBehaviour {
         } else if(whichDirection < 1) {
             StartCoroutine(mover.MoveUp());
         } else if(whichDirection < 2) {
-            mover.MoveDown();
+            StartCoroutine(mover.MoveDown());
         } else if (whichDirection < 3) {
-            mover.MoveLeft();
+            StartCoroutine(mover.MoveLeft());
         } else if (whichDirection < 4) {
-            mover.MoveRight();
+            StartCoroutine(mover.MoveRight());
         } else {
             mover.StopMoving();
         }
