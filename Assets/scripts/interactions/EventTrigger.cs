@@ -195,4 +195,29 @@ public class EventTrigger : OnInteract {
     protected void FaceLeft() {
         FaceLeft(gameObject);
     }
+
+    /*
+     * CHECKIFCANMOVE TRIGGERS
+     */
+
+    private bool CheckIfCanMoveDirection(Vector3 direction) {
+        RaycastHit2D raycast = Physics2D.Raycast(transform.position + direction, direction, 0.1f);
+        if (raycast.collider && raycast.collider.tag != "Traversable") {
+            return false;
+        }
+        return true;
+    }
+
+    protected bool CanMoveLeft() {
+        return CheckIfCanMoveDirection(Vector3.left);
+    }
+    protected bool CanMoveDown() {
+        return CheckIfCanMoveDirection(Vector3.down);
+    }
+    protected bool CanMoveRight() {
+        return CheckIfCanMoveDirection(Vector3.right);
+    }
+    protected bool CanMoveUp() {
+        return CheckIfCanMoveDirection(Vector3.up);
+    }
 }
