@@ -47,7 +47,7 @@ public class CharacterMover : MonoBehaviour {
     /////////////////////////////////
     
     private bool IsMoving() {
-        return originalPosition != pos && animator.GetBool("Moving");
+        return transform.position != pos && animator.GetBool("Moving");
     }
 
     private void MoveInDirection(Vector3 direction){
