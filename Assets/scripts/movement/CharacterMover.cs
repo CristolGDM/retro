@@ -24,8 +24,8 @@ public class CharacterMover : MonoBehaviour {
     }
 
     public void Update() {
-        transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);
         if (!animator.GetBool("Moving")) transform.position = pos;
+        transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);
         if (transform.position == pos) animator.SetBool("Moving", false);
     }
 
@@ -47,13 +47,13 @@ public class CharacterMover : MonoBehaviour {
     /////////////////////////////////
     
     private bool IsMoving() {
-        return animator.GetBool("Moving");
+        return originalPosition != pos && animator.GetBool("Moving");
     }
 
     private void MoveInDirection(Vector3 direction){
 		RaycastHit2D raycast = Physics2D.Raycast(transform.position + direction, direction, 0.1f);
 		if(raycast.collider && raycast.collider.tag != "Traversable") {
-			animator.SetBool("Moving", false);
+            animator.SetBool("Moving", false);
 		}
 		else {
             originalPosition = pos;
@@ -107,7 +107,7 @@ public class CharacterMover : MonoBehaviour {
             case 3: return Vector3.right;
 
             default: return Vector3.down;
-        };
+        }
     }
 
     public bool CanMove {
