@@ -51,7 +51,6 @@ public class DialogHandler : MonoBehaviour {
     }
 
     private void CloseDialog() {
-        dialogTextField.text = "";
         GameData.DialogIsOpen = false;
         dialogIsOver = true;
     }

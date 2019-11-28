@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EventTrigger : OnInteract {
 
@@ -30,11 +31,15 @@ public class EventTrigger : OnInteract {
 
     protected void HideDialogBackground() {
         GameObject dialogMask = GameObject.Find(ComponentNames.SceneScripts).GetComponent<DialogHandler>().dialogMask;
+        Text dialogText = GameObject.Find(ComponentNames.SceneScripts).GetComponent<DialogHandler>().dialogTextField;
+        dialogText.text = "";
         dialogMask.GetComponent<UIMover>().MoveToNewPosition(hideDialogMaskPosition, dialogTransitionSpeed);
     }
 
     protected void ShowDialogBackground() {
         GameObject dialogMask = GameObject.Find(ComponentNames.SceneScripts).GetComponent<DialogHandler>().dialogMask;
+        Text dialogText = GameObject.Find(ComponentNames.SceneScripts).GetComponent<DialogHandler>().dialogTextField;
+        dialogText.text = "";
         dialogMask.GetComponent<UIMover>().MoveToNewPosition(showDialogMaskPosition, dialogTransitionSpeed);
     }
 
