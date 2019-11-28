@@ -8,29 +8,29 @@ public class StartingSceneMerchantDialog : EventTrigger {
         DisablePlayerMovement();
         TurnTowardPlayer();
         ShowDialogBackground();
-        yield return StartCoroutine(StartDialog(new List<string>{
+        yield return StartDialog(new List<string>{
             "\"Hello there\"",
             "\"Wanna see me dance?\""
-        }));
+        });
         if (CanMoveUp()) {
-            yield return StartCoroutine(MoveMeUp());
-            yield return StartCoroutine(MoveMeDown());
+            yield return MoveMeUp();
+            yield return MoveMeDown();
         }
         if (CanMoveDown()) {
-            yield return StartCoroutine(MoveMeDown());
-            yield return StartCoroutine(MoveMeUp());
+            yield return MoveMeDown();
+            yield return MoveMeUp();
         }
         if (CanMoveLeft()) {
-            yield return StartCoroutine(MoveMeLeft());
-            yield return StartCoroutine(MoveMeRight());
+            yield return MoveMeLeft();
+            yield return MoveMeRight();
         }
         if (CanMoveRight()) {
-            yield return StartCoroutine(MoveMeRight());
-            yield return StartCoroutine(MoveMeLeft());
+            yield return MoveMeRight();
+            yield return MoveMeLeft();
         }
-        yield return StartCoroutine(StartDialog(new List<string>{
+        yield return StartDialog(new List<string>{
             "\"You liked it?\""
-        }));
+        });
         HideDialogBackground();
         EnableMovingThis();
         EnablePlayerMovement();

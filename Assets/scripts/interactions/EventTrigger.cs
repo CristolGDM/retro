@@ -44,7 +44,7 @@ public class EventTrigger : OnInteract {
 
     protected IEnumerator StartDialog(List<string> dialog) {
         DialogHandler dialogHandler = GameObject.Find(ComponentNames.SceneScripts).GetComponent<DialogHandler>();
-        yield return StartCoroutine(dialogHandler.StartNewDialog(dialog));
+        yield return dialogHandler.StartNewDialog(dialog);
     }
 
     /*
@@ -58,14 +58,14 @@ public class EventTrigger : OnInteract {
     protected IEnumerator MoveCharacterUp(GameObject movingObject) {
         CharacterMover mover = movingObject.GetComponent<CharacterMover>();
         if (mover != null) {
-            yield return StartCoroutine(MoveCharacterUp(mover));
+            yield return MoveCharacterUp(mover);
         }
         else {
             yield break;
         }
     }
     protected IEnumerator MoveMeUp() {
-        yield return StartCoroutine(MoveCharacterUp(gameObject));
+        yield return MoveCharacterUp(gameObject);
     }
 
     ///
@@ -77,17 +77,17 @@ public class EventTrigger : OnInteract {
     protected IEnumerator MoveCharacterRight(GameObject movingObject) {
         CharacterMover mover = movingObject.GetComponent<CharacterMover>();
         if (mover != null) {
-            yield return StartCoroutine(MoveCharacterRight(mover));
+            yield return MoveCharacterRight(mover);
         }
         else {
             yield break;
         }
     }
     protected IEnumerator MoveCharacterRight() {
-        yield return StartCoroutine(MoveCharacterRight(gameObject));
+        yield return MoveCharacterRight(gameObject);
     }
     protected IEnumerator MoveMeRight() {
-        yield return StartCoroutine(MoveCharacterRight(gameObject));
+        yield return MoveCharacterRight(gameObject);
     }
 
     ///
@@ -99,17 +99,17 @@ public class EventTrigger : OnInteract {
     protected IEnumerator MoveCharacterDown(GameObject movingObject) {
         CharacterMover mover = movingObject.GetComponent<CharacterMover>();
         if (mover != null) {
-            yield return StartCoroutine(MoveCharacterDown(mover));
+            yield return MoveCharacterDown(mover);
         }
         else {
             yield break;
         }
     }
     protected IEnumerator MoveCharacterDown() {
-        yield return StartCoroutine(MoveCharacterDown(gameObject));
+        yield return MoveCharacterDown(gameObject);
     }
     protected IEnumerator MoveMeDown() {
-        yield return StartCoroutine(MoveCharacterDown(gameObject));
+        yield return MoveCharacterDown(gameObject);
     }
 
     ///
@@ -121,17 +121,17 @@ public class EventTrigger : OnInteract {
     protected IEnumerator MoveCharacterLeft(GameObject movingObject) {
         CharacterMover mover = movingObject.GetComponent<CharacterMover>();
         if (mover != null) {
-            yield return StartCoroutine(MoveCharacterLeft(mover));
+            yield return MoveCharacterLeft(mover);
         }
         else {
             yield break;
         }
     }
     protected IEnumerator MoveCharacterLeft() {
-        yield return StartCoroutine(MoveCharacterLeft(gameObject));
+        yield return MoveCharacterLeft(gameObject);
     }
     protected IEnumerator MoveMeLeft() {
-        yield return StartCoroutine(MoveCharacterLeft(gameObject));
+        yield return MoveCharacterLeft(gameObject);
     }
 
     /*
