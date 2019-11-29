@@ -16,11 +16,10 @@ public class RandomMovement : MonoBehaviour {
 
     // Update is called once per frame
     void MoveRandomDirection() {
+        if (!mover.CanMove) return;
         int whichDirection = Random.Range(0, 5);
 
-        if (!mover.CanMove) {
-            mover.StopMoving();
-        } else if(whichDirection < 1) {
+        if(whichDirection < 1) {
             StartCoroutine(mover.MoveUp());
         } else if(whichDirection < 2) {
             StartCoroutine(mover.MoveDown());
