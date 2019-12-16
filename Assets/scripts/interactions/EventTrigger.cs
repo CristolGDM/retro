@@ -29,6 +29,14 @@ public class EventTrigger : OnInteract {
         GameData.PlayerCanMove = true;
     }
 
+    protected void DisableAllMovement() {
+        GameData.everybodyCanMove = false;
+    }
+
+    protected void EnableAllMovement() {
+        GameData.everybodyCanMove = true;
+    }
+
     protected void HideDialogBackground() {
         GameObject dialogMask = GameObject.Find(ComponentNames.SceneScripts).GetComponent<DialogHandler>().dialogMask;
         Text dialogText = GameObject.Find(ComponentNames.SceneScripts).GetComponent<DialogHandler>().dialogTextField;

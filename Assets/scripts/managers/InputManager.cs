@@ -34,12 +34,9 @@ public class InputManager : MonoBehaviour {
                 if (raycast.collider) {
                     if (raycast.collider.GetComponent<OnInteract>()) {
                         raycast.collider.gameObject.SendMessage("StartInteraction");
-                    } else {
-                        GameData.PlayerCanMove = true;
-                    }
-                } else {
-                    GameData.PlayerCanMove = true;
+                    } 
                 }
+                GameData.PlayerCanMove = true;
             }
             else if (GameData.MenuIsOpen) {
                 MenuManager.SelectCurrentOption();

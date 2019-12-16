@@ -112,7 +112,7 @@ public class CharacterMover : MonoBehaviour {
 
     public bool CanMove {
         get {
-            return canMove;
+            return canMove && GameData.everybodyCanMove;
         }
         set {
             canMove = value;

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public static class GameData {
     private static bool playerCanMove = true;
+    public static bool everybodyCanMove = true;
     private static bool playerCanTransition = true;
     public static bool inputBypassedByEventManager;
     public static bool DialogIsOpen { get; set; }
@@ -13,7 +14,7 @@ public static class GameData {
 
     public static bool PlayerCanMove {
         get {
-            return playerCanMove && !DialogIsOpen && !MenuIsOpen;
+            return playerCanMove && !DialogIsOpen && !MenuIsOpen && everybodyCanMove;
         }
         set {
             playerCanMove = value;
