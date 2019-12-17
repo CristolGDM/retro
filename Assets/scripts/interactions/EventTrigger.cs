@@ -60,6 +60,11 @@ public class EventTrigger : OnInteract {
         yield return dialogHandler.StartNewDialog(dialog);
     }
 
+    protected IEnumerator AskDialogOption(System.Action<bool> callback) {
+        yield return null;
+        callback(true);
+    }
+
     /*
      * MOVING TRIGGERS
      */

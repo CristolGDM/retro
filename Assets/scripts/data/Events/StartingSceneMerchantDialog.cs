@@ -13,6 +13,10 @@ public class StartingSceneMerchantDialog : EventTrigger {
             "\"Hello there\"",
             "\"Wanna see me dance?\""
         });
+
+        bool saidYes = false;
+        yield return AskDialogOption((answer) => { saidYes = answer; });
+
         if (CanMoveUp()) {
             yield return MoveMeUp();
             yield return new WaitForSeconds(.1f);
