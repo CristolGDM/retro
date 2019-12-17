@@ -61,8 +61,9 @@ public class EventTrigger : OnInteract {
     }
 
     protected IEnumerator AskDialogOption(System.Action<bool> callback) {
-        yield return null;
-        callback(true);
+        MenuManager menuManager = GameObject.Find(ComponentNames.SceneScripts).GetComponent<MenuManager>();
+        menuManager.OpenSpecificMenu(menuManager.DialogOption);
+        yield return menuManager.DialogOption.GetComponent<DialogOptionMenu>().WaitForSelection(callback);
     }
 
     /*

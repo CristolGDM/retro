@@ -25,7 +25,10 @@ public class InputManager : MonoBehaviour {
         if (GameData.inputBypassedByEventManager) return;
         /* INTERACT KEY */
         if (InteractKeySingle()) {
-            if (GameData.DialogIsOpen) {
+            if (GameData.MenuIsOpen) {
+                MenuManager.SelectCurrentOption();
+            }
+            else if (GameData.DialogIsOpen) {
                 dialogHandler.DisplayNextSentence();
             } else if (GameData.PlayerCanMove) {
                 GameData.PlayerCanMove = false;
@@ -37,9 +40,6 @@ public class InputManager : MonoBehaviour {
                     } 
                 }
                 GameData.PlayerCanMove = true;
-            }
-            else if (GameData.MenuIsOpen) {
-                MenuManager.SelectCurrentOption();
             }
         }
         /* UP KEY */

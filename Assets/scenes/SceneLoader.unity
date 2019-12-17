@@ -1505,6 +1505,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainMenu: {fileID: 495430207}
+  dialogOption: {fileID: 518321143}
   Cursor: {fileID: 717577146}
 --- !u!114 &66344264
 MonoBehaviour:
@@ -3504,7 +3505,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &518321144
 Transform:
   m_ObjectHideFlags: 0
@@ -3528,12 +3529,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 518321143}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0713ecba4ea9e4bf2a7b1df4c3f6581c, type: 3}
+  m_Script: {fileID: 11500000, guid: fbb58cb4ef1f18e47acbebf998e2b727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   YesOption: {fileID: 1408665932}
   NoOption: {fileID: 1472496227}
-  ConfirmationText: {fileID: 0}
 --- !u!1001 &543224089
 Prefab:
   m_ObjectHideFlags: 0
@@ -6204,7 +6204,7 @@ Prefab:
     - target: {fileID: 224724900577531526, guid: ff73ee1b92bb24540a330f41947d2901,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 275
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 224724900577531526, guid: ff73ee1b92bb24540a330f41947d2901,
         type: 2}
@@ -6699,7 +6699,7 @@ Prefab:
     - target: {fileID: 224724900577531526, guid: ff73ee1b92bb24540a330f41947d2901,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 275
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 224724900577531526, guid: ff73ee1b92bb24540a330f41947d2901,
         type: 2}
@@ -7780,7 +7780,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1876346649}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0, z: 0}
+  m_LocalPosition: {x: -1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 518321144}

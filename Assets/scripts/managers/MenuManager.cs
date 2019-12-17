@@ -8,7 +8,10 @@ public class MenuManager : MonoBehaviour {
 
     [SerializeField]
     private GameObject mainMenu;
-    public GameObject MainMenu { get{ return mainMenu; } }
+    [SerializeField]
+    private GameObject dialogOption;
+    public GameObject MainMenu { get { return mainMenu; } }
+    public GameObject DialogOption { get { return dialogOption; } }
 
     public GameObject Cursor;
 
@@ -19,12 +22,11 @@ public class MenuManager : MonoBehaviour {
     }
 
     public void OpenMenu() {
-        GameData.MenuIsOpen = true;
-
         OpenSpecificMenu(MainMenu);
     }
 
     public void OpenSpecificMenu(GameObject menuObject) {
+        GameData.MenuIsOpen = true;
         Cursor.SetActive(true);
         menuObject.SetActive(true);
         MenuStack.Add(menuObject);
