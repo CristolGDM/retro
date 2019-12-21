@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 public class Inventory {
@@ -69,7 +70,9 @@ public class Inventory {
     }
 
     private static string ParseKeyName (string unparsedKey) {
-        return unparsedKey.ToLower();
+        unparsedKey = unparsedKey.ToLower();
+        unparsedKey = Regex.Replace(unparsedKey, "[^a-zA-Z0-9_.]+", "");
+        return unparsedKey;
     }
 
     public static int GetCarriedAmount (string itemID) {
