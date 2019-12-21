@@ -15,9 +15,9 @@ public class ItemComponent : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(thisItem != null && Inventory.CarriedInventory.ContainsKey(thisItem.Name) && Inventory.CarriedInventory[thisItem.Name] > 0) {
+        if(thisItem != null && Inventory.GetCarriedAmount(thisItem) > 0) {
             itemName.text = thisItem.Name;
-            itemAmount.text = "" + Inventory.CarriedInventory[thisItem.Name];
+            itemAmount.text = "" + Inventory.GetCarriedAmount(thisItem);
         }
         else {
             itemName.text = "";

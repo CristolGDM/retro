@@ -95,8 +95,7 @@ public class ItemTargetMenu : MenuComponent {
     }
 
     protected override void SelectOption(GameObject option) {
-        if (!Inventory.CarriedInventory.ContainsKey(itemToApply.Name)) return;
-        if (Inventory.CarriedInventory[itemToApply.Name] <= 0) return;
+        if (Inventory.GetCarriedAmount(itemToApply) <= 0) return;
 
         if (option != null) {
             PlayerCharacter target = option.GetComponent<PcPreviewSection>().GetPc();

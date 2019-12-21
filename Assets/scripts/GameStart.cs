@@ -11,22 +11,22 @@ public class GameStart : MonoBehaviour {
     private GameObject player;
 
     // Use this for initialization
-    void Awake () {
+    private void Awake () {
+        InitItemDB();
         StartCoroutine(DoInitialTransition());
         GameData.AddNewCharacter(PlayerCharacters.MainCharacter);
         GameData.AddCharacterToParty(PlayerCharacters.MainCharacter);
         GameData.AddNewCharacter(PlayerCharacters.Yurgurine);
         GameData.AddCharacterToParty(PlayerCharacters.Yurgurine);
 
-        Inventory.AddItemToInventory(new Potion(), 1);
-        Inventory.AddItemToInventory(new HiPotion(), 1);
-        Inventory.AddItemToInventory(new Potion(), 2);
+        Inventory.AddItemToInventory("potion", 7);
+        Inventory.AddItemToInventory("hi-potion", 2);
         Inventory.AddItemToInventory(new FangOfDestroyer(), 1);
-        Inventory.AddItemToInventory(new Poison(), 2);
-        Inventory.AddItemToInventory(new Elixir(), 1);
+        Inventory.AddItemToInventory("poison", 2);
+        Inventory.AddItemToInventory("elixir", 1);
     }
 
-    IEnumerator DoInitialTransition() {
+    private IEnumerator DoInitialTransition() {
         GameData.PlayerCanTransition = false;
         player.GetComponent<SpriteRenderer>().enabled = true;
         Scene currentScene = SceneManager.GetActiveScene();
@@ -43,5 +43,13 @@ public class GameStart : MonoBehaviour {
         player.GetComponent<CharacterMover>().StopMoving();
         SceneManager.MoveGameObjectToScene(player, SceneManager.GetSceneByName(StartingSceneName));
         SceneManager.UnloadSceneAsync(currentScene);
+    }
+
+    private void InitItemDB() {
+        Inventory.AddItemToDatabase(new Potion());
+        Inventory.AddItemToDatabase(new HiPotion());
+        Inventory.AddItemToDatabase(new FangOfDestroyer());
+        Inventory.AddItemToDatabase(new Poison());
+        Inventory.AddItemToDatabase(new Elixir());
     }
 }

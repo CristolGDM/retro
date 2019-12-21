@@ -35,7 +35,7 @@ public class ItemMenu : MenuComponent {
     public new void Update() {
         base.Update();
 
-        List<string> currentItems = new List<string> ( Inventory.CarriedInventory.Keys );
+        List<string> currentItems = Inventory.GetCarriedItems();
 
         for (int i = 0; i < optionsAsLine.Count; i++) {
             if(i < currentItems.Count) {
@@ -102,7 +102,7 @@ public class ItemMenu : MenuComponent {
 
         if (selectedItem == null) return;
 
-        if (Inventory.CarriedInventory[selectedItem.Name] <= 0) return;
+        if (Inventory.GetCarriedAmount(selectedItem) <= 0) return;
 
         if (selectedItem.IsUsable) {
             itemTargetMenu.GetComponent<ItemTargetMenu>().ReadyItem(selectedItem);
