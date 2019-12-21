@@ -18,13 +18,12 @@ public class StartShop : EventTrigger {
 
     private IEnumerator StartDialog() {
         DisablePlayerMovement();
-        ShowDialogBackground();
         if (dialog.Length > 0) {
+            ShowDialogBackground();
             yield return StartDialog(dialog);
         }
         yield return OpenShop(new Dictionary<string,int>(AvailableItems));
         HideDialogBackground();
-        EnableMovingThis();
         EnablePlayerMovement();
     }
 }

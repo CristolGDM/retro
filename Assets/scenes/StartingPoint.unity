@@ -1203,7 +1203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2865dbbe064c12e4d97616f7f6ffe506, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialog: 
+  dialog: '"I have things to buy... if you can afford them"'
   AvailableItems:
     reorderableList:
       canAdd: 1
