@@ -13,6 +13,7 @@ public abstract class MenuComponent : MonoBehaviour {
     private int SelectedOptionX = 0;
     private int SelectedOptionY = 0;
     protected MenuManager menuManager;
+    public virtual bool CanBeClosed() { return true; }
 
     // Use this for initialization
     public void Start () {
@@ -34,9 +35,7 @@ public abstract class MenuComponent : MonoBehaviour {
     protected abstract void LoadOptions();
     protected abstract void SelectOption(GameObject option);
 
-    public virtual void CloseMenu() {
-
-    }
+    public virtual void CloseMenu() { }
 
     public void InitMenu() {
         menuManager = GameObject.Find(ComponentNames.SceneScripts).GetComponent<MenuManager>();

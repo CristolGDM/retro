@@ -15,6 +15,9 @@ public class DialogOptionMenu : MenuComponent {
     private bool hasSelected;
     private bool selectedOption;
 
+    private bool canBeClosed = false;
+    public override bool CanBeClosed() { return canBeClosed; }
+
     public new void Start() {
         base.Start();
     }
@@ -26,6 +29,7 @@ public class DialogOptionMenu : MenuComponent {
         };
 
         SelectableOptions = tempList;
+        canBeClosed = false;
     }
 
     protected override void SelectOption(GameObject option) {
@@ -41,6 +45,7 @@ public class DialogOptionMenu : MenuComponent {
         }
 
         callback(selectedOption);
+        canBeClosed = true;
         GameObject.Find(ComponentNames.SceneScripts).GetComponent<MenuManager>().CloseAllMenus();
         yield break;
     }

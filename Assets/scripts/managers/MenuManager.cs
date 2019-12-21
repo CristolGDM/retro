@@ -51,6 +51,7 @@ public class MenuManager : MonoBehaviour {
     public void CloseAllMenus() {
         if (MenuStack.Any()) {
             for (int i = MenuStack.Count - 1; i >= 0; i--) {
+                if (!MenuStack[i].GetComponent<MenuComponent>().CanBeClosed()) return;
                 MenuStack[i].GetComponent<MenuComponent>().CloseMenu();
                 MenuStack[i].SetActive(false);
             }
@@ -62,18 +63,19 @@ public class MenuManager : MonoBehaviour {
     }
 
     public void GoBack() {
-        if (MenuStack.Any()) {
-            MenuStack[MenuStack.Count - 1].GetComponent<MenuComponent>().CloseMenu();
-            MenuStack[MenuStack.Count - 1].SetActive(false);
-            MenuStack.RemoveAt(MenuStack.Count - 1);
+        if (!MenuStack.Any()) return;
+        if (!MenuStack[MenuStack.Count - 1].GetComponent<MenuComponent>().CanBeClosed()) return;
 
-            if(MenuStack.Count > 0) {
-                MenuStack[MenuStack.Count - 1].SetActive(true);
-            }
-            else {
-                Cursor.SetActive(false);
-                GameData.MenuIsOpen = false;
-            }
+        MenuStack[MenuStack.Count - 1].GetComponent<MenuComponent>().CloseMenu();
+        MenuStack[MenuStack.Count - 1].SetActive(false);
+        MenuStack.RemoveAt(MenuStack.Count - 1);
+
+        if(MenuStack.Count > 0) {
+            MenuStack[MenuStack.Count - 1].SetActive(true);
+        }
+        else {
+            Cursor.SetActive(false);
+            GameData.MenuIsOpen = false;
         }
     }
 
