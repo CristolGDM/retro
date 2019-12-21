@@ -1200,11 +1200,42 @@ MonoBehaviour:
   m_GameObject: {fileID: 998275701}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3023f7e097a900d409136548fc9261a2, type: 3}
+  m_Script: {fileID: 11500000, guid: 2865dbbe064c12e4d97616f7f6ffe506, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialog:
-  - '"I have stuff to sell... If you can afford it"'
+  dialog: 
+  AvailableItems:
+    reorderableList:
+      canAdd: 1
+      canRemove: 1
+      draggable: 1
+      expandable: 1
+      multipleSelection: 1
+      isExpanded: 1
+      label:
+        m_Text: Keys
+        m_Image: {fileID: 0}
+        m_Tooltip: 
+      headerHeight: 18
+      footerHeight: 13
+      slideEasing: 0.15
+      verticalSpacing: 2
+      showDefaultBackground: 1
+      elementDisplayType: 0
+      elementNameProperty: 
+      elementNameOverride: 
+      elementIcon: {fileID: 0}
+    reqReferences: {fileID: 0}
+    isExpanded: 1
+    _keyValues:
+    - potion
+    - hipotion
+    - elixir
+    _keys:
+    - potion
+    - hipotion
+    - elixir
+    _values: 64000000c8000000e8030000
 --- !u!1 &1073794786
 GameObject:
   m_ObjectHideFlags: 0

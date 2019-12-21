@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OnTalkedTo : EventTrigger {
+public class StartShop : EventTrigger {
 
     [SerializeField]
-    private List<string> dialog = new List<string> { "..." };
-    private CharacterMover mover;
+    private string dialog = "";
+    [SerializeField]
+    private StringIntDict AvailableItems;
 
     ///////////////////////////////////////
 
@@ -16,11 +17,12 @@ public class OnTalkedTo : EventTrigger {
     }
 
     private IEnumerator StartDialog() {
-        DisableMovingThis();
         DisablePlayerMovement();
-        TurnTowardPlayer();
         ShowDialogBackground();
-        yield return StartDialog(dialog);
+        if (dialog.Length > 0) {
+            yield return StartDialog(dialog);
+        }
+        yield return OpenShop(new Dictionary<string,int>(AvailableItems));
         HideDialogBackground();
         EnableMovingThis();
         EnablePlayerMovement();

@@ -66,6 +66,10 @@ public class EventTrigger : OnInteract {
         yield return menuManager.DialogOption.GetComponent<DialogOptionMenu>().WaitForSelection(callback);
     }
 
+    protected IEnumerator OpenShop(Dictionary<string, int> availableItems) {
+        yield break;
+    }
+
     /*
      * MOVING TRIGGERS
      */
