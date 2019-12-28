@@ -87,11 +87,13 @@ public class ShopItemsBuy : MenuComponent {
 
                 tempOptionsAsLine.Add(newObject);
                 optionsRow.Add(newObject);
+                if (tempOptionsAsLine.Count == shopItems.Count) break;
             }
 
             tempSelectableOptions.Add(optionsRow);
-            MoveToOption(0, 0);
+            if (tempOptionsAsLine.Count == shopItems.Count) break;
         }
+        MoveToOption(0, 0);
 
         SelectableOptions = tempSelectableOptions;
         optionsAsLine = tempOptionsAsLine;
@@ -103,8 +105,6 @@ public class ShopItemsBuy : MenuComponent {
         Item selectedItem = option.GetComponent<ItemComponent>().GetItem();
 
         if (selectedItem == null) return;
-
-        if (Inventory.GetCarriedAmount(selectedItem) <= 0) return;
 
         Debug.Log("Trying to do something with " + selectedItem.Name);
     }

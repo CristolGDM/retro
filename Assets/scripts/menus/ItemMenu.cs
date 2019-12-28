@@ -88,8 +88,8 @@ public class ItemMenu : MenuComponent {
             }
 
             tempSelectableOptions.Add(optionsRow);
-            MoveToOption(0, 0);
         }
+        MoveToOption(0, 0);
 
         SelectableOptions = tempSelectableOptions;
         optionsAsLine = tempOptionsAsLine;
