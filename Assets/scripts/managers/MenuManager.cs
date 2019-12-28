@@ -10,6 +10,8 @@ public class MenuManager : MonoBehaviour {
     private GameObject mainMenu;
     [SerializeField]
     private GameObject dialogOption;
+    [SerializeField]
+    private GameObject shopMenu;
     public GameObject MainMenu { get { return mainMenu; } }
     public GameObject DialogOption { get { return dialogOption; } }
 
@@ -46,6 +48,10 @@ public class MenuManager : MonoBehaviour {
         menuObject.GetComponent<MenuComponent>().InitMenu();
         Cursor.GetComponent<SpriteRenderer>().sortingOrder = baseOrder + 1;
         menuObject.GetComponent<MenuComponent>().MoveToFirstOption();
+    }
+
+    public void OpenShop(Dictionary<string, int> availableItems) {
+        OpenSpecificMenu(shopMenu);
     }
 
     public void CloseAllMenus() {

@@ -44,6 +44,13 @@ public class EventTrigger : OnInteract {
         dialogMask.GetComponent<UIMover>().MoveToNewPosition(hideDialogMaskPosition, dialogTransitionSpeed);
     }
 
+    protected void HideDialogBackgroundInstant() {
+        GameObject dialogMask = GameObject.Find(ComponentNames.SceneScripts).GetComponent<DialogHandler>().dialogMask;
+        Text dialogText = GameObject.Find(ComponentNames.SceneScripts).GetComponent<DialogHandler>().dialogTextField;
+        dialogText.text = "";
+        dialogMask.GetComponent<UIMover>().MoveToNewPosition(hideDialogMaskPosition, 999);
+    }
+
     protected void ShowDialogBackground() {
         GameObject dialogMask = GameObject.Find(ComponentNames.SceneScripts).GetComponent<DialogHandler>().dialogMask;
         Text dialogText = GameObject.Find(ComponentNames.SceneScripts).GetComponent<DialogHandler>().dialogTextField;
@@ -67,6 +74,11 @@ public class EventTrigger : OnInteract {
     }
 
     protected IEnumerator OpenShop(Dictionary<string, int> availableItems) {
+        MenuManager menuManager = GameObject.Find(ComponentNames.SceneScripts).GetComponent<MenuManager>();
+        menuManager.OpenShop(availableItems);
+        while (GameData.MenuIsOpen) {
+            yield return 10;
+        }
         yield break;
     }
 

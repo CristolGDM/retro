@@ -7,9 +7,8 @@ public class BuySellMenu : MenuComponent {
     GameObject BuyOption;
     [SerializeField]
     GameObject SellOption;
-
     [SerializeField]
-    GameObject ItemMenu;
+    GameObject GoldText;
 
     public new void Start() {
         base.Start();
