@@ -8,7 +8,7 @@ public abstract class MenuComponent : MonoBehaviour {
 
     protected List<List<GameObject>> SelectableOptions = new List<List<GameObject>>();
 
-    private GameObject Cursor;
+    protected GameObject Cursor;
 
     private int SelectedOptionX = 0;
     private int SelectedOptionY = 0;

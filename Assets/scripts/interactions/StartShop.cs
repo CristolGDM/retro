@@ -8,7 +8,7 @@ public class StartShop : EventTrigger {
     [SerializeField]
     private string dialog = "";
     [SerializeField]
-    private StringIntDict AvailableItems;
+    private List<string> AvailableItems;
 
     ///////////////////////////////////////
 
@@ -25,7 +25,7 @@ public class StartShop : EventTrigger {
             yield return StartDialog(dialog);
             HideDialogBackgroundInstant();
         }
-        yield return OpenShop(new Dictionary<string,int>(AvailableItems));
+        yield return OpenShop(AvailableItems);
         EnablePlayerMovement();
         EnableMovingThis();
     }

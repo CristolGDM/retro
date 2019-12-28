@@ -45,11 +45,12 @@ public class MenuManager : MonoBehaviour {
             sprite.sortingOrder = baseOrder + 1;
         }
         menuObject.GetComponent<MenuComponent>().InitMenu();
-        Cursor.GetComponent<SpriteRenderer>().sortingOrder = baseOrder + 1;
+        Cursor.GetComponent<SpriteRenderer>().sortingOrder = baseOrder + 2;
         menuObject.GetComponent<MenuComponent>().MoveToFirstOption();
     }
 
-    public void OpenShop(Dictionary<string, int> availableItems) {
+    public void OpenShop(List<Item> availableItems) {
+        shopMenu.GetComponent<BuySellMenu>().LoadItems(availableItems);
         OpenSpecificMenu(shopMenu);
     }
 

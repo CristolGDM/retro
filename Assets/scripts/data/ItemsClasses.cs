@@ -3,6 +3,7 @@
 public abstract class Item {
     public abstract string Name { get; }
     public abstract string Description { get; }
+    public virtual int Cost { get { return 0; } }
     public virtual bool IsUsable { get { return false; } }
     public virtual bool IsEquippable { get { return false; } }
     public virtual bool NeedTarget { get { return false; } }

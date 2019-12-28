@@ -9,6 +9,10 @@ public class BuySellMenu : MenuComponent {
     GameObject SellOption;
     [SerializeField]
     GameObject GoldText;
+    [SerializeField]
+    GameObject ShopItemsMenu;
+
+    private List<Item> shopItems;
 
     public new void Start() {
         base.Start();
@@ -26,10 +30,15 @@ public class BuySellMenu : MenuComponent {
 
     protected override void SelectOption(GameObject option) {
         if(option == BuyOption) {
-            Debug.Log("Trying to open buy menu");
+            ShopItemsMenu.GetComponent<ShopItemsBuy>().LoadItems(shopItems);
+            menuManager.OpenSpecificMenu(ShopItemsMenu);
         }
         else if(option == SellOption) {
             Debug.Log("Trying to open Sell menu");
         }
+    }
+
+    public void LoadItems(List<Item> items) {
+        shopItems = items;
     }
 }

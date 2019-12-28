@@ -12,12 +12,22 @@ public class ItemComponent : MonoBehaviour {
     Text itemAmount;
 
     private Item thisItem;
+    private readonly string inventoryMode;
+    private readonly string shopBuyMode;
+    private readonly string shopSellMode;
+    private enum Modes { inventoryMode, shopBuyMode, shopSellMode };
+    private Modes currentMode = Modes.inventoryMode;
 	
 	// Update is called once per frame
 	void Update () {
-        if(thisItem != null && Inventory.GetCarriedAmount(thisItem) > 0) {
+        if(thisItem != null) {
             itemName.text = thisItem.Name;
-            itemAmount.text = "" + Inventory.GetCarriedAmount(thisItem);
+
+            if (currentMode == Modes.shopBuyMode) {
+                itemAmount.text = "" + thisItem.Cost;
+            } else {
+                itemAmount.text = "" + Inventory.GetCarriedAmount(thisItem);
+            }
         }
         else {
             itemName.text = "";
@@ -28,6 +38,16 @@ public class ItemComponent : MonoBehaviour {
 
     public void LoadItem (Item newItem) {
         thisItem = newItem;
+    }
+
+    public void LoadShopBuyItem(Item newItem) {
+        currentMode = Modes.shopBuyMode;
+        LoadItem(newItem);
+    }
+
+    public void LoadShopSellItem(Item newItem) {
+        currentMode = Modes.shopSellMode;
+        LoadItem(newItem);
     }
 
     public void LoadItem (string itemId) {

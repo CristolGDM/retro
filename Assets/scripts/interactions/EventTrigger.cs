@@ -73,9 +73,16 @@ public class EventTrigger : OnInteract {
         yield return menuManager.DialogOption.GetComponent<DialogOptionMenu>().WaitForSelection(callback);
     }
 
-    protected IEnumerator OpenShop(Dictionary<string, int> availableItems) {
+    protected IEnumerator OpenShop(List<string> availableItems) {
         MenuManager menuManager = GameObject.Find(ComponentNames.SceneScripts).GetComponent<MenuManager>();
-        menuManager.OpenShop(availableItems);
+        List<Item> validatedItems = new List<Item>();
+        for (int i = 0; i < availableItems.Count; i++) {
+            Item tempItem = Inventory.GetItem(availableItems[i]);
+            if (tempItem == null) Debug.Log("Problem loading " + availableItems[i] + ": doesn't exist in ItemDB");
+            else if (tempItem.Cost == 0) Debug.Log("Can't add " + availableItems[i] + ": cost is zero");
+            else validatedItems.Add(tempItem);
+        }
+        menuManager.OpenShop(validatedItems);
         while (GameData.MenuIsOpen) {
             yield return 10;
         }
