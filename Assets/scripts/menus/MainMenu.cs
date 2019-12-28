@@ -45,15 +45,12 @@ public class MainMenu : MenuComponent {
     protected override void SelectOption(GameObject option) {
         if(option == ItemOption) {
             menuManager.OpenSpecificMenu(ItemMenu);
-            return;
         }
         else if(option == MagicOption) {
             Debug.Log("Trying to open Magic menu");
-            return;
         }
         else if(option == StatusOption) {
             Debug.Log("Trying to open stats menu");
-            return;
         }
     }
 }
