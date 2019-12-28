@@ -10,6 +10,9 @@ public class Inventory {
 
     private static readonly int maxItemStack = 99;
 
+    private static int gold;
+    private static readonly int maxGold = 999999;
+
     public static void AddItemToInventory(string itemID, int amount) {
         int newAmount;
         string key = ParseKeyName(itemID);
@@ -88,5 +91,21 @@ public class Inventory {
 
     public static List<string> GetCarriedItems() {
         return new List<string>(CarriedInventory.Keys);
+    }
+
+    public static int GetGold() {
+        return gold;
+    }
+
+    public static bool CanSpend(int amount) {
+        return gold >= amount;
+    }
+
+    public static void SpendGold(int amount) {
+        gold = Math.Max(0, gold - amount);
+    }
+
+    public static void AddGold(int amount) {
+        gold = Math.Min(maxGold, gold + amount);
     }
 }
