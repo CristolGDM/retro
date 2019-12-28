@@ -12,7 +12,6 @@ public class MenuManager : MonoBehaviour {
     private GameObject dialogOption;
     [SerializeField]
     private GameObject shopMenu;
-    public GameObject MainMenu { get { return mainMenu; } }
     public GameObject DialogOption { get { return dialogOption; } }
 
     public GameObject Cursor;
@@ -24,7 +23,7 @@ public class MenuManager : MonoBehaviour {
     }
 
     public void OpenMenu() {
-        OpenSpecificMenu(MainMenu);
+        OpenSpecificMenu(mainMenu);
     }
 
     public void OpenSpecificMenu(GameObject menuObject) {
@@ -52,6 +51,10 @@ public class MenuManager : MonoBehaviour {
 
     public void OpenShop(Dictionary<string, int> availableItems) {
         OpenSpecificMenu(shopMenu);
+    }
+
+    public void OpenDialogOption() {
+        OpenSpecificMenu(dialogOption);
     }
 
     public void CloseAllMenus() {
