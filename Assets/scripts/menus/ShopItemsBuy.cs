@@ -106,7 +106,10 @@ public class ShopItemsBuy : MenuComponent {
 
         if (selectedItem == null) return;
 
-        Debug.Log("Trying to do something with " + selectedItem.Name);
+        if(Inventory.CanSpend(selectedItem.Cost)) {
+            Inventory.SpendGold(selectedItem.Cost);
+            Inventory.AddItemToInventory(selectedItem, 1);
+        }
     }
 
     public override void PlaceCursorOnOption(GameObject option) {

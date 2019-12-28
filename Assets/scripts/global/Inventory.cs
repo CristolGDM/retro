@@ -10,7 +10,7 @@ public class Inventory {
 
     private static readonly int maxItemStack = 99;
 
-    private static int gold = 300;
+    private static int gold = 80000;
     private static readonly int maxGold = 999999;
 
     public static void AddItemToInventory(string itemID, int amount) {
