@@ -9,9 +9,9 @@ public class ShopItemsBuy : MenuComponent {
     private readonly int verticalMargin = 5;
     private readonly int horizMargin = 0;
     [SerializeField]
-    private GameObject sampleItem;
+    private GameObject sampleItem = null;
     [SerializeField]
-    private GameObject itemDescriptionField;
+    private GameObject itemDescriptionField = null;
 
     private float xStart;
     private float yStart;

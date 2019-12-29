@@ -6,15 +6,15 @@ using UnityEngine.UI;
 public class ItemTargetMenu : MenuComponent {
 
     [SerializeField]
-    GameObject PcPreviewSection1;
+    GameObject PcPreviewSection1 = null;
     [SerializeField]
-    GameObject PcPreviewSection2;
+    GameObject PcPreviewSection2 = null;
     [SerializeField]
-    GameObject PcPreviewSection3;
+    GameObject PcPreviewSection3 = null;
     [SerializeField]
-    GameObject PcPreviewSection4;
+    GameObject PcPreviewSection4 = null;
     [SerializeField]
-    GameObject ConfirmationMenu;
+    GameObject ConfirmationMenu = null;
 
     private Item itemToApply;
     private PlayerCharacter[] charactersToTarget;

@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class GoldComponent : MonoBehaviour {
 
     [SerializeField]
-    Text goldAmount;
-    	
-	// Update is called once per frame
-	void Update () {
+    Text goldAmount = null;
+
+    // Update is called once per frame
+    void Update () {
         goldAmount.text = "" + Inventory.GetGold();
 	}
 }

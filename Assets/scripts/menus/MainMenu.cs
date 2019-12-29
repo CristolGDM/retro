@@ -4,23 +4,23 @@ using UnityEngine;
 public class MainMenu : MenuComponent {
 
     [SerializeField]
-    GameObject PcSection1;
+    private GameObject PcSection1 = null;
     [SerializeField]
-    GameObject PcSection2;
+    private GameObject PcSection2 = null;
     [SerializeField]
-    GameObject PcSection3;
+    private GameObject PcSection3 = null;
     [SerializeField]
-    GameObject PcSection4;
+    private GameObject PcSection4 = null;
 
     [SerializeField]
-    GameObject ItemOption;
+    private GameObject ItemOption = null;
     [SerializeField]
-    GameObject MagicOption;
+    private GameObject MagicOption = null;
     [SerializeField]
-    GameObject StatusOption;
+    private GameObject StatusOption = null;
 
     [SerializeField]
-    GameObject ItemMenu;
+    GameObject ItemMenu = null;
 
     public new void Start() {
         base.Start();

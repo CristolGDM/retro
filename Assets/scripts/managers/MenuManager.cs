@@ -7,11 +7,11 @@ using UnityEngine.UI;
 public class MenuManager : MonoBehaviour {
 
     [SerializeField]
-    private GameObject mainMenu;
+    private GameObject mainMenu = null;
     [SerializeField]
-    private GameObject dialogOption;
+    private GameObject dialogOption = null;
     [SerializeField]
-    private GameObject shopMenu;
+    private GameObject shopMenu = null;
     public GameObject DialogOption { get { return dialogOption; } }
 
     public GameObject Cursor;

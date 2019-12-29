@@ -5,13 +5,13 @@ using UnityEngine;
 public class InputManager : MonoBehaviour {
     
     [SerializeField]
-    private GameObject playerCharacter;
+    private GameObject playerCharacter = null;
 
     [SerializeField]
-    private DialogHandler dialogHandler;
+    private DialogHandler dialogHandler = null;
 
     [SerializeField]
-    private MenuManager MenuManager;
+    private MenuManager MenuManager = null;
 
     private CharacterMover playerMover;
 

@@ -8,7 +8,7 @@ public class StartShop : EventTrigger {
     [SerializeField]
     private string dialog = "";
     [SerializeField]
-    private List<string> AvailableItems;
+    private List<string> AvailableItems = new List<string>();
 
     ///////////////////////////////////////
 

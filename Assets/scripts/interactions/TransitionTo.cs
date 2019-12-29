@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 public class TransitionTo : MonoBehaviour {
 
     [SerializeField]
-    private string TargetSceneName;
+    private string TargetSceneName = null;
 
     [SerializeField]
-    private string TargetSpawnName;
+    private string TargetSpawnName = null;
 
 
     // Use this for initialization

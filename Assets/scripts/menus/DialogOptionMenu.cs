@@ -7,9 +7,9 @@ using UnityEngine.UI;
 public class DialogOptionMenu : MenuComponent {
 
     [SerializeField]
-    GameObject YesOption;
+    GameObject YesOption = null;
     [SerializeField]
-    GameObject NoOption;
+    GameObject NoOption = null;
 
     private MenuComponent CallingMenu;
     private bool hasSelected;

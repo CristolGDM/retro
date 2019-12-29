@@ -5,20 +5,19 @@ using UnityEngine.UI;
 
 public class PcPreviewSection : MonoBehaviour {
 
-    [SerializeField]
-    public Text pcName;
+    public Text pcName = null;
 
     [SerializeField]
-    Text pcPv;
+    private Text pcPv = null;
 
     [SerializeField]
-    Text pcLv;
+    private Text pcLv = null;
 
     [SerializeField]
-    Text pcJob;
+    private Text pcJob = null;
 
     [SerializeField]
-    GameObject pcSprite;
+    private GameObject pcSprite = null;
 
     private Sprite[] sprites;
     private PlayerCharacter thisCharacter;

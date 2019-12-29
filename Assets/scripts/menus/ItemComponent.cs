@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class ItemComponent : MonoBehaviour {
 
     [SerializeField]
-    Text itemName;
+    private Text itemName = null;
 
     [SerializeField]
-    Text itemAmount;
+    private Text itemAmount = null;
 
     private Item thisItem;
     private readonly string inventoryMode;

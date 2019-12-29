@@ -48,7 +48,7 @@
         {
             private const string SupportedTagRegexPattersn = @"<b>|</b>|<i>|</i>|<size=.*?>|</size>|<color=.*?>|</color>|<material=.*?>|</material>";
             [SerializeField]
-            private bool useRichText;
+            private bool useRichText = false;
      
             [SerializeField]
             private float m_spacing = 0f;

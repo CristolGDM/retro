@@ -6,11 +6,11 @@ using UnityEngine.UI;
 public class ItemConfirmationMenu : MenuComponent {
 
     [SerializeField]
-    GameObject YesOption;
+    private GameObject YesOption = null;
     [SerializeField]
-    GameObject NoOption;
+    private GameObject NoOption = null;
     [SerializeField]
-    GameObject ConfirmationText;
+    private GameObject ConfirmationText = null;
 
     private MenuComponent CallingMenu;
     private Action YesAction;

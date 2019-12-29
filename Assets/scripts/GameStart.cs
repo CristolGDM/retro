@@ -4,11 +4,11 @@ using UnityEngine.SceneManagement;
 
 public class GameStart : MonoBehaviour {
     [SerializeField]
-    private string StartingSceneName;
+    private string StartingSceneName = null;
     [SerializeField]
-    private string TargetSpawnName;
+    private string TargetSpawnName = null;
     [SerializeField]
-    private GameObject player;
+    private GameObject player = null;
 
     // Use this for initialization
     private void Awake () {

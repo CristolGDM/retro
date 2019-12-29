@@ -4,13 +4,11 @@ using UnityEngine;
 public class BuySellMenu : MenuComponent {
 
     [SerializeField]
-    GameObject BuyOption;
+    private GameObject BuyOption = null;
     [SerializeField]
-    GameObject SellOption;
+    private GameObject SellOption = null;
     [SerializeField]
-    GameObject GoldText;
-    [SerializeField]
-    GameObject ShopItemsMenu;
+    private GameObject ShopItemsMenu = null;
 
     private List<Item> shopItems;
 
