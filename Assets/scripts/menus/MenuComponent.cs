@@ -49,10 +49,16 @@ public abstract class MenuComponent : MonoBehaviour {
         MoveToOption(0, 0);
     }
 
-    public virtual void PlaceCursorOnOption(GameObject option) {
+    public void PlaceCursorOnOption(GameObject option) {
+        PlaceSpecificCursorOnSpecificOption(Cursor, option);
+    }
+
+    public void PlaceSpecificCursorOnSpecificOption(GameObject thisCursor, GameObject option) {
         RectTransform rectTrans = option.GetComponent<RectTransform>();
-        float cursorLeftOffset = ((1.4f * rectTrans.rect.width) / 120) + 0.1f;
-        Cursor.transform.position = new Vector3(CurrentOption().transform.position.x - cursorLeftOffset, CurrentOption().transform.position.y - 0.1f, CurrentOption().transform.position.z);
+        Vector3 cursBounds = thisCursor.GetComponent<SpriteRenderer>().bounds.extents;
+        float cursorLeftOffset = cursBounds.x;
+        float cursorVertOffset = rectTrans.rect.height / 100;
+        thisCursor.transform.position = new Vector3(option.transform.position.x - cursorLeftOffset, option.transform.position.y - cursorVertOffset, option.transform.position.z);
     }
 
     protected GameObject CurrentOption() {

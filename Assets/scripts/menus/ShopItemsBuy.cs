@@ -111,10 +111,4 @@ public class ShopItemsBuy : MenuComponent {
             Inventory.AddItemToInventory(selectedItem, 1);
         }
     }
-
-    public override void PlaceCursorOnOption(GameObject option) {
-        RectTransform rectTrans = option.GetComponent<RectTransform>();
-        float cursorLeftOffset = ((1.2f * rectTrans.rect.width) / 120) + 0.1f;
-        Cursor.transform.position = new Vector3(CurrentOption().transform.position.x - cursorLeftOffset, CurrentOption().transform.position.y - 0.1f, CurrentOption().transform.position.z);
-    }
 }
