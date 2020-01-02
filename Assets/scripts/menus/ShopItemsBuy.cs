@@ -76,13 +76,9 @@ public class ShopItemsBuy : MenuComponent {
             List<GameObject> optionsRow = new List<GameObject>();
 
             for (int col = 0; col < maxColumns; col++) {
-                GameObject newObject = Instantiate(sampleItem);
-                // You would expect an instantiated item to have the same coordinates and parent as the object being instantiated, but nooooo
-                newObject.transform.position = new Vector3(sampleItem.transform.position.x, sampleItem.transform.position.y, sampleItem.transform.position.z);
+                GameObject newObject = Instantiate(sampleItem, sampleItem.transform.parent);
                 float newItemX = xStart + (col * (optionWidth + horizMargin));
                 float newItemY = yStart - (row * (optionHeight + verticalMargin));
-                newObject.transform.SetParent(sampleItem.transform.parent);
-                newObject.transform.localScale = new Vector3(1, 1, 1);
                 newObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(newItemX, newItemY);
 
                 tempOptionsAsLine.Add(newObject);

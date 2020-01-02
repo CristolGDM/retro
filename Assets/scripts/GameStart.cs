@@ -19,7 +19,7 @@ public class GameStart : MonoBehaviour {
         GameData.AddNewCharacter(PlayerCharacters.Yurgurine);
         GameData.AddCharacterToParty(PlayerCharacters.Yurgurine);
 
-        Inventory.AddItemToInventory("potion", 7);
+        Inventory.AddItemToInventory("potion", 27);
         Inventory.AddItemToInventory("hi-potion", 2);
         Inventory.AddItemToInventory(new FangOfDestroyer(), 1);
         Inventory.AddItemToInventory("poison", 2);
