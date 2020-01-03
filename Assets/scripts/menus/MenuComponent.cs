@@ -54,11 +54,19 @@ public abstract class MenuComponent : MonoBehaviour {
     }
 
     public void PlaceSpecificCursorOnSpecificOption(GameObject thisCursor, GameObject option) {
-        RectTransform rectTrans = option.GetComponent<RectTransform>();
-        Vector3 cursBounds = thisCursor.GetComponent<SpriteRenderer>().bounds.extents;
-        float cursorLeftOffset = cursBounds.x;
-        float cursorVertOffset = rectTrans.rect.height / 100;
+        float cursorLeftOffset = GetCursorLeftOffset(thisCursor);
+        float cursorVertOffset = GetCursorVertOffset(option);
         thisCursor.transform.position = new Vector3(option.transform.position.x - cursorLeftOffset, option.transform.position.y - cursorVertOffset, option.transform.position.z);
+    }
+
+    protected virtual float GetCursorLeftOffset(GameObject thisCursor) {
+        Vector3 cursBounds = thisCursor.GetComponent<SpriteRenderer>().bounds.extents;
+        return cursBounds.x;
+    }
+
+    protected virtual float GetCursorVertOffset(GameObject option) {
+        RectTransform rectTrans = option.GetComponent<RectTransform>();
+        return rectTrans.rect.height / 100;
     }
 
     protected GameObject CurrentOption() {

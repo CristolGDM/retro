@@ -51,6 +51,10 @@ public class ItemTargetMenu : MenuComponent {
         }
     }
 
+    protected override float GetCursorVertOffset(GameObject option) {
+        return .3f;
+    }
+
     protected override void LoadOptions() {
         SelectableOptions = new List<List<GameObject>>();
         charactersToTarget = null;
