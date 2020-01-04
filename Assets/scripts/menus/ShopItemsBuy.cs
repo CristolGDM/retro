@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -103,8 +104,12 @@ public class ShopItemsBuy : MenuComponent {
         if (selectedItem == null) return;
 
         if(Inventory.CanSpend(selectedItem.Cost)) {
-            Inventory.SpendGold(selectedItem.Cost);
-            Inventory.AddItemToInventory(selectedItem, 1);
+            string confirmText = "Do you really want to buy " + selectedItem.Name + " for " + selectedItem.Cost + " gold?";
+            Action callback = () => {
+                Inventory.SpendGold(selectedItem.Cost);
+                Inventory.AddItemToInventory(selectedItem, 1);
+            };
+            menuManager.OpenConfirmationMenu(callback, confirmText);
         }
     }
 }
