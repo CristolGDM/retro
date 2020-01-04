@@ -13,8 +13,6 @@ public class ItemTargetMenu : MenuComponent {
     GameObject PcPreviewSection3 = null;
     [SerializeField]
     GameObject PcPreviewSection4 = null;
-    [SerializeField]
-    GameObject ConfirmationMenu = null;
 
     private Item itemToApply;
     private PlayerCharacter[] charactersToTarget;
@@ -99,27 +97,27 @@ public class ItemTargetMenu : MenuComponent {
     protected override void SelectOption(GameObject option) {
         if (Inventory.GetCarriedAmount(itemToApply) <= 0) return;
 
+        string confirmText = "Do you really want to use " + itemToApply.Name + " on ";
+
         if (option != null) {
             PlayerCharacter target = option.GetComponent<PcPreviewSection>().GetPc();
 
             if (target == null) return;
 
             charactersToTarget = new PlayerCharacter[] { target };
+            confirmText += target.characterName + "?";
         }
         else {
             charactersToTarget = GameData.GetParty();
+            confirmText += "everybody?";
         }
 
-        ConfirmationMenu.GetComponent<ItemConfirmationMenu>().Init(itemToApply, charactersToTarget);
-        ConfirmationMenu.GetComponent<ItemConfirmationMenu>().LoadYesNoActions(OnYesFromConfirm, OnNoFromConfirm);
-        menuManager.OpenSpecificMenu(ConfirmationMenu);
+        menuManager.OpenConfirmationMenu(OnYesFromConfirm, confirmText);
     }
 
     private void OnYesFromConfirm() {
         itemToApply.SetTargets(charactersToTarget);
         itemToApply.OnUse();
-
-        menuManager.GoBack();
     }
 
     private void OnNoFromConfirm() {

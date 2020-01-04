@@ -1292,6 +1292,7 @@ MonoBehaviour:
   mainMenu: {fileID: 495430207}
   dialogOption: {fileID: 518321143}
   shopMenu: {fileID: 923398323}
+  confirmationMenu: {fileID: 1162947784}
   Cursor: {fileID: 717577146}
 --- !u!114 &66344264
 MonoBehaviour:
@@ -2031,6 +2032,16 @@ PrefabInstance:
       propertyPath: m_Text
       value: Do you want to use X on Y?
       objectReference: {fileID: 0}
+    - target: {fileID: 201122888275557140, guid: 134d09ae8659c6043921278aa2fbbc5a,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 201122888275557140, guid: 134d09ae8659c6043921278aa2fbbc5a,
+        type: 3}
+      propertyPath: m_FontData.m_HorizontalOverflow
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 201122888275557142, guid: 134d09ae8659c6043921278aa2fbbc5a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2089,22 +2100,22 @@ PrefabInstance:
     - target: {fileID: 201122888275557142, guid: 134d09ae8659c6043921278aa2fbbc5a,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 309
+      value: 288.24
       objectReference: {fileID: 0}
     - target: {fileID: 201122888275557142, guid: 134d09ae8659c6043921278aa2fbbc5a,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -405
+      value: -467.4
       objectReference: {fileID: 0}
     - target: {fileID: 201122888275557142, guid: 134d09ae8659c6043921278aa2fbbc5a,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 712.6
+      value: 745.7
       objectReference: {fileID: 0}
     - target: {fileID: 201122888275557142, guid: 134d09ae8659c6043921278aa2fbbc5a,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: -541.1
+      value: -561.9
       objectReference: {fileID: 0}
     - target: {fileID: 201122888275557142, guid: 134d09ae8659c6043921278aa2fbbc5a,
         type: 3}
@@ -3500,12 +3511,22 @@ PrefabInstance:
     - target: {fileID: 5556301556280013859, guid: 37d684dcd86cfc348bcbab7b64207af2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 797
+      value: 820.63995
       objectReference: {fileID: 0}
     - target: {fileID: 5556301556280013859, guid: 37d684dcd86cfc348bcbab7b64207af2,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -319
+      value: -334.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 5556301556280013859, guid: 37d684dcd86cfc348bcbab7b64207af2,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 213.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5556301556280013859, guid: 37d684dcd86cfc348bcbab7b64207af2,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -669.72
       objectReference: {fileID: 0}
     - target: {fileID: 5556301557504222144, guid: 37d684dcd86cfc348bcbab7b64207af2,
         type: 3}
@@ -4748,7 +4769,7 @@ PrefabInstance:
     - target: {fileID: 201122888275557142, guid: 134d09ae8659c6043921278aa2fbbc5a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 495.41
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 201122888275557142, guid: 134d09ae8659c6043921278aa2fbbc5a,
         type: 3}
@@ -4793,22 +4814,22 @@ PrefabInstance:
     - target: {fileID: 201122888275557142, guid: 134d09ae8659c6043921278aa2fbbc5a,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 810
+      value: 821.4
       objectReference: {fileID: 0}
     - target: {fileID: 201122888275557142, guid: 134d09ae8659c6043921278aa2fbbc5a,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -362
+      value: -376.5
       objectReference: {fileID: 0}
     - target: {fileID: 201122888275557142, guid: 134d09ae8659c6043921278aa2fbbc5a,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 233.8
+      value: 213.3
       objectReference: {fileID: 0}
     - target: {fileID: 201122888275557142, guid: 134d09ae8659c6043921278aa2fbbc5a,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: -644.4
+      value: -669.72
       objectReference: {fileID: 0}
     - target: {fileID: 201122888275557142, guid: 134d09ae8659c6043921278aa2fbbc5a,
         type: 3}
@@ -6968,7 +6989,6 @@ MonoBehaviour:
   PcPreviewSection2: {fileID: 543224091}
   PcPreviewSection3: {fileID: 1047516556}
   PcPreviewSection4: {fileID: 1270499862}
-  ConfirmationMenu: {fileID: 1162947784}
 --- !u!1001 &1088803289
 PrefabInstance:
   m_ObjectHideFlags: 0

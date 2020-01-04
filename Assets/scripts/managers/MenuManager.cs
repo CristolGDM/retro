@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -12,6 +14,8 @@ public class MenuManager : MonoBehaviour {
     private GameObject dialogOption = null;
     [SerializeField]
     private GameObject shopMenu = null;
+    [SerializeField]
+    private GameObject confirmationMenu = null;
     public GameObject DialogOption { get { return dialogOption; } }
 
     public GameObject Cursor;
@@ -56,6 +60,12 @@ public class MenuManager : MonoBehaviour {
 
     public void OpenDialogOption() {
         OpenSpecificMenu(dialogOption);
+    }
+
+    public void OpenConfirmationMenu(Action callback, string confirmationText) {
+        confirmationMenu.GetComponent<ConfirmationMenu>().SetActionToConfirm(callback);
+        confirmationMenu.GetComponent<ConfirmationMenu>().SetConfirmationText(confirmationText);
+        OpenSpecificMenu(confirmationMenu);
     }
 
     public void CloseAllMenus() {
