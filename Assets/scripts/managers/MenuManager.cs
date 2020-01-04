@@ -32,9 +32,9 @@ public class MenuManager : MonoBehaviour {
 
     public void OpenSpecificMenu(GameObject menuObject) {
         GameData.MenuIsOpen = true;
-        Cursor.SetActive(true);
-        menuObject.SetActive(true);
         MenuStack.Add(menuObject);
+        menuObject.GetComponent<MenuComponent>().InitMenu();
+
         List<TilemapRenderer> allBackgrounds = new List<TilemapRenderer>(menuObject.GetComponentsInChildren<TilemapRenderer>());
         List<Canvas> allTexts = new List<Canvas>(menuObject.GetComponentsInChildren<Canvas>());
         List<SpriteRenderer> allSprites = new List<SpriteRenderer>(menuObject.GetComponentsInChildren<SpriteRenderer>());
@@ -48,8 +48,10 @@ public class MenuManager : MonoBehaviour {
         foreach (SpriteRenderer sprite in allSprites) {
             sprite.sortingOrder = baseOrder + 1;
         }
-        menuObject.GetComponent<MenuComponent>().InitMenu();
         Cursor.GetComponent<SpriteRenderer>().sortingOrder = baseOrder + 2;
+
+        Cursor.SetActive(true);
+        menuObject.SetActive(true);
         menuObject.GetComponent<MenuComponent>().MoveToFirstOption();
     }
 

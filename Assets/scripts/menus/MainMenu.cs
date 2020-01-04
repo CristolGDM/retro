@@ -23,12 +23,12 @@ public class MainMenu : MenuComponent {
     GameObject ItemMenu = null;
 
     public new void Start() {
-        base.Start();
 
         PcSection1.GetComponent<PcPreviewSection>().LoadPc(GameData.GetFirstPc());
         PcSection2.GetComponent<PcPreviewSection>().LoadPc(GameData.GetSecondPc());
         PcSection3.GetComponent<PcPreviewSection>().LoadPc(GameData.GetThirdPc());
         PcSection4.GetComponent<PcPreviewSection>().LoadPc(GameData.GetFourthPc());
+        base.Start();
     }
 
     protected override void LoadOptions() {
