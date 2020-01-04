@@ -104,12 +104,20 @@ public class ShopItemsBuy : MenuComponent {
         if (selectedItem == null) return;
 
         if(Inventory.CanSpend(selectedItem.Cost)) {
-            string confirmText = "Do you really want to buy " + selectedItem.Name + " for " + selectedItem.Cost + " gold?";
-            Action callback = () => {
-                Inventory.SpendGold(selectedItem.Cost);
-                Inventory.AddItemToInventory(selectedItem, 1);
+            string confirmText = "How many \"" + selectedItem.Name + "\" do you want to buy?";
+            int maxValue = Math.Min(Inventory.GetGold() / selectedItem.Cost, 99);
+            Action<int> callback = (int amount) => {
+                string amountText = amount > 1 ? " x" + amount : "";
+                string confirmAmountText = "Do you really want to buy " + selectedItem.Name + amountText + " for " + selectedItem.Cost * amount + " gold?";
+                Action confirmCallback = () => {
+                    Inventory.SpendGold(selectedItem.Cost * amount);
+                    Inventory.AddItemToInventory(selectedItem, amount);
+                    menuManager.GoBack();
+                };
+                menuManager.OpenConfirmationMenu(confirmCallback, confirmAmountText);
             };
-            menuManager.OpenConfirmationMenu(callback, confirmText);
+
+            menuManager.OpenAmountSelectMenu(confirmText, maxValue, callback);
         }
     }
 }

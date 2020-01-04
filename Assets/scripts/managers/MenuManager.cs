@@ -16,6 +16,8 @@ public class MenuManager : MonoBehaviour {
     private GameObject shopMenu = null;
     [SerializeField]
     private GameObject confirmationMenu = null;
+    [SerializeField]
+    private GameObject amountSelectMenu = null;
     public GameObject DialogOption { get { return dialogOption; } }
 
     public GameObject Cursor;
@@ -68,6 +70,15 @@ public class MenuManager : MonoBehaviour {
         confirmationMenu.GetComponent<ConfirmationMenu>().SetActionToConfirm(callback);
         confirmationMenu.GetComponent<ConfirmationMenu>().SetConfirmationText(confirmationText);
         OpenSpecificMenu(confirmationMenu);
+    }
+
+    public void OpenAmountSelectMenu(string confirmText, int maxValue, Action<int> callback) {
+        AmountSelectMenu amountMenu = amountSelectMenu.GetComponent<AmountSelectMenu>();
+        amountMenu.SetConfirmationText(confirmText);
+        amountMenu.SetMaxValue(maxValue);
+        amountMenu.SetCallback(callback);
+
+        OpenSpecificMenu(amountSelectMenu);
     }
 
     public void CloseAllMenus() {

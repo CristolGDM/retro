@@ -12,7 +12,6 @@ public class ConfirmationMenu : MenuComponent {
     [SerializeField]
     private GameObject ConfirmationText = null;
 
-    private MenuComponent CallingMenu;
     private Action YesAction;
 
     private string defaultConfirmText = "";
