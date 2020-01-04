@@ -29,6 +29,7 @@ public class PcPreviewSection : MonoBehaviour {
     public void LoadPc(PlayerCharacter character) {
         CancelInvoke();
         thisCharacter = character;
+        LoadPcData();
 
         float startMoving = Random.Range(0f, 0.2f);
         float moveInterval = Random.Range(0.3f, 0.5f);
