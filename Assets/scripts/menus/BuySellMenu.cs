@@ -8,7 +8,9 @@ public class BuySellMenu : MenuComponent {
     [SerializeField]
     private GameObject SellOption = null;
     [SerializeField]
-    private GameObject ShopItemsMenu = null;
+    private GameObject ShopBuyMenu = null;
+    [SerializeField]
+    private GameObject ShopSellMenu = null;
 
     private List<Item> shopItems;
 
@@ -28,11 +30,11 @@ public class BuySellMenu : MenuComponent {
 
     protected override void SelectOption(GameObject option) {
         if(option == BuyOption) {
-            ShopItemsMenu.GetComponent<ShopItemsBuy>().LoadItems(shopItems);
-            menuManager.OpenSpecificMenu(ShopItemsMenu);
+            ShopBuyMenu.GetComponent<ShopItemsBuy>().LoadItems(shopItems);
+            menuManager.OpenSpecificMenu(ShopBuyMenu);
         }
         else if(option == SellOption) {
-            Debug.Log("Trying to open Sell menu");
+            menuManager.OpenSpecificMenu(ShopSellMenu);
         }
     }
 

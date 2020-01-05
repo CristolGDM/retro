@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShopItemsBuy : MenuComponent {
+public class ShopItemsSellMenu : MenuComponent {
 
     private readonly int maxColumns = 2;
     private readonly int maxRows = 5;
@@ -20,7 +20,7 @@ public class ShopItemsBuy : MenuComponent {
     private float optionHeight;
 
     private List<GameObject> optionsAsLine = new List<GameObject>();
-    private List<Item> shopItems = new List<Item>();
+    private List<Item> sellableItems = new List<Item>();
 
     public new void Start() {
         base.Start();
@@ -30,6 +30,13 @@ public class ShopItemsBuy : MenuComponent {
         foreach (Text txt in sampleItemTexts) {
             txt.text = "";
         }
+        foreach (string itemName in Inventory.GetCarriedItems()) {
+            Item thisItem = Inventory.GetItem(itemName);
+
+            if(thisItem != null && thisItem.CostSell > 0 && Inventory.GetCarriedAmount(thisItem) > 0) {
+                sellableItems.Add(thisItem);
+            }
+        }
     }
 
     public new void Update() {
@@ -37,8 +44,8 @@ public class ShopItemsBuy : MenuComponent {
 
         for (int i = 0; i < optionsAsLine.Count; i++) {
             ItemComponent itemComponent = optionsAsLine[i].GetComponent<ItemComponent>();
-            if (i < shopItems.Count) {
-                itemComponent.LoadShopBuyItem(shopItems[i]);
+            if (i < sellableItems.Count) {
+                itemComponent.LoadShopSellItem(sellableItems[i]);
             }
             else {
                 itemComponent.LoadItem("");
@@ -54,10 +61,6 @@ public class ShopItemsBuy : MenuComponent {
         foreach (GameObject option in optionsAsLine) {
             Destroy(option);
         }
-    }
-
-    public void LoadItems(List<Item> items) {
-        shopItems = items;
     }
 
     protected override void LoadOptions() {
@@ -84,11 +87,9 @@ public class ShopItemsBuy : MenuComponent {
 
                 tempOptionsAsLine.Add(newObject);
                 optionsRow.Add(newObject);
-                if (tempOptionsAsLine.Count == shopItems.Count) break;
             }
 
             tempSelectableOptions.Add(optionsRow);
-            if (tempOptionsAsLine.Count == shopItems.Count) break;
         }
         MoveToOption(0, 0);
 
@@ -102,22 +103,22 @@ public class ShopItemsBuy : MenuComponent {
         Item selectedItem = option.GetComponent<ItemComponent>().GetItem();
 
         if (selectedItem == null) return;
+        if (Inventory.GetCarriedAmount(selectedItem) < 1) return;
+        if (selectedItem.CostSell <= 0) return;
 
-        if(Inventory.CanSpend(selectedItem.Cost)) {
-            string confirmText = "How many \"" + selectedItem.Name + "\" do you want to buy?";
-            int maxValue = Math.Min(Inventory.GetGold() / selectedItem.Cost, 99);
-            Action<int> callback = (int amount) => {
-                string amountText = amount > 1 ? " x" + amount : "";
-                string confirmAmountText = "Do you really want to buy " + selectedItem.Name + amountText + " for " + selectedItem.Cost * amount + " gold?";
-                Action confirmCallback = () => {
-                    Inventory.SpendGold(selectedItem.Cost * amount);
-                    Inventory.AddItemToInventory(selectedItem, amount);
-                    menuManager.GoBack();
-                };
-                menuManager.OpenConfirmationMenu(confirmCallback, confirmAmountText);
+        string confirmText = "How many \"" + selectedItem.Name + "\" do you want to sell?";
+        int maxValue = Inventory.GetCarriedAmount(selectedItem);
+        Action<int> callback = (int amount) => {
+            string amountText = amount > 1 ? " x" + amount : "";
+            string confirmAmountText = "Do you really want to sell " + selectedItem.Name + amountText + " for " + selectedItem.CostSell * amount + " gold?";
+            Action confirmCallback = () => {
+                Inventory.AddGold(selectedItem.CostSell * amount);
+                Inventory.RemoveItemFromInventory(selectedItem, amount);
+                menuManager.GoBack();
             };
+            menuManager.OpenConfirmationMenu(confirmCallback, confirmAmountText);
+        };
 
-            menuManager.OpenAmountSelectMenu(confirmText, maxValue, callback);
-        }
+        menuManager.OpenAmountSelectMenu(confirmText, maxValue, callback);
     }
 }

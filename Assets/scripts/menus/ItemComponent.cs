@@ -20,20 +20,26 @@ public class ItemComponent : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(thisItem != null) {
+        bool showOnlyCarriedItems = currentMode == Modes.inventoryMode || currentMode == Modes.shopSellMode;
+        if(thisItem == null || (showOnlyCarriedItems && Inventory.GetCarriedAmount(thisItem) < 1)) {
+            itemName.text = "";
+            itemAmount.text = "";
+            thisItem = null;
+        }
+        else {
             itemName.text = thisItem.Name;
 
             if (currentMode == Modes.shopBuyMode) {
                 itemAmount.text = "" + thisItem.Cost;
+            } else if (currentMode == Modes.shopSellMode) {
+                itemAmount.text = "" + thisItem.CostSell;
+                if (Inventory.GetCarriedAmount(thisItem) > 1) {
+                    itemName.text += " x" + Inventory.GetCarriedAmount(thisItem);
+                }
             } else {
                 itemAmount.text = "" + Inventory.GetCarriedAmount(thisItem);
             }
         }
-        else {
-            itemName.text = "";
-            itemAmount.text = "";
-            thisItem = null;
-        } 
 	}
 
     public void LoadItem (Item newItem) {
@@ -48,6 +54,9 @@ public class ItemComponent : MonoBehaviour {
     public void LoadShopSellItem(Item newItem) {
         currentMode = Modes.shopSellMode;
         LoadItem(newItem);
+    }
+    public void LoadShopSellItem(string itemName) {
+        LoadShopSellItem(Inventory.GetItem(itemName));
     }
 
     public void LoadItem (string itemId) {

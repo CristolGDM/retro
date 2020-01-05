@@ -79,6 +79,7 @@ public class Inventory {
     }
 
     public static int GetCarriedAmount (string itemID) {
+        if (itemID == null) return 0;
         string key = ParseKeyName(itemID);
 
         if (!CarriedInventory.ContainsKey(key)) return 0;
@@ -86,6 +87,7 @@ public class Inventory {
         return CarriedInventory[key];
     }
     public static int GetCarriedAmount (Item item) {
+        if (item == null) return 0;
         return GetCarriedAmount(item.Name);
     }
 

@@ -10,6 +10,7 @@ public abstract class Item {
     public virtual bool IsConsumable { get { return false; } }
     public virtual IEffect[] Effects { get { return null;}}
     public PlayerCharacter[] Targets;
+    public virtual int CostSell { get { return Cost / 2; } }
 
     public virtual void OnUse() {
         if(Effects != null) {
