@@ -30,7 +30,7 @@ public class BuySellMenu : MenuComponent {
 
     protected override void SelectOption(GameObject option) {
         if(option == BuyOption) {
-            ShopBuyMenu.GetComponent<ShopItemsBuy>().LoadItems(shopItems);
+            ShopBuyMenu.GetComponent<ShopBuyMenu>().LoadItems(shopItems);
             menuManager.OpenSpecificMenu(ShopBuyMenu);
         }
         else if(option == SellOption) {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShopItemsBuy : MenuComponent {
+public class ShopBuyMenu : MenuComponent {
 
     private readonly int maxColumns = 2;
     private readonly int maxRows = 5;
