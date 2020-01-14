@@ -9506,6 +9506,11 @@ PrefabInstance:
       propertyPath: m_Depth
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 20612677443789878, guid: 934069ab783c934498d1aaabf545324d,
+        type: 3}
+      propertyPath: orthographic size
+      value: 7.96
+      objectReference: {fileID: 0}
     - target: {fileID: 114408237829856962, guid: 934069ab783c934498d1aaabf545324d,
         type: 3}
       propertyPath: TexturePixelsPerWorldUnit
