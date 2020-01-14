@@ -3758,7 +3758,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &495430208
 Transform:
   m_ObjectHideFlags: 0
@@ -9509,7 +9509,7 @@ PrefabInstance:
     - target: {fileID: 20612677443789878, guid: 934069ab783c934498d1aaabf545324d,
         type: 3}
       propertyPath: orthographic size
-      value: 7.96
+      value: 11.58
       objectReference: {fileID: 0}
     - target: {fileID: 114408237829856962, guid: 934069ab783c934498d1aaabf545324d,
         type: 3}
@@ -13713,22 +13713,22 @@ PrefabInstance:
     - target: {fileID: 5556301557504222145, guid: 37d684dcd86cfc348bcbab7b64207af2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -9.495
+      value: -12.841
       objectReference: {fileID: 0}
     - target: {fileID: 5556301557504222145, guid: 37d684dcd86cfc348bcbab7b64207af2,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -4.613
+      value: -6.486
       objectReference: {fileID: 0}
     - target: {fileID: 5556301557504222145, guid: 37d684dcd86cfc348bcbab7b64207af2,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1333.191
+      value: 1777.924
       objectReference: {fileID: 0}
     - target: {fileID: 5556301557504222145, guid: 37d684dcd86cfc348bcbab7b64207af2,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 749.072
+      value: 998.86
       objectReference: {fileID: 0}
     - target: {fileID: 5556301557504222145, guid: 37d684dcd86cfc348bcbab7b64207af2,
         type: 3}
@@ -13774,6 +13774,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OverridePixelPerfect
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5556301557504222175, guid: 37d684dcd86cfc348bcbab7b64207af2,
+        type: 3}
+      propertyPath: m_ReferencePixelsPerUnit
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5556301557504222175, guid: 37d684dcd86cfc348bcbab7b64207af2,
+        type: 3}
+      propertyPath: m_DynamicPixelsPerUnit
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37d684dcd86cfc348bcbab7b64207af2, type: 3}

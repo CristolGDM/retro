@@ -1,7 +1,5 @@
 fileFormatVersion: 2
-guid: 62e8a9743d118e54ab9c8bc7950a233a
-timeCreated: 1566616960
-licenseType: Free
+guid: 92f6a663daf7f4b41b0325fb18929279
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -10,15 +8,16 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: A Goblin Appears!
+  fontName: Eight-Bit Madness
   fontNames:
-  - A Goblin Appears!
+  - Eight-Bit Madness
   fallbackFontReferences:
-  - {fileID: 12800000, guid: 8c2d57572b170054cabb1cf36c86812b, type: 3}
+  - {fileID: 12800000, guid: b2aeb2b7b09b8ee41a7a1737822d5d83, type: 3}
   customCharacters: 
   fontRenderingMode: 2
   ascentCalculationMode: 1
   useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
   userData: 
   assetBundleName: 
   assetBundleVariant: 

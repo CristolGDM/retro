@@ -21,6 +21,10 @@ public abstract class MenuComponent : MonoBehaviour {
 	
 	// Update is called once per frame
 	protected virtual void Update () {
+        if (menuManager == null) {
+            gameObject.SetActive(false);
+            return;
+        }
         if (Cursor == null) Cursor = menuManager.Cursor;
 
         if (CurrentOption() != null) {
