@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class EventTrigger : OnInteract {
 
-    private readonly int dialogTransitionSpeed = 10;
-    private Vector2 hideDialogMaskPosition = new Vector2(0, 3f);
-    private Vector2 showDialogMaskPosition = new Vector2(0, -0.5f);
+    private readonly int dialogTransitionSpeed = 15;
+    private Vector2 hideDialogMaskPosition = new Vector2(0, 2.5f);
+    private Vector2 showDialogMaskPosition = new Vector2(0, 7f);
 
     ///////////////////////////////////////
 
